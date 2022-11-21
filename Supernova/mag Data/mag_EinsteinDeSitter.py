@@ -6,9 +6,14 @@ Created on Wed Jun 15 17:41:24 2022
 @author: mike
 """
 print()
-print("This curve_fit regression routine, of Python scipy, uses the SNe Ia data, as mag vs redshift (z), from the Gold data set from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). The model selected is the Einstein-Desitter (E-DS) solution, not the Freidmann-Lemaitre-Robertson-Walker (FLRW) model. The E-DS model presents only one parameter, the Hubble constant. No estimation is possible for either the normalized matter density, which is presumed to be = 1, or dark energy.")
+print("This curve_fit regression routine of Python scipy, using the SNe Ia data, as mag vs redshift (z), 
+      from the Gold data set from Riess, A.G. et al. Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: 
+      Evidence for Past Deceleration and Constraints on Dark Energy Evolution. Astrophys. J. vol. 607(2), 665-687 (2004). 
+      The model selected is the Einstein-DeSitter (E-DS) solution, not the Freidmann-Lemaitre-Robertson-Walker (FLRW) model. 
+      The E-DS model presents only one parameter, the Hubble constant. No estimation is possible for either the normalized 
+      matter density, which is presumed to be about 1, nor dark energy.")
 
-# import files
+# import the data ansd library files
 import numpy as np
 import csv
 from scipy.optimize import curve_fit
@@ -24,7 +29,7 @@ xdata = exampledata[:,1]
 ydata = exampledata[:,2]
 error = exampledata[:,3]
 
-#define the function
+#define the function, where Hu is the Hubble constant
 def func(x,Hu):
     return (litesped*(1+x)/Hu)*np.sinh(x/(1+x))
 
@@ -33,6 +38,7 @@ def func2(x,Hu):
 
 #define the constants
 litesped = 299793
+#The intial guess for the Hubble constant
 p0 = [70]
 #evaluate and plot function
 funcdata = func2(xdata,p0)
@@ -53,9 +59,6 @@ chisq = sum((ydata - func2(xdata,Hubble))**2/(error**2))
 chisquar = round(chisq,2)
 #normalised chisquar is calculated as 
 normchisquar = round((chisquar/(157-1)),2)
-#The BIC value is calculated as
-BIC = 157 * np.log10(chisq/157) + np.log10(157)
-normBIC = round(BIC,2)
 
 #calculation of residuals,again
 residuals = ydata - func2(xdata,Hubble)
@@ -99,8 +102,6 @@ print("The r\u00b2 is calculated to be: ",r2)
 print("The goodness of fit \u03C7\u00b2 is: ", chisquar)
 print("And reduced goodness of fit \u03C7\u00b2 is: ", normchisquar)
 print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
-print("The guesstimate for BIC is: ", normBIC)
-print("BIC represents the Bayesian Information Criteria")
 
 #Routines to save figues in eps and pdf formats
 fig.savefig("EinsteinDeSitter_mag_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
