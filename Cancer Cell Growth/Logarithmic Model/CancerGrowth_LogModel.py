@@ -71,6 +71,7 @@ ss_res = np.sum(resids**2)
 ss_tot = np.sum((ydata-np.mean(ydata))**2)
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,4)
+r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-2-1)),4)
 
 #plot of the imported data and function results
 plt.rcParams["font.family"] = "Times New Roman"
@@ -100,7 +101,7 @@ plt.legend(loc='best', fancybox=True, shadow=False)
 print()
 print("The calculated log initial cell count and S.D. are: ", rans_b, ",",rans_b_SD)
 print("The calculated growth constant and S.D are: ", rans_c, ",",rans_c_SD)
-print("The r\u00b2 value is calculated as: ",r2)
+print("The r\u00b2 adjusted value is calculated as: ",r2)
 print("The goodness of fit, \u03C7\u00b2, is: ", chisquar)
 print("The reduced goodness of fit, \u03C7\u00b2, is: ", normchisquar)
 print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
