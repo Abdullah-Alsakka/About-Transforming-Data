@@ -63,7 +63,7 @@ ss_tot = np.sum((ydata-np.mean(ydata))**2)
 #r squared calculation
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,4)
-r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-len(params)-1)),4)
+r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-1-1)),4)
 
 #plot of data and results
 plt.rcParams["font.family"] = "Times New Roman"
