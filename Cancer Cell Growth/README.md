@@ -11,6 +11,6 @@ In this folder we have everything you need for the cancer cell growth modeling u
 
 ## Files
 
-`Original_Data-BT-474_Nseed_large.xls` --> The original data with all the wells used. You can find more information at https://pubmed.ncbi.nlm.nih.gov/31381560/ .
+`Original_Data-BT-474_Nseed_large.xlsx` --> The original data with all the wells used. You can find more information at https://pubmed.ncbi.nlm.nih.gov/31381560/ .
 
-`CancerCellGrowth_B_series` --> The specific data used for modeling, with mean values of the B wells and their starndard deviations. Available in both `.csv` and `.xls` files.
+`CancerCellGrowth_B_series` --> The specific data used for modeling, with mean values of the B wells and their standard deviations. Available in both `.csv` and `.xlsx` files.
