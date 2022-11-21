@@ -13,7 +13,7 @@ print("This curve_fit regression routine of Python scipy, using the SNe Ia data,
       The E-DS model presents only one parameter, the Hubble constant. No estimation is possible for either the normalized 
       matter density, which is presumed to be about 1, nor dark energy.")
 
-# import the data ansd library files
+# import the data and library files
 import numpy as np
 import csv
 from scipy.optimize import curve_fit
@@ -54,21 +54,21 @@ Error, = perr
 normHubble = round(Hubble,2)
 normError = round(Error,2)
 
-#calculate the statistical fitness, using 38 as the number of data pairs and 1 as the degree of freedom (paramater count)
+#calculate the statistical fitness, using 157 as the number of data pairs and 1 as the degree of freedom (parameter count)
 chisq = sum((ydata - func2(xdata,Hubble))**2/(error**2))
 chisquar = round(chisq,2)
 #normalised chisquar is calculated as 
 normchisquar = round((chisquar/(157-1)),2)
 
-#calculation of residuals,again
+#calculation of residuals
 residuals = ydata - func2(xdata,Hubble)
 ss_res = np.sum(residuals**2)
 ss_tot = np.sum((ydata-np.mean(ydata))**2)
 
-#R squared calculation
+#r squared calculation
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,3)
-r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-len(params)-1)),3)
+r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-2-1)),3)
 
 #plot of imported data
 plt.rcParams["font.family"] = "Times New Roman"
