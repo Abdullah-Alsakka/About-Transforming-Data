@@ -6,11 +6,7 @@ Created on Wed Jun 15 17:41:24 2022
 @author: mike
 """
 print()
-print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the Gold data set from 
-      Riess, A.G. et al. Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and 
-      Constraints on Dark Energy Evolution. Astrophys. J. vol. 607(2), 665-687 (2004). The model selected here is the arctanh 
-      analytical solution with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. No estimate of dark 
-      energy is possible.")
+print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the Gold data set from Riess, A.G. et al. Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution. Astrophys. J. vol. 607(2), 665-687 (2004). The model selected here is the arctanh analytical solution with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. No estimate of dark energy is possible.")
 
 # import data and library files
 import numpy as np
