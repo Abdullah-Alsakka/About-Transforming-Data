@@ -52,7 +52,7 @@ Rans_Hu_SD = round(ans_Hu_SD,2)
 Rans_O_m_SD = round(ans_O_m_SD,3)
 
 #estimating the goodness of fit
-chisq = sum((ydata - func3(xdata,ans_Hu,ans_O_m))**2/(error**2))
+chisq = sum((ydata[1:-1] - func3(xdata,ans_Hu,ans_O_m)[1:-1])**2/func3(xdata,ans_Hu,ans_O_m)[1:-1])
 chisquar = round(chisq,2)
 #normalised chisquar is calculated as 
 normchisquar = round((chisquar/(158-2)),2)

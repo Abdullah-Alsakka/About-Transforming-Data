@@ -46,7 +46,7 @@ normHubble = round(Hubble,2)
 normError = round(Error,2)
 
 #calculate the statistical fitness, using 158 as the number of data pairs and 1 as the degree of freedom (paramater count)
-chisq = sum((ydata - func(xdata,Hubble))**2/(error**2))
+chisq = sum((ydata[1:-1] - func(xdata,Hubble)[1:-1])**2/func(xdata,Hubble)[1:-1])
 chisquar = round(chisq,2)
 #normalised chisquar is calculated as 
 normchisquar = round((chisquar/(158-1)),2)

@@ -58,7 +58,7 @@ rans_b_SD = round(ans_b_SD,2)
 rans_c_SD = round(ans_c_SD,3)
 
 #Estimating the goodness of fit
-chisq = sum((ydata - func(xdata,ans_b,ans_c))**2/(error**2))
+chisq = sum((ydata[1:-1] - func(xdata,ans_b,ans_c)[1:-1])**2/func(xdata,ans_b,ans_c)[1:-1])
 chisquar = round(chisq,2)
 #normalised chisquar is calculated as 
 normchisquar = round((chisquar/(158-2)),2)
