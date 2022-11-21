@@ -63,7 +63,7 @@ funcdata = func(xdata,bvalue,cvalue)
 #the calculated distances using the term on the right-hand side, below.
 chisq = sum((ydata - func(xdata,ans_b,ans_c))**2/(error**2))
 chisquar = round(chisq,2)
-#normalised chisquar is calculated with the number of observation times (60) and 2 the number of parameters 
+#normalised chisquar is calculated with the number of observations (60) and 2 the number of parameters 
 normchisquar = round((chisquar/(60-2)),2)
 
 #To calculate the r**2 value
@@ -72,7 +72,7 @@ ss_res = np.sum(resids**2)
 ss_tot = np.sum((ydata-np.mean(ydata))**2)
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,4)
-r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-len(params)-1)),4)
+r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-2-1)),4)
 
 #plot of the imported data and function results
 plt.rcParams["font.family"] = "Times New Roman"
