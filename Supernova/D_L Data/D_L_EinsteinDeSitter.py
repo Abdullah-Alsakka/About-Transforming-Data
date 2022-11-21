@@ -5,9 +5,13 @@ Created on Wed Jun 15 17:41:24 2022
 
 @author: mike
 """
-print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the Gold data set from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). The model selected is the Einstein-deSitter analytical solution with only one parameter, the Hubble constant, Hu. No estimation is possible for the matter density nor dark energy")
+print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the 
+      Gold data set from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: 
+      Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). 
+      The model selected is the Einstein-deSitter analytical solution with only one parameter, the Hubble constant, Hu. 
+      No estimation is possible for the matter density nor dark energy")
 
-# import files
+# import data and library files
 import numpy as np
 import csv
 from scipy.optimize import curve_fit
@@ -34,9 +38,10 @@ litesped = 299793
 funcdata = func(xdata,60) #The initial guess for the Hubble constant is the value just after xdata.
 bnds = (50.0, 80.0)
 
-#curve_fit data to model
+#curve_fit the model to the data
 params, pcov = curve_fit(func,xdata,ydata,bounds = bnds, sigma = error, absolute_sigma = False)
 perr = np.sqrt(np.diag(pcov))
+      
 #unpacking the Hubble parameter and the estimated fit error
 Hubble, = params
 Error, = perr
