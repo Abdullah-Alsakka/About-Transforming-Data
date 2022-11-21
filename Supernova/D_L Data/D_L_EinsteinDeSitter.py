@@ -54,16 +54,13 @@ chisq = sum((ydata - func(xdata,Hubble))**2/(error**2))
 chisquar = round(chisq,2)
 #normalised chisquar is calculated as 
 normchisquar = round((chisquar/(158-1)),2)
-#The BIC value is calculated as
-BIC = 158 * np.log10(chisq/158) + np.log10(158)
-normBIC = round(BIC,2)
 
 #calculation of residuals
 residuals = ydata - func(xdata,Hubble)
 ss_res = np.sum(residuals**2)
 ss_tot = np.sum((ydata-np.mean(ydata))**2)
 
-#R squared calculation
+#r squared calculation
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,4)
 r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-len(params)-1)),4)
@@ -81,7 +78,7 @@ ax.tick_params(axis="x", direction='in', length=10)
 for axis in ['top','bottom','left','right']:
     ax.spines[axis].set_linewidth(3)
     ax.tick_params(width=3)
-plt.xlabel("Expansion factor", fontsize=18)
+plt.xlabel("Expansion factor, \u03BE ", fontsize=18)
 plt.ylabel("Luminosity distance (Mpc)", fontsize=18)
 plt.rc('xtick', labelsize=14) 
 plt.rc('ytick', labelsize=14)
@@ -100,9 +97,7 @@ print("The calculated r\u00b2 is: ",r2)
 print("The goodness of fit \u03C7\u00b2 guesstimate is: ", chisquar)
 print("And reduced goodness of fit \u03C7\u00b2 guesstimate is: ", normchisquar)
 print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
-print("The guesstimate for BIC is: ", normBIC)
-print("BIC represents the Bayesian Information Criteria")
-print(f"D_L is {func(1,normHubble)} when expansion factor is 1")
+#print(f"D_L is {func(1,normHubble)} when expansion factor is 1")
 
 #Routines to save figues in eps and pdf formats
 fig.savefig("EinsteinDeSitter_D_L_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
