@@ -7,8 +7,8 @@ Created on Wed Jun 15 17:41:24 2022
 """
 print()
 print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the Gold data set from 
-      Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and 
-      Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). The model selected here is the arctanh 
+      Riess, A.G. et al. Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and 
+      Constraints on Dark Energy Evolution. Astrophys. J. vol. 607(2), 665-687 (2004). The model selected here is the arctanh 
       analytical solution with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. No estimate of dark 
       energy is possible.")
 
@@ -28,28 +28,29 @@ xdata = exampledata[:,3]
 ydata = exampledata[:,4]
 error = exampledata[:,7]
 
-#define the function - the model to be examined, where x represents the independent variable values and b and c are the parameters to be estimated.
+#define the function - the model to be examined, where x represents the independent variable values and b (Hubble constant) and c 
+#(normalized matter density) are the parameters to be estimated.
 def func(x,b,c):
     return (litesped/(x*b*np.sqrt(abs(1-c))))*np.sinh(2*(np.arctanh(np.sqrt(abs(1-c)))-np.arctanh(np.sqrt(abs(1-c))/np.sqrt((c/x)+ (1-c)))))
 
 #The initial guesses of the model parameters
-p0=[64.0,0.05]
+p0=[69.0,0.05]
 
-#define the constants
+#define the lightspeed constant
 litesped = 299793
 
-#define the parmeters
+#define the parameters
 b=64.8
 c=0.0001
 
 #evaluate and plot function
 funcdata = func(xdata,b,c)
 
-#curve fit model to the data
+#curve fit model to the data, where the first pair are the minimum bounds and the second pair the maximum bounds 
 bnds = ([50.0, 0.0001],[80.0,1.0])
 params, pcov = curve_fit(func,xdata,ydata, p0, bounds = bnds, sigma = error, absolute_sigma = False)
 
-#extracting the Hubble constant, matter density and rounding the values
+#extracting the Hubble constant, normalized matter density and rounding the values
 ans_b, ans_c = params
 rans_b = round(ans_b,2)
 rans_c = round(ans_c,3)
@@ -66,12 +67,12 @@ chisquar = round(chisq,2)
 #normalised chisquar is calculated as 
 normchisquar = round((chisquar/(158-2)),2)
 
-#calculation of residuals,again
+#calculation of residuals
 residuals = ydata - func(xdata,ans_b,ans_c)
 ss_res = np.sum(residuals**2)
 ss_tot = np.sum((ydata-np.mean(ydata))**2)
 
-#R squared calculation
+#r squared calculation
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,3)
 r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-len(params)-1)),3)
@@ -93,7 +94,7 @@ for axis in ['top','bottom','left','right']:
     ax.spines[axis].set_linewidth(3)
     ax.tick_params(width=3)
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 4)
-plt.xlabel("Expansion factor", fontsize = 18)
+plt.xlabel("Expansion factor, \u03BE", fontsize = 18)
 plt.ylabel("Luminosity distance (Mpc)", fontsize=18)
 plt.title("Arctanh model, $D_L$ vs. Exp. fact.", fontsize = 18)
 plt.plot(xdata, funcdata, color = "orange", label = "Arctanh Model")
