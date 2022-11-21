@@ -60,7 +60,7 @@ funcdata = func(xdata,b,c)
 
 #Estimating the goodness of fit from the difference between the observed distance data (ydata) and the calculated distances 
 #using the term on the right-hand side, below.
-chisq = sum((ydata - func(xdata,ans_b,ans_c))**2/(error**2))
+chisq = sum((ydata - func(xdata,ans_b,ans_c))**2/(func(xdata,ans_b,ans_c)))
 chisquar = round(chisq,4)
 #normalised chisquar is calculated with the number of observations (60) and 2 the number of parameters 
 normchisquar = round((chisquar/(60-2)),5)
