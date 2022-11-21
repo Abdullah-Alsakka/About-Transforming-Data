@@ -6,17 +6,19 @@ Created on Wed Jun 15 17:41:24 2022
 @author: mike
 """
 print()
-print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the Gold data set from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). The model selected here is the arctanh analytical solution with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. No estimate of dark energy is possible.")
+print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the Gold data set from 
+      Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and 
+      Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). The model selected here is the arctanh 
+      analytical solution with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. No estimate of dark 
+      energy is possible.")
 
 # import data and library files
 import numpy as np
 import csv
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
-#from scipy import integrate as intg
-#from scipy.optimize import least_squares
 
-#open data file
+#open data file selecting the distance, distance standard deviation and recession velocity columns
 with open("Gold_Riess_D_L_2004.csv","r") as i:
     rawdata = list(csv.reader(i, delimiter = ","))
     
@@ -43,7 +45,7 @@ c=0.0001
 #evaluate and plot function
 funcdata = func(xdata,b,c)
 
-#curve fit data to model
+#curve fit model to the data
 bnds = ([50.0, 0.0001],[80.0,1.0])
 params, pcov = curve_fit(func,xdata,ydata, p0, bounds = bnds, sigma = error, absolute_sigma = False)
 
@@ -52,7 +54,7 @@ ans_b, ans_c = params
 rans_b = round(ans_b,2)
 rans_c = round(ans_c,3)
 
-#extracting the S.D. to both above values
+#extracting the S.D. of both above values
 perr = np.sqrt(np.diag(pcov))
 ans_b_SD, ans_c_SD = perr
 rans_b_SD = round(ans_b_SD,2)
@@ -63,9 +65,6 @@ chisq = sum((ydata - func(xdata,ans_b,ans_c))**2/(error**2))
 chisquar = round(chisq,2)
 #normalised chisquar is calculated as 
 normchisquar = round((chisquar/(158-2)),2)
-#The BIC value is calculated as
-BIC = 158 * np.log10(chisq/(158)) + 2*np.log10(158)
-normBIC = round(BIC,2)
 
 #calculation of residuals,again
 residuals = ydata - func(xdata,ans_b,ans_c)
@@ -110,10 +109,7 @@ print("The r\u00b2 is calculated to be: ",r2)
 print("The goodness of fit \u03C7\u00b2 is: ", chisquar)
 print("The reduced goodness of fit \u03C7\u00b2 is: ", normchisquar)
 print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
-print("The guesstimate for BIC is: ", normBIC)
-print("BIC represents the Bayesian Information Criteria")
 print(f"D_L is {func(1,rans_b,rans_c)} when expansion factor is 1")
-
 
 #Routines to save figues in eps and pdf formats
 fig.savefig("Arctanh_D_L_data.eps", format="eps", dpi=1200, bbox_inches="tight", transparent=True)
