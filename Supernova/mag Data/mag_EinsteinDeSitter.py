@@ -51,11 +51,11 @@ normError = round(Error,2)
 
 #calculate the statistical fitness, using 157 as the number of data pairs and 1 as the degree of freedom (parameter count)
 chisq = sum((ydata - func2(xdata,Hubble))**2/func2(xdata,Hubble))
-chisquar = round(chisq,2)
+chisquar = round(chisq,4)
 # here P is the number of parameters in the function
 P=1
 #normalised chisquar is calculated as 
-normchisquar = round((chisquar/(157-P)),2)
+normchisquar = round((chisquar/(157-P)),4)
 
 #calculation of residuals
 residuals = ydata - func2(xdata,Hubble)
