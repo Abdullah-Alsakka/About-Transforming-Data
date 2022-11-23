@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 #open data file
 with open("Gold_Riess_mag_2004.csv","r") as i:
     rawdata = list(csv.reader(i, delimiter = ","))
-    
+# ignore the top row    
 exampledata = np.array(rawdata[1:],dtype=float)
 
 xdata = exampledata[:,1]
@@ -35,7 +35,7 @@ def func2(x,Hu):
 litesped = 299793
 #The intial guess for the Hubble constant
 p0 = [70]
-#evaluate and plot function
+#evaluate and plot function where bnds are teh upper and lower limit allowed for Hu
 funcdata = func2(xdata,p0)
 bnds = (50.0, 80.0)
 
@@ -52,8 +52,10 @@ normError = round(Error,2)
 #calculate the statistical fitness, using 157 as the number of data pairs and 1 as the degree of freedom (parameter count)
 chisq = sum((ydata - func2(xdata,Hubble))**2/func2(xdata,Hubble))
 chisquar = round(chisq,2)
+# here P is the number of parameters in the function
+P=1
 #normalised chisquar is calculated as 
-normchisquar = round((chisquar/(157-1)),2)
+normchisquar = round((chisquar/(157-P)),2)
 
 #calculation of residuals
 residuals = ydata - func2(xdata,Hubble)
@@ -63,7 +65,7 @@ ss_tot = np.sum((ydata-np.mean(ydata))**2)
 #r squared calculation
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,3)
-r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-2-1)),3)
+r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-P-1)),3)
 
 #plot of imported data
 plt.rcParams["font.family"] = "Times New Roman"
@@ -84,7 +86,7 @@ plt.rc('xtick', labelsize=14)
 plt.rc('ytick', labelsize=14)
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 5)
 plt.title("E-DS model, mag vs. redshift data", fontsize = 18)
-plt.plot(xdata, funcdata, color = "orange", label = "E-DS model")
+plt.plot(xdata, funcdata, color = "orange", label = "magE-DS model")
 plt.legend(loc='best', fancybox=True, shadow=False)
 plt.show()
 
