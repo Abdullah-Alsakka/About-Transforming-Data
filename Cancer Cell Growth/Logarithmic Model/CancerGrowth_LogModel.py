@@ -10,6 +10,7 @@ print("The semi-log (Log) model for cancer cell growth/replication in culture me
 
 # import files and libraries
 import numpy as np
+import math
 import csv
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
@@ -54,6 +55,10 @@ rans_c_SD = round(ans_c_SD,5)
 # define the parameter values for the display plot derived from the regression routine
 b=ans_b
 c=ans_c
+
+# calculate the initial cell number from the intercept
+Yinter = math.exp(ans_b)
+Ysd = math.exp(ans_b_SD)
 
 # solve the function to be used for the nonlinear plot
 funcdata = func(xdata,b,c)
