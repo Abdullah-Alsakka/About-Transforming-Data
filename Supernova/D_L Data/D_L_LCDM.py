@@ -13,10 +13,11 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 from scipy import integrate as intg
 
-#open data file
+# open data file
 with open("Gold_Riess_D_L_2004.csv","r") as i:
     rawdata = list(csv.reader(i, delimiter = ","))
     
+# ignore the first row   
 exampledata = np.array(rawdata[1:],dtype=float)
 
 xdata = exampledata[:,3]
@@ -24,7 +25,7 @@ ydata = exampledata[:,4]
 error = exampledata[:,7]
 
 #Model function
-O_m = 0.25 #initial guess for matter density and Hu is the Hubble constant.
+O_m = 0.30 #initial guess for matter density
 
 def integr(x,O_m):
     return intg.quad(lambda t: 1/(t*(np.sqrt((O_m/t)+(1-O_m)*t**2))), x, 1)[0]
@@ -34,31 +35,33 @@ def func2(x, O_m):
 
 litesped = 299793
 
+# Hu is the Hubble constant
 def func3(x,Hu,O_m):
     return (litesped/(x*Hu))*np.sinh(func2(x,O_m))
 
-init_guess = np.array([65,0.25])
+init_guess = np.array([65,0.30])
 bnds=([50,0.001],[80,1.0])
 
+# the bnds are the two lower and two higher bounds for the unknowns (parameters), when absolute_sigma = False the errors are "normalized"
 params, pcov = curve_fit(func3, xdata, ydata, p0 = init_guess, bounds = bnds, sigma = error, absolute_sigma = False)
+
 #extracting the two parameters from the solution and rounding the values
 ans_Hu, ans_O_m = params
 Rans_Hu = round(ans_Hu,2)
 Rans_O_m = round(ans_O_m,3)
-#Extracting the S.D. and rounding the values
+
+# extracting the S.D. and rounding the values
 perr = np.sqrt(np.diag(pcov))
 ans_Hu_SD, ans_O_m_SD = np.sqrt(np.diag(pcov))
 Rans_Hu_SD = round(ans_Hu_SD,2)
 Rans_O_m_SD = round(ans_O_m_SD,3)
 
-#estimating the goodness of fit
+# estimating the goodness of fit, here the first row must be ignored since the error of the origin is 0.
 chisq = sum((ydata[1:-1] - func3(xdata,ans_Hu,ans_O_m)[1:-1])**2/func3(xdata,ans_Hu,ans_O_m)[1:-1])
 chisquar = round(chisq,2)
-#normalised chisquar is calculated as 
+
+# normalised chisquar is calculated as 
 normchisquar = round((chisquar/(158-2)),2)
-#The BIC value is calculated as
-BIC = 158 * np.log10(chisq/158) + 2*np.log10(158)
-normBIC = round(BIC,2)
 
 #calculation of residuals
 residuals = ydata - func3(xdata,ans_Hu,ans_O_m)
@@ -66,12 +69,12 @@ residuals = ydata - func3(xdata,ans_Hu,ans_O_m)
 ss_res = np.sum(residuals**2)
 ss_tot = np.sum((ydata-np.mean(ydata))**2)
 
-#R squared
+# r squared adjusted
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,3)
 r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-len(params)-1)),3)
 
-#plot of imported data
+#plot of imported data and model
 plt.rcParams["font.family"] = "Times New Roman"
 plt.rcParams['lines.linewidth'] = 3
 plt.figure(1,dpi=240)
@@ -99,13 +102,13 @@ print()
 print("The calculated Hubble constant with S.D. is: ", Rans_Hu,",", Rans_Hu_SD)
 print("The calculated matter density with S.D. is: ", Rans_O_m,",",Rans_O_m_SD)
 print("The adjusted r\u00b2 is calculated to be: ",r2adjusted)
-print("The calculated r\u00b2 is: ",r2)
-print("The goodness of fit, \u03C7\u00b2, is: ", chisquar)
+#print("The calculated r\u00b2 is: ",r2)
+print("The goodness of fit, \u03C7\u00b2, estimate: ", chisquar)
 print("The reduced goodness of fit, \u03C7\u00b2, is: ", normchisquar)
-print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
-print("The guesstimate for BIC is: ", normBIC)
-print("BIC represents the Bayesian Information Criteria")
-print(f"D_L is {func3(np.array([1]),ans_Hu,ans_O_m)} when expansion factor is 1")
+#print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
+#print("The guesstimate for BIC is: ", normBIC)
+#print("BIC represents the Bayesian Information Criteria")
+
 
 #Saving the plots in two different formats
 fig.savefig("flatLCDM_D_L_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
