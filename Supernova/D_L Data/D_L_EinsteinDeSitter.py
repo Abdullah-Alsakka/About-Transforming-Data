@@ -37,7 +37,7 @@ funcdata = func(xdata,60) # The initial guess for the Hubble constant, 60, is th
 # the lower and upper bounds allowed for the Hubble constant
 bnds = (50.0, 80.0)
 
-# curve_fit the model to the data, note that when sigma = False the errors are "normalized"
+# curve_fit the model to the data, note that when absolute_sigma = False the errors are "normalized"
 params, pcov = curve_fit(func,xdata,ydata,bounds = bnds, sigma = error, absolute_sigma = False)
 perr = np.sqrt(np.diag(pcov))
       
