@@ -36,13 +36,6 @@ p0=[70.0,0.05]
 # define the lightspeed constant
 litesped = 299793
 
-# define the parameters
-b=rans_b
-c=rans_c
-
-# evaluate and plot function
-funcdata = func(xdata,b,c)
-
 # curve fit model to the data, where the first pair are the lower bounds and the second pair the upper bounds 
 bnds = ([50.0, 0.0001],[80.0,1.0])
 
@@ -53,6 +46,13 @@ params, pcov = curve_fit(func,xdata,ydata, p0, bounds = bnds, sigma = error, abs
 ans_b, ans_c = params
 rans_b = round(ans_b,2)
 rans_c = round(ans_c,3)
+
+# define the parameters
+b=ans_b
+c=ans_c
+
+# evaluate and plot function
+funcdata = func(xdata,b,c)
 
 # extracting the S.D. of both above values
 perr = np.sqrt(np.diag(pcov))
