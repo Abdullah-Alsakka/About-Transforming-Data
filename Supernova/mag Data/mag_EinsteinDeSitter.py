@@ -14,7 +14,7 @@ import csv
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 
-#open data file
+# open data file
 with open("Gold_Riess_mag_2004.csv","r") as i:
     rawdata = list(csv.reader(i, delimiter = ","))
 # ignore the top row    
@@ -24,50 +24,55 @@ xdata = exampledata[:,1]
 ydata = exampledata[:,2]
 error = exampledata[:,3]
 
-#define the function, where Hu is the Hubble constant
+# define the function, where Hu is the Hubble constant
 def func(x,Hu):
     return (litesped*(1+x)/Hu)*np.sinh(x/(1+x))
 
 def func2(x,Hu):
     return 5*np.log10(func(x,Hu)) + 25
 
-#define the constants
+#define the constant
 litesped = 299793
-#The intial guess for the Hubble constant
+
+# The intial guess for the Hubble constant
 p0 = [70]
-#evaluate and plot function where bnds are teh upper and lower limit allowed for Hu
+
+# evaluate the function where bnds are the upper and lower limit allowed for Hu
 funcdata = func2(xdata,p0)
 bnds = (50.0, 80.0)
 
-#curve fit data to model
+# curve fit data to model, where absolute_sigma = False means the errors are normlaized
 params, pcov = curve_fit(func2,xdata,ydata,bounds = bnds, sigma = error, absolute_sigma = False)
 perr = np.sqrt(np.diag(pcov))
-#unpacking the Hubble parameter and the estimated fit error
+
+# unpacking the Hubble parameter and the estimated fit error
 Hubble, = params
 Error, = perr
-#Rounding the above two values to 2 decimal places
+
+# rounding the above two values to 2 decimal places
 normHubble = round(Hubble,2)
 normError = round(Error,2)
 
-#calculate the statistical fitness, using 157 as the number of data pairs and 1 as the degree of freedom (parameter count)
+# calculate the statistical fitness, using 157 as the number of data pairs and P=1 as the degree of freedom (parameter count)
 chisq = sum((ydata - func2(xdata,Hubble))**2/func2(xdata,Hubble))
 chisquar = round(chisq,4)
-# here P is the number of parameters in the function
+
+# P is the number of parameters in the function
 P=1
 #normalised chisquar is calculated as 
 normchisquar = round((chisquar/(157-P)),4)
 
-#calculation of residuals
+# calculation of residuals
 residuals = ydata - func2(xdata,Hubble)
 ss_res = np.sum(residuals**2)
 ss_tot = np.sum((ydata-np.mean(ydata))**2)
 
-#r squared calculation
+# r squared calculation
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,3)
 r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-P-1)),3)
 
-#plot of imported data
+# plot of imported data
 plt.rcParams["font.family"] = "Times New Roman"
 plt.rcParams['lines.linewidth'] = 3
 plt.xlim(0.0,1.5)
@@ -95,10 +100,10 @@ print("\n")
 print("The estimated Hubble constant is: ", normHubble)
 print("The S.D. of the Hubble constant is ", normError)
 print("The adjusted r\u00b2 is calculated to be: ",r2adjusted)
-print("The r\u00b2 is calculated to be: ",r2)
-print("The goodness of fit \u03C7\u00b2 is: ", chisquar)
-print("And reduced goodness of fit \u03C7\u00b2 is: ", normchisquar)
-print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
+#print("The r\u00b2 is calculated to be: ",r2)
+#print("The goodness of fit \u03C7\u00b2 is: ", chisquar)
+print("And reduced goodness of fit \u03C7\u00b2 estimate: ", normchisquar)
+#print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
 
 #Routines to save figues in eps and pdf formats
 fig.savefig("EinsteinDeSitter_mag_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
