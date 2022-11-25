@@ -103,13 +103,10 @@ print("The calculated Hubble constant with S.D. is: ", Rans_Hu,",", Rans_Hu_SD)
 print("The calculated matter density with S.D. is: ", Rans_O_m,",",Rans_O_m_SD)
 print("The adjusted r\u00b2 is calculated to be: ",r2adjusted)
 #print("The calculated r\u00b2 is: ",r2)
-print("The goodness of fit, \u03C7\u00b2, estimate: ", chisquar)
+#print("The goodness of fit, \u03C7\u00b2, estimate: ", chisquar)
 print("The reduced goodness of fit, \u03C7\u00b2, is: ", normchisquar)
 #print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
-#print("The guesstimate for BIC is: ", normBIC)
-#print("BIC represents the Bayesian Information Criteria")
 
-
-#Saving the plots in two different formats
+# Saving the plots in two different formats
 fig.savefig("flatLCDM_D_L_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
 fig.savefig("flatLCDM_D_L_data.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
