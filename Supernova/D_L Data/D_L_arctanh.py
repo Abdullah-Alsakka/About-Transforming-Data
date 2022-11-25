@@ -37,8 +37,8 @@ p0=[70.0,0.05]
 litesped = 299793
 
 # define the parameters
-b=ans_b
-c=ans_c
+b=rans_b
+c=rans_c
 
 # evaluate and plot function
 funcdata = func(xdata,b,c)
