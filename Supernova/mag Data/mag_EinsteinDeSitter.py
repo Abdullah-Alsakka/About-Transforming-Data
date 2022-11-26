@@ -14,9 +14,10 @@ import csv
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 
-# open data file
+# open data file and extract the data
 with open("Gold_Riess_mag_2004.csv","r") as i:
     rawdata = list(csv.reader(i, delimiter = ","))
+    
 # ignore the top row    
 exampledata = np.array(rawdata[1:],dtype=float)
 
@@ -24,14 +25,14 @@ xdata = exampledata[:,1]
 ydata = exampledata[:,2]
 error = exampledata[:,3]
 
-# define the function, where Hu is the Hubble constant
+# define the function, where Hu is the Hubble constant and the only parameter
 def func(x,Hu):
     return (litesped*(1+x)/Hu)*np.sinh(x/(1+x))
 
 def func2(x,Hu):
     return 5*np.log10(func(x,Hu)) + 25
 
-#define the constant
+# define the constant
 litesped = 299793
 
 # The intial guess for the Hubble constant
@@ -41,7 +42,7 @@ p0 = [70]
 funcdata = func2(xdata,p0)
 bnds = (50.0, 80.0)
 
-# curve fit data to model, where absolute_sigma = False means the errors are normlaized
+# curve fit nodel to the data where absolute_sigma = False means the standard deviations are normlaized
 params, pcov = curve_fit(func2,xdata,ydata,bounds = bnds, sigma = error, absolute_sigma = False)
 perr = np.sqrt(np.diag(pcov))
 
@@ -75,7 +76,7 @@ r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-P-1)),3)
 # plot of imported data
 plt.rcParams["font.family"] = "Times New Roman"
 plt.rcParams['lines.linewidth'] = 3
-plt.xlim(0.0,1.5)
+plt.xlim(0.0,1.8)
 plt.ylim(32.0, 46.0)
 plt.xscale("linear")
 plt.yscale("linear")
