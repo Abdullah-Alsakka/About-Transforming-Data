@@ -7,8 +7,9 @@ Created on Wed Jun 15 17:41:24 2022
 """
 print()
 print("This curve_fit regression routine, of Python scipy, uses the SNe Ia data, as mag vs redshift (z), of the Gold data set from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). This is the arctanh, analytical solution to the Friedmann-Lemaitre-Roberston-Walker (FLRW) model with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. No estimation is possible for dark energy.")
+print()
 
-# import data and library files
+# import data and Python 3 library files
 import numpy as np
 import csv
 from scipy.optimize import curve_fit
@@ -35,17 +36,10 @@ def func2(x,b,c):
 # the initial guesses of the model parameters
 p0=[70.0,0.05]
 
-# specify the constant
+# specify the constant speed of light
 litesped = 299793
 
-# specify the parameters
-b=64.8
-c=0.001
-
-# evaluate the function
-func2data = func2(xdata,b,c)
-
-# curve fit the model to the data
+# curve fit the model to the data, the bnds are the lower and upper bounds for the two parameters
 bnds = ([50.0, 0.001],[80.0,1.0])
 params, pcov = curve_fit(func2,xdata,ydata, p0, bounds = bnds, sigma = error, absolute_sigma = False)
 
@@ -53,6 +47,13 @@ params, pcov = curve_fit(func2,xdata,ydata, p0, bounds = bnds, sigma = error, ab
 ans_b, ans_c = params
 rans_b = round(ans_b, 2)
 rans_c = round(ans_c, 3)
+
+# specify the parameters for the plot with the model
+b=ans_b
+c=ans_c
+
+# evaluate the function
+func2data = func2(xdata,b,c)
 
 # extracting the two standard deviations and rounding the values
 perr = np.sqrt(np.diag(pcov))
@@ -64,7 +65,7 @@ rans_cSD = round(ans_cSD,3)
 chisq = sum((ydata - func2(xdata,ans_b,ans_c))**2/func2(xdata,ans_b,ans_c))
 chisquar = round(chisq,4)
 
-# normalised chisquar where P is the number of parameters and is calculated as 
+# normalised chisquar where P is the number of parameters (2) and is calculated as 
 P=2
 normchisquar = round((chisquar/(157-P)),4)
 
