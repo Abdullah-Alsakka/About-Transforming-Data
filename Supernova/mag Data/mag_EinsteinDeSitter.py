@@ -32,7 +32,7 @@ def func(x,Hu):
 def func2(x,Hu):
     return 5*np.log10(func(x,Hu)) + 25
 
-# define the constant
+# define the speed of light constant
 litesped = 299793
 
 # The intial guess for the Hubble constant
@@ -42,7 +42,7 @@ p0 = [70]
 funcdata = func2(xdata,p0)
 bnds = (50.0, 80.0)
 
-# curve fit nodel to the data where absolute_sigma = False means the standard deviations are normlaized
+# curve fit model to the data where absolute_sigma = False means the standard deviations are normlaized
 params, pcov = curve_fit(func2,xdata,ydata,bounds = bnds, sigma = error, absolute_sigma = False)
 perr = np.sqrt(np.diag(pcov))
 
