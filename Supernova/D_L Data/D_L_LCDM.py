@@ -5,8 +5,9 @@ Created on Fri Jul 29 17:53:20 2022
 
 @author: mike
 """
+print()
 print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the Gold data set from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). The LCDM model used here requires numerical integration with two parameters, the Hubble constant, Hu and the normalised matter density, O_m in a flat geometry. An estimate of the normalized cosmological constant (dark energy) is possible presuming a Universe with flat geometry.")
-
+print()
 import numpy as np
 import csv
 import matplotlib.pyplot as plt
