@@ -50,7 +50,7 @@ normHubble = round(Hubble,2)
 normError = round(Error,2)
 
 # calculate the statistical fitness, using 158 as the number of data pairs and P=1 as the degree of freedom (paramater count)
-# since the error at the origin is 0 we have to ignore this only to estimate the goodness of fit, but not the fit itself
+# since the error at the origin is 0 we must ignore this only to estimate the goodness of fit, but not the fit itself
 chisq = sum((ydata[1:-1] - func(xdata,Hubble)[1:-1])**2/func(xdata,Hubble)[1:-1])
 chisquar = round(chisq,2)
 
