@@ -110,8 +110,8 @@ print("The calculated log_e initial cell count and S.D. are: ", rans_b, ",",rans
 print ("Calculated initial cell count and S.D. are: ", Yinter, ", ", Ysd)
 print("The calculated growth constant and S.D are: ", rans_c, ",",rans_c_SD)
 print("The r\u00b2 adjusted value is calculated as: ",r2adjusted)
-#print("The goodness of fit, \u03C7\u00b2, is: ", chisquar)
-print("The reduced goodness of fit, \u03C7\u00b2, is: ", normchisquar)
+print("The goodness of fit, \u03C7\u00b2, is: ", chisquar)
+#print("The reduced goodness of fit, \u03C7\u00b2, is: ", normchisquar)
 #print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
 
 #Routines to save figues in eps and pdf formats
