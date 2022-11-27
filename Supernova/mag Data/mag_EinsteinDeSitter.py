@@ -7,7 +7,7 @@ Created on Wed Jun 15 17:41:24 2022
 """
 print()
 print("This curve_fit regression routine of Python scipy, using the SNe Ia data, as mag vs redshift (z), from the Gold data set from Riess, A.G. et al. Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution. Astrophys. J. vol. 607(2), 665-687 (2004). The model selected is the Einstein-DeSitter (E-DS) solution, not the Freidmann-Lemaitre-Robertson-Walker (FLRW) model. The E-DS model presents only one parameter, the Hubble constant. No estimation is possible for either the normalized matter density, which is presumed to be about 1, nor dark energy.")
-
+print()
 # import the data and library files
 import numpy as np
 import csv
