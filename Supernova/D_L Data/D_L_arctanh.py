@@ -61,6 +61,7 @@ rans_b_SD = round(ans_b_SD,2)
 rans_c_SD = round(ans_c_SD,3)
 
 # estimating the goodness of fit
+# since the error at the origin is 0 we must ignore this only to estimate the goodness of fit, but not the fit itself
 chisq = sum((ydata[1:-1] - func(xdata,ans_b,ans_c)[1:-1])**2/func(xdata,ans_b,ans_c)[1:-1])
 chisquar = round(chisq,2)
 #normalised chisquar is calculated as 
