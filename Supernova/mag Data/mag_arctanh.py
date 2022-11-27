@@ -63,11 +63,11 @@ rans_cSD = round(ans_cSD,3)
 
 # estimating the goodness of fit
 chisq = sum((ydata - func2(xdata,ans_b,ans_c))**2/func2(xdata,ans_b,ans_c))
-chisquar = round(chisq,4)
+chisquar = round(chisq,5)
 
 # normalised chisquar where P is the number of parameters (2) and is calculated as 
 P=2
-normchisquar = round((chisquar/(157-P)),4)
+normchisquar = round((chisquar/(157-P)),5)
 
 # calculation of residuals
 residuals = ydata - func2(xdata,ans_b,ans_c)
