@@ -67,11 +67,11 @@ rSD_O_m = round(SD_O_m,3)
 
 # estimating the goodness of fit
 chisq = sum((ydata - func3(xdata,ans_Hu,ans_O_m))**2/func3(xdata,ans_Hu,ans_O_m))
-chisquar = round(chisq,4)
+chisquar = round(chisq,5)
 
 # normalised chisquar is calculated for 157 data pairs with P the parameter count (2) as
 P=2
-normchisquar = round((chisquar/(157-P)),4)
+normchisquar = round((chisquar/(157-P)),5)
 
 # calculation of residuals
 residuals = ydata - func3(xdata,ans_Hu,ans_O_m)
