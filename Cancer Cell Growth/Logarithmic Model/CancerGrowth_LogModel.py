@@ -60,6 +60,10 @@ c=ans_c
 Yinter = math.exp(ans_b)
 Ysd = math.exp(ans_b_SD)
 
+# round these two values
+rYinter = round(Yinter,1)
+rYsd = round(Ysd,1)
+
 # solve the function to be used for the nonlinear plot
 funcdata = func(xdata,b,c)
 
@@ -107,7 +111,7 @@ plt.legend(loc='best', fancybox=True, shadow=False)
 #print result values
 print()
 print("The calculated log_e initial cell count and S.D. are: ", rans_b, ",",rans_b_SD)
-print ("Calculated initial cell count and S.D. are: ", Yinter, ", ", Ysd)
+print ("Calculated initial cell count and S.D. are: ", rYinter, ", ", rYsd)
 print("The calculated growth constant and S.D are: ", rans_c, ",",rans_c_SD)
 print("The r\u00b2 adjusted value is calculated as: ",r2adjusted)
 print("The goodness of fit, \u03C7\u00b2, is: ", chisquar)
