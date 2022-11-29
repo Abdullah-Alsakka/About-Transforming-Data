@@ -6,7 +6,7 @@ Created on Fri Jul 29 17:53:20 2022
 @author: mike
 """
 print()
-print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the Gold data set from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). The LCDM model used here requires numerical integration with two parameters, the Hubble constant, Hu and the normalised matter density, O_m in a flat geometry. An estimate of the normalized cosmological constant (dark energy) is possible presuming a Universe with flat geometry.")
+print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the gold data set from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). The LCDM model used here requires numerical integration with two parameters, the Hubble constant, Hu and the normalised matter density, O_m in a flat geometry. An estimate of the normalized cosmological constant (dark energy) is possible presuming a Universe with flat geometry.")
 print()
 import numpy as np
 import csv
@@ -26,7 +26,7 @@ ydata = exampledata[:,4]
 error = exampledata[:,7]
 
 #Model function
-O_m = 0.30 #initial guess for matter density
+O_m = 0.35 #initial guess for matter density
 
 def integr(x,O_m):
     return intg.quad(lambda t: 1/(t*(np.sqrt((O_m/t)+(1-O_m)*t**2))), x, 1)[0]
@@ -40,7 +40,7 @@ litesped = 299793
 def func3(x,Hu,O_m):
     return (litesped/(x*Hu))*np.sinh(func2(x,O_m))
 
-init_guess = np.array([65,0.30])
+init_guess = np.array([65,0.35])
 bnds=([50,0.001],[80,1.0])
 
 # the bnds are the two lower and two higher bounds for the unknowns (parameters), when absolute_sigma = False the errors are "normalized"
@@ -61,8 +61,9 @@ Rans_O_m_SD = round(ans_O_m_SD,3)
 chisq = sum((ydata[1:-1] - func3(xdata,ans_Hu,ans_O_m)[1:-1])**2/func3(xdata,ans_Hu,ans_O_m)[1:-1])
 chisquar = round(chisq,2)
 
-# normalised chisquar is calculated as 
-normchisquar = round((chisquar/(158-2)),2)
+# normalised chisquar is calculated with P the parameter count as
+P=2
+normchisquar = round((chisquar/(157-P)),2)
 
 #calculation of residuals
 residuals = ydata - func3(xdata,ans_Hu,ans_O_m)
@@ -73,7 +74,7 @@ ss_tot = np.sum((ydata-np.mean(ydata))**2)
 # r squared adjusted
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,3)
-r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-len(params)-1)),3)
+r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-P-1)),3)
 
 #plot of imported data and model
 plt.rcParams["font.family"] = "Times New Roman"
@@ -81,8 +82,8 @@ plt.rcParams['lines.linewidth'] = 3
 plt.figure(1,dpi=240)
 plt.xlabel("Expansion factor")
 plt.ylabel("Distance (Mpc)")
-plt.xlim(0.5,1)
-plt.ylim(0.0,15000)
+plt.xlim(0.3,1)
+plt.ylim(0.0,16000)
 plt.xscale("linear")
 plt.yscale("linear")
 fig, ax = plt.subplots()
