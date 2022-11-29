@@ -50,14 +50,14 @@ Error, = perr
 normHubble = round(Hubble,2)
 normError = round(Error,2)
 
-# calculate the statistical fitness, using 158 as the number of data pairs and P=1 as the degree of freedom (paramater count)
+# calculate the statistical fitness, using 157 as the number of data pairs and P=1 as the degree of freedom (paramater count)
 # since the error at the origin is 0 we must ignore this only to estimate the goodness of fit, but not the fit itself
 chisq = sum((ydata[1:-1] - func(xdata,Hubble)[1:-1])**2/func(xdata,Hubble)[1:-1])
 chisquar = round(chisq,2)
 
 #normalised chisquar is calculated as
 P=1
-normchisquar = round((chisquar/(158-P)),2)
+normchisquar = round((chisquar/(157-P)),2)
 
 #calculation of residuals
 residuals = ydata - func(xdata,Hubble)
@@ -67,13 +67,13 @@ ss_tot = np.sum((ydata-np.mean(ydata))**2)
 #r squared calculation and round to 4 digits
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,4)
-r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-1-1)),4)
+r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-P-1)),4)
 
 #plot of data and results
 plt.rcParams["font.family"] = "Times New Roman"
 plt.rcParams['lines.linewidth'] = 3
-plt.xlim(0.5,1.0)
-plt.ylim(0.0,15000)
+plt.xlim(0.3,1.0)
+plt.ylim(0.0,16000)
 plt.xscale("linear")
 plt.yscale("linear")
 fig, ax = plt.subplots()
@@ -99,7 +99,7 @@ print("The S.D. of the Hubble constant is ", normError)
 print("The adjusted r\u00b2 is calculated to be: ",r2adjusted)
 #print("The calculated r\u00b2 is: ",r2)
 #print("The goodness of fit \u03C7\u00b2 guesstimate is: ", chisquar)
-print("And reduced goodness of fit \u03C7\u00b2 estimate is: ", normchisquar)
+print("The reduced goodness of fit \u03C7\u00b2 estimate is: ", normchisquar)
 #print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
 #print(f"D_L is {func(1,normHubble)} when expansion factor is 1")
 
