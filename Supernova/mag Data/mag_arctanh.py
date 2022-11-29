@@ -96,7 +96,7 @@ plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 4)
 plt.xlabel("Redshift z", fontsize = 18)
 plt.ylabel("mag (no units)", fontsize = 18)
 plt.title("magarctanh model, mag vs. redshift z", fontsize = 18)
-plt.plot(xdata, func2(xdata,ans_b,ans_c), color = "orange", label = "magarctanh model")
+plt.plot(xdata, func2(xdata,ans_b,ans_c), color = "green", label = "magarctanh model")
 plt.legend(loc='best', fancybox=True, shadow=False)
 plt.show()
 
