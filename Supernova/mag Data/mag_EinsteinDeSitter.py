@@ -54,14 +54,14 @@ Error, = perr
 normHubble = round(Hubble,2)
 normError = round(Error,2)
 
-# calculate the statistical fitness, using 157 as the number of data pairs and P=1 as the degree of freedom (parameter count)
+# calculate the statistical fitness, using 156 as the number of data pairs and P=1 as the degree of freedom (parameter count)
 chisq = sum((ydata - func2(xdata,Hubble))**2/func2(xdata,Hubble))
 chisquar = round(chisq,4)
 
 # P is the number of parameters in the function
 P=1
 #normalised chisquar is calculated as 
-normchisquar = round((chisquar/(157-P)),4)
+normchisquar = round((chisquar/(156-P)),4)
 
 # calculation of residuals
 residuals = ydata - func2(xdata,Hubble)
@@ -91,7 +91,7 @@ plt.ylabel("mag (no units)", fontsize=18)
 plt.rc('xtick', labelsize=14) 
 plt.rc('ytick', labelsize=14)
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 5)
-plt.title("E-DS model, mag vs. redshift data", fontsize = 18)
+plt.title("magE-DS model, mag vs. redshift data", fontsize = 18)
 plt.plot(xdata, funcdata, color = "orange", label = "magE-DS model")
 plt.legend(loc='best', fancybox=True, shadow=False)
 plt.show()
@@ -103,7 +103,7 @@ print("The S.D. of the Hubble constant is ", normError)
 print("The adjusted r\u00b2 is calculated to be: ",r2adjusted)
 #print("The r\u00b2 is calculated to be: ",r2)
 #print("The goodness of fit \u03C7\u00b2 is: ", chisquar)
-print("And reduced goodness of fit \u03C7\u00b2 estimate: ", normchisquar)
+print("The reduced goodness of fit \u03C7\u00b2 estimate: ", normchisquar)
 #print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
 
 #Routines to save figues in eps and pdf formats
