@@ -5,7 +5,7 @@ Created on Fri Jul 29 17:53:20 2022
 
 @author: mike
 """
-print("A test of the Friedmann-Lemaitre-Robertson-Walker (FLRW) model using the curve_fit regression routine of Python scipy uses the SNe Ia data, as mag vs redshift (z), from the Gold data set of Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). This variation of the LCDM model used here has two parameters: Hubble constant, Hu, normalised matter density, O_m; the cosmological constant is the remainder of information in a universe with flat geometry.")
+print("A test of the Friedmann-Lemaitre-Robertson-Walker (FLRW) model using the curve_fit regression routine of Python scipy uses the gold SNe Ia data, as mag vs redshift (z), from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). This variation of the LCDM model used here has two parameters: Hubble constant, Hu, normalised matter density, O_m; the cosmological constant is the remainder of information in a universe with flat geometry.")
 print()
 print("This is the magLCDM model, typically known as the standard model of cosmology.")
 print()
