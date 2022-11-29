@@ -6,7 +6,7 @@ Created on Wed Jun 15 17:41:24 2022
 @author: mike
 """
 print()
-print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the Gold data set from Riess, A.G. et al. Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution. Astrophys. J. vol. 607(2), 665-687 (2004). The model selected here is the arctanh analytical solution with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. No estimate of dark energy is possible.")
+print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the gold data set from Riess, A.G. et al. Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution. Astrophys. J. vol. 607(2), 665-687 (2004). The model selected here is the arctanh analytical solution with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. No estimate of dark energy is possible.")
 print()
 # import data and library files
 import numpy as np
@@ -64,8 +64,8 @@ rans_c_SD = round(ans_c_SD,3)
 # since the error at the origin is 0 we must ignore this only to estimate the goodness of fit, but not the fit itself
 chisq = sum((ydata[1:-1] - func(xdata,ans_b,ans_c)[1:-1])**2/func(xdata,ans_b,ans_c)[1:-1])
 chisquar = round(chisq,2)
-#normalised chisquar is calculated as 
-normchisquar = round((chisquar/(158-2)),2)
+#normalised chisquar is calculated with P the parameter count as 
+normchisquar = round((chisquar/(157-P)),2)
 
 # calculation of residuals
 residuals = ydata - func(xdata,ans_b,ans_c)
@@ -75,14 +75,14 @@ ss_tot = np.sum((ydata-np.mean(ydata))**2)
 # r squared calculation
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,3)
-r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-len(params)-1)),3)
+r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-P-1)),3)
 
 # plot of imported data
 plt.figure(1,dpi=240)
 plt.rcParams["font.family"] = "Times New Roman"
 plt.rcParams['lines.linewidth'] = 3
-plt.xlim(0.5,1.0)
-plt.ylim(0.0,18000)
+plt.xlim(0.3,1.0)
+plt.ylim(0.0,16000)
 plt.xscale("linear")
 plt.yscale("linear")
 fig, ax = plt.subplots()
@@ -111,13 +111,3 @@ print("The reduced goodness of fit \u03C7\u00b2 is: ", normchisquar)
 # Routines to save figues in eps and pdf formats
 fig.savefig("Arctanh_D_L_data.eps", format="eps", dpi=1200, bbox_inches="tight", transparent=True)
 fig.savefig("Arctanh_D_L_data.pdf", format="pdf", dpi=1200, bbox_inches="tight", transparent=True)
-
-
-
-
-
-
-
-
-
-
