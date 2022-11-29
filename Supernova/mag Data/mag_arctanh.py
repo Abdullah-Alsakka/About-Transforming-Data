@@ -6,7 +6,7 @@ Created on Wed Jun 15 17:41:24 2022
 @author: mike
 """
 print()
-print("This curve_fit regression routine, of Python scipy, uses the SNe Ia data, as mag vs redshift (z), of the Gold data set from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). This is the arctanh, analytical solution to the Friedmann-Lemaitre-Roberston-Walker (FLRW) model with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. No estimation is possible for dark energy.")
+print("This curve_fit regression routine, of Python scipy, uses the SNe Ia data, as mag vs redshift (z), of the gold data set from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). This is the arctanh, analytical solution to the Friedmann-Lemaitre-Roberston-Walker (FLRW) model with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. No estimation is possible for dark energy.")
 print()
 
 # import data and Python 3 library files
@@ -65,9 +65,9 @@ rans_cSD = round(ans_cSD,3)
 chisq = sum((ydata - func2(xdata,ans_b,ans_c))**2/func2(xdata,ans_b,ans_c))
 chisquar = round(chisq,5)
 
-# normalised chisquar where P is the number of parameters (2) and is calculated as 
+# normalised chisquar for 156 data pairs, where P is the number of parameters (2) and is calculated as 
 P=2
-normchisquar = round((chisquar/(157-P)),5)
+normchisquar = round((chisquar/(156-P)),5)
 
 # calculation of residuals
 residuals = ydata - func2(xdata,ans_b,ans_c)
