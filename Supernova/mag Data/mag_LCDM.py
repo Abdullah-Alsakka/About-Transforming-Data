@@ -29,7 +29,7 @@ ydata = exampledata[:,2]
 error = exampledata[:,3]
 
 # initial guess for the normalized matter density, O_m
-O_m = 0.30
+O_m = 0.35
 
 # where t is the "dummy" variable during numerical integration
 def integr(x,O_m):
@@ -46,7 +46,7 @@ def func3(x,Hu,O_m):
     return 5*(np.log10((litesped*(1+x)/Hu)*np.sinh(func2(x,O_m)))) + 25
 
 # guesses for the Hubble constant, Hu, and the normalized matter density, O_m
-init_guess = np.array([70,0.30])
+init_guess = np.array([70,0.35])
 
 # allowed range for the two parameters
 bnds=([50,0.01],[80,1.0])
@@ -69,9 +69,9 @@ rSD_O_m = round(SD_O_m,3)
 chisq = sum((ydata - func3(xdata,ans_Hu,ans_O_m))**2/func3(xdata,ans_Hu,ans_O_m))
 chisquar = round(chisq,5)
 
-# normalised chisquar is calculated for 157 data pairs with P the parameter count (2) as
+# normalised chisquar is calculated for 156 data pairs with P the parameter count (2) as
 P=2
-normchisquar = round((chisquar/(157-P)),5)
+normchisquar = round((chisquar/(156-P)),5)
 
 # calculation of residuals
 residuals = ydata - func3(xdata,ans_Hu,ans_O_m)
