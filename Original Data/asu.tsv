@@ -1,0 +1,239 @@
+#
+#   VizieR Astronomical Server vizier.cds.unistra.fr
+#    Date: 2022-11-27T09:29:10 [V7.294]
+#   In case of problem, please report to:	cds-question@unistra.fr
+#
+#
+#Coosys	J2000:	eq_FK5 J2000
+#INFO	version=7.294	
+#INFO	-ref=VIZ6382813011d72b	
+#INFO	-out.max=unlimited	
+#INFO	queryParameters=20	
+#-oc.form=dec
+#-out.max=unlimited
+#-out.all=2
+#-order=I
+#-nav=cat:J/ApJ/607/665&tab:{J/ApJ/607/665/table5}&key:source=J/ApJ/607/665/table2&HTTPPRM:&&-ref=VIZ6382813011d72b&-out.max=50&-out.form=HTML Table&-oc.form=sexa&-order=I&-out=Name&-out=HJD&-out=Filt&-out=Vega&-out=e_Vega&-out=Epoch&-out=Trans&-out=Kcorr&-out=e_Kcorr&-file=.&-meta.ucd=2&-meta=1&-meta.foot=1&-usenav=1&-bmark=POST&-out.src=J/ApJ/607/665/table2&
+#-c.eq=J2000
+#-c.r=  2
+#-c.u=arcmin
+#-c.geom=r
+#-source= J/ApJ/607/665/table5
+#-out=Name
+#-out=HJD
+#-out=Filt
+#-out=Vega
+#-out=e_Vega
+#-out=Epoch
+#-out=Trans
+#-out=Kcorr
+#-out=e_Kcorr
+#-out.src=J/ApJ/607/665/table2
+#
+
+#RESOURCE=yCat_16070665
+#Name: J/ApJ/607/665
+#Title: Type Ia supernovae at z>1 discovered by HST (Riess+, 2004)
+#Table	J_ApJ_607_665_table5:
+#Name: J/ApJ/607/665/table5
+#Title: MLCS2k2 (multicolor light-curve shape method) full sample
+#Column	Name	(a9)	Supernova identification	[ucd=]
+#Column	n_Name	(A1)	Simbad column added by the CDS	[ucd=]
+#Column	z	(F7.4)	Redshift	[ucd=]
+#Column	mu	(F5.2)	Extinction-corrected distance modulus (1)	[ucd=]
+#Column	sigma	(F5.2)	Velocity dispersion (2)	[ucd=]
+#Column	AV	(F5.2)	? Host galaxy V band extinction	[ucd=]
+#Column	Qual	(a6)	Sample quality code (gold or silver)	[ucd=]
+#Column	Simbad	(a6)	Simbad column added by the CDS	[ucd=]
+#Column	NED	(A3)	Simbad column added by the CDS	[ucd=]
+#Column	_RA	(F9.5)	Right Ascension (J2000) from SIMBAD (not part of the original data)	[ucd=pos.eq.ra;meta.main]
+#Column	_DE	(F9.5)	Declination (J2000) from SIMBAD (not part of the original data)	[ucd=pos.eq.dec;meta.main]
+Name	n_Name	z	mu	sigma	AV	Qual	Simbad	NED	_RA	_DE
+ 	 	 	mag	km/s	mag	 	 	 	deg	deg
+---------	-	-------	-----	-----	-----	------	------	---	---------	---------
+SN 1990T 	 	 0.0400	36.38	 0.19	 0.37	gold  	Simbad	NED	299.75954	-56.25836
+SN 1990af	 	 0.0500	36.84	 0.21	-0.04	gold  	Simbad	NED	323.74271	-62.73528
+SN 1990O 	 	 0.0307	35.90	 0.20	 0.11	gold  	Simbad	NED	258.90083	+16.32194
+SN 1991S 	 	 0.0560	37.31	 0.18	 0.20	gold  	Simbad	NED	157.36542	+22.01194
+SN 1991U 	 	 0.0331	35.54	 0.20	 0.37	gold  	Simbad	NED	200.84167	-26.10833
+SN 1992J 	 	 0.0460	36.35	 0.21	 0.25	gold  	Simbad	NED	152.25146	-26.64019
+SN 1992P 	 	 0.0265	35.64	 0.20	 0.17	gold  	Simbad	NED	190.70387	+10.36006
+SN 1992aq	 	 0.1010	38.73	 0.20	-0.03	gold  	Simbad	NED	346.14521	-37.34492
+SN 1992ae	 	 0.0750	37.77	 0.19	 0.16	gold  	Simbad	NED	322.07475	-61.55039
+SN 1992au	 	 0.0610	37.30	 0.22	 0.09	gold  	Simbad	NED	002.66867	-49.94592
+SN 1992al	 	 0.0141	34.12	 0.25	 0.05	gold  	Simbad	NED	311.48537	-51.39442
+SN 1992ag	 	 0.0262	35.06	 0.24	 0.54	gold  	Simbad	NED	201.04104	-23.87881
+SN 1992bl	 	 0.0430	36.53	 0.19	-0.04	gold  	Simbad	NED	348.80454	-44.74325
+SN 1992bh	 	 0.0450	36.97	 0.18	 0.35	gold  	Simbad	NED	074.86479	-58.82889
+SN 1992bg	 	 0.0360	36.17	 0.19	 0.21	gold  	Simbad	NED	115.48562	-62.51944
+SN 1992bk	 	 0.0580	37.13	 0.19	 0.03	gold  	Simbad	NED	055.75800	-53.63236
+SN 1992bs	 	 0.0630	37.67	 0.19	 0.26	gold  	Simbad	NED	052.36354	-37.27183
+SN 1992bc	 	 0.0186	34.96	 0.22	-0.04	gold  	Simbad	NED	046.31687	-39.55961
+SN 1992bp	 	 0.0790	37.94	 0.18	 0.03	gold  	Simbad	NED	054.15833	-18.35372
+SN 1992br	 	 0.0880	38.07	 0.28	-0.04	gold  	Simbad	NED	026.43875	-56.10111
+SN 1992bo	 	 0.0178	34.70	 0.23	-0.01	gold  	Simbad	NED	020.50833	-34.19667
+SN 1993B 	 	 0.0710	37.78	 0.19	 0.36	gold  	Simbad	NED	158.71429	-34.44178
+SN 1993H 	 	 0.0251	35.09	 0.21	 0.05	gold  	Simbad	NED	208.20917	-30.70778
+SN 1993O 	 	 0.0520	37.16	 0.18	 0.13	gold  	Simbad	NED	202.78500	-33.21500
+SN 1993ah	 	 0.0286	35.53	 0.21	 0.26	gold  	Simbad	NED	357.95917	-27.96167
+SN 1993ac	 	 0.0490	36.90	 0.20	 0.54	gold  	Simbad	NED	086.59821	+63.36861
+SN 1993ag	 	 0.0500	37.08	 0.19	 0.28	gold  	Simbad	NED	150.89375	-35.46250
+SN 1993ae	 	 0.0180	34.29	 0.23	 0.00	gold  	Simbad	NED	022.45379	-01.97697
+SN 1994B 	 	 0.0890	38.50	 0.17	 0.00	silver	Simbad	NED	125.17042	+15.73000
+SN 1994C 	 	 0.0510	36.67	 0.16	 0.00	silver	Simbad	NED	119.16792	+44.87194
+SN 1994M 	 	 0.0244	35.09	 0.20	 0.23	gold  	Simbad	NED	187.78587	+00.60544
+SN 1994Q 	 	 0.0290	35.70	 0.19	 0.33	gold  	Simbad	NED	252.46304	+40.43217
+SN 1994S 	 	 0.0161	34.50	 0.24	 0.06	gold  	Simbad	NED	187.84104	+29.13444
+SN 1994T 	 	 0.0360	36.01	 0.20	 0.09	gold  	Simbad	NED	200.37804	-02.14903
+SN 1995E 	 	 0.0116	32.96	 0.29	 2.48	silver	Simbad	NED	117.98646	+73.00961
+SN 1995K 	 	 0.4780	42.48	 0.23	 0.04	gold  	Simbad	NED	162.69562	-09.25183
+SN 1995M 	 	 0.0530	37.17	 0.15	 0.00	silver	Simbad	NED	144.67429	-12.33558
+SN 1995ap	 	 0.2300	40.44	 0.46	 0.00	silver	Simbad	NED	048.11721	+00.69539
+SN 1995ao	 	 0.3000	40.76	 0.60	 0.00	silver	Simbad	NED	044.37792	-01.68883
+SN 1995ae	 	 0.0670	37.54	 0.34	 0.00	silver	Simbad	NED	349.23187	-02.07678
+SN 1995az	 	 0.4500	42.13	 0.21	     	gold  	Simbad	NED	070.13996	-05.50100
+SN 1995ay	 	 0.4800	42.37	 0.20	     	gold  	Simbad	NED	045.28133	+00.35539
+SN 1995ax	 	 0.6150	42.85	 0.23	     	gold  	Simbad	NED	036.60750	+00.81228
+SN 1995aw	 	 0.4000	42.04	 0.19	     	gold  	Simbad	NED	036.23142	+00.88542
+SN 1995as	 	 0.4980	43.21	 0.24	     	silver	Simbad	NED	015.39708	+04.43744
+SN 1995ar	 	 0.4650	42.81	 0.22	     	silver	Simbad	NED	015.33504	+04.30939
+SN 1995ac	 	 0.0490	36.52	 0.20	 0.40	gold  	Simbad	NED	341.39225	-08.75131
+SN 1995ak	 	 0.0219	34.70	 0.22	 0.56	gold  	Simbad	NED	041.45346	+03.23058
+SN 1995ba	 	 0.3880	42.07	 0.19	     	gold  	Simbad	NED	124.77692	+07.72256
+SN 1995bd	 	 0.0152	34.11	 0.25	 0.70	gold  	Simbad	NED	071.33850	+11.06736
+SN 1996C 	 	 0.0276	35.90	 0.20	 0.34	gold  	Simbad	NED	207.70000	+49.31667
+SN 1996E 	 	 0.4250	41.70	 0.40	 0.35	gold  	Simbad	NED	152.58450	-12.55256
+SN 1996H 	 	 0.6200	43.11	 0.30	 0.09	gold  	Simbad	NED	187.21992	-00.09472
+SN 1996I 	 	 0.5700	42.81	 0.25	 0.14	gold  	Simbad	NED	180.16429	-00.26733
+SN 1996J 	 	 0.3000	41.01	 0.25	 0.23	gold  	Simbad	NED	152.63837	-12.61811
+SN 1996K 	 	 0.3800	42.02	 0.22	 0.02	gold  	Simbad	NED	126.18121	-00.35172
+SN 1996R 	 	 0.1600	39.08	 0.40	 0.00	silver	Simbad	NED	169.04317	-00.19425
+SN 1996T 	 	 0.2400	40.68	 0.43	 0.00	silver	Simbad	NED	151.36525	-07.45664
+SN 1996U 	 	 0.4300	42.33	 0.34	 0.08	gold  	Simbad	NED	177.63962	+10.44594
+SN 1996V 	 	 0.0247	35.33	 0.25	 0.00	silver	Simbad	NED	170.38012	+02.81122
+SN 1996ab	 	 0.1240	39.20	 0.22	 0.00	gold  	Simbad	NED	230.28479	+27.92689
+SN 1996bo	 	 0.0165	33.82	 0.27	 0.77	gold  	Simbad	NED	027.09525	+11.52086
+SN 1996bv	 	 0.0167	34.21	 0.23	 0.71	gold  	Simbad	NED	094.05417	+57.05247
+SN 1996bl	 	 0.0348	36.17	 0.19	 0.33	gold  	Simbad	NED	009.07500	+11.39444
+SN 1996cg	 	 0.4900	42.58	 0.19	 0.63	silver	Simbad	NED	126.05554	+03.41625
+SN 1996cm	 	 0.4500	42.58	 0.19	     	silver	Simbad	NED	232.54687	+05.92417
+SN 1996cl	 	 0.8280	43.96	 0.46	     	gold  	Simbad	NED	164.24637	-03.62678
+SN 1996ci	 	 0.4950	42.25	 0.19	     	gold  	Simbad	NED	206.48400	+02.44825
+SN 1996cf	 	 0.5700	42.77	 0.19	     	silver	Simbad	NED	162.21233	+00.05844
+SN 1997E 	 	 0.0132	34.02	 0.26	 0.12	gold  	Simbad	NED	101.90875	+74.49750
+SN 1997F 	 	 0.5800	43.04	 0.21	     	gold  	Simbad	NED	073.80946	-05.86244
+SN 1997H 	 	 0.5260	42.56	 0.18	 0.45	gold  	Simbad	NED	074.90237	-03.15961
+SN 1997I 	 	 0.1720	39.79	 0.18	     	gold  	Simbad	NED	074.90546	-03.15044
+SN 1997N 	 	 0.1800	39.98	 0.18	     	gold  	Simbad	NED	125.95846	+03.48133
+SN 1997P 	 	 0.4720	42.46	 0.19	     	gold  	Simbad	NED	163.98304	-03.94672
+SN 1997Q 	 	 0.4300	41.99	 0.18	     	gold  	Simbad	NED	164.21450	-03.97692
+SN 1997R 	 	 0.6570	43.27	 0.20	     	gold  	Simbad	NED	164.33012	-03.91436
+SN 1997Y 	 	 0.0166	34.54	 0.23	 0.25	gold  	Simbad	NED	191.38083	+54.73806
+SN 1997ai	 	 0.4500	42.10	 0.23	     	gold  	Simbad	NED	162.24004	+00.53056
+SN 1997ac	 	 0.3200	41.45	 0.18	     	gold  	Simbad	NED	126.02171	+04.18961
+SN 1997aj	 	 0.5810	42.63	 0.19	     	gold  	Simbad	NED	163.97075	-03.98397
+SN 1997aw	 	 0.4400	42.57	 0.40	 0.80	gold  	Simbad	NED	155.86754	+04.11975
+SN 1997as	 	 0.5080	41.64	 0.35	 0.85	gold  	Simbad	NED	126.03942	-00.80228
+SN 1997am	 	 0.4160	42.10	 0.19	 0.00	gold  	Simbad	NED	164.38133	-03.23008
+SN 1997ap	 	 0.8300	43.85	 0.19	     	gold  	Simbad	NED	206.79125	+02.39931
+SN 1997af	 	 0.5790	42.86	 0.19	     	gold  	Simbad	NED	125.96946	+04.14556
+SN 1997bh	 	 0.4200	41.76	 0.23	 0.60	gold  	Simbad	NED	206.14987	-00.33036
+SN 1997bb	 	 0.5180	42.83	 0.30	 0.11	gold  	Simbad	NED	187.25300	+00.15314
+SN 1997bj	 	 0.3340	40.92	 0.30	 0.34	gold  	Simbad	NED	160.61104	+00.02650
+SN 1997ck	 	 0.9700	44.13	 0.38	 0.17	silver	Simbad	NED	253.25112	+35.06289
+SN 1997cn	 	 0.0175	34.52	 0.25	 0.01	gold  	Simbad	NED	212.49067	+17.54231
+SN 1997cj	 	 0.5000	42.74	 0.20	 0.15	gold  	Simbad	NED	189.26779	+62.44025
+SN 1997ce	 	 0.4400	42.08	 0.19	 0.08	gold  	Simbad	NED	256.95108	+44.02394
+SN 1997dg	 	 0.0297	36.12	 0.20	 0.28	gold  	Simbad	NED	355.05917	+26.20306
+SN 1997do	 	 0.0104	33.73	 0.33	 0.44	gold  	Simbad	NED	111.67733	+47.09331
+SN 1997ez	 	 0.7780	43.81	 0.35	     	gold  	Simbad	NED	125.40908	+03.41956
+SN 1997ek	 	 0.8600	44.03	 0.30	     	gold  	Simbad	NED	074.04867	-03.69053
+SN 1997eq	 	 0.5380	42.66	 0.18	     	gold  	Simbad	NED	074.73492	-03.99147
+SN 1997ff	 	 1.7550	45.53	 0.35	 0.00	gold  	Simbad	NED	189.18408	+62.21244
+SN 1998I 	 	 0.8860	42.91	 0.81	 0.95	gold  	Simbad	NED	121.21504	+05.26322
+SN 1998J 	 	 0.8280	43.61	 0.61	 0.49	gold  	Simbad	NED	142.79387	-04.76019
+SN 1998M 	 	 0.6300	42.62	 0.24	 0.75	gold  	Simbad	NED	173.43512	+04.08700
+SN 1998V 	 	 0.0170	34.47	 0.23	 0.28	gold  	Simbad	NED	275.65621	+15.70233
+SN 1998ac	 	 0.4600	41.83	 0.40	 0.48	gold  	Simbad	NED	142.83358	-05.27347
+SN 1998ay	 	 0.6380	43.30	 0.36	     	silver	Simbad	NED	164.33987	-03.24725
+SN 1998bi	 	 0.7400	43.35	 0.30	     	gold  	Simbad	NED	206.93667	+02.34917
+SN 1998be	 	 0.6440	42.78	 0.26	     	silver	Simbad	NED	206.58737	+02.04450
+SN 1998ba	 	 0.4300	42.36	 0.25	     	gold  	Simbad	NED	205.90417	+02.32514
+SN 1998bp	 	 0.0104	33.21	 0.32	 0.19	gold  	Simbad	NED	268.71167	+18.33036
+SN 1998co	 	 0.0171	34.68	 0.24	 0.20	gold  	Simbad	NED	326.90100	-13.18119
+SN 1998cs	 	 0.0327	36.08	 0.19	-0.03	gold  	Simbad	NED	247.66375	+41.21514
+SN 1998dx	 	 0.0530	36.97	 0.18	 0.04	gold  	Simbad	NED	272.79992	+49.86133
+SN 1998ef	 	 0.0170	34.18	 0.23	 0.07	gold  	Simbad	NED	015.86225	+32.23681
+SN 1998eg	 	 0.0234	35.36	 0.20	 0.29	gold  	Simbad	NED	339.87646	+08.60600
+SN 1999Q 	 	 0.4600	42.56	 0.27	 0.23	gold  	Simbad	NED	120.18900	+05.52425
+SN 1999U 	 	 0.5000	42.75	 0.19	 0.04	gold  	Simbad	NED	141.67925	-05.63278
+SN 1999X 	 	 0.0257	35.41	 0.20	 0.31	gold  	Simbad	NED	133.63429	+36.51142
+SN 1999aa	 	 0.0157	34.58	 0.24	 0.02	gold  	Simbad	NED	126.92512	+21.48744
+SN 1999cc	 	 0.0316	35.85	 0.19	 0.09	gold  	Simbad	NED	240.67512	+37.35956
+SN 1999cp	 	 0.0104	33.56	 0.31	 0.08	gold  	Simbad	NED	211.63042	-05.44694
+SN 1999da	 	 0.0121	34.05	 0.32	 0.58	silver	Simbad	NED	263.84567	+60.81369
+SN 1999dk	 	 0.0141	34.43	 0.26	 0.20	gold  	Simbad	NED	022.86217	+14.28492
+SN 1999dq	 	 0.0136	33.73	 0.26	 0.43	gold  	Simbad	NED	038.49867	+20.97511
+SN 1999ef	 	 0.0380	36.67	 0.18	 0.05	gold  	Simbad	NED	014.69250	+12.74583
+SN 1999fw	 	 0.2780	41.00	 0.41	 0.26	gold  	Simbad	NED	352.97096	+00.15897
+SN 1999fk	 	 1.0560	44.25	 0.23	 0.19	gold  	Simbad	NED	037.22450	+01.27339
+SN 1999fm	 	 0.9490	43.99	 0.25	 0.11	gold  	Simbad	NED	037.64842	+01.16203
+SN 1999fj	 	 0.8150	43.76	 0.33	 0.23	gold  	Simbad	NED	037.09883	+00.65267
+SN 1999ff	 	 0.4550	42.29	 0.28	 0.19	gold  	Simbad	NED	038.47662	+00.54878
+SN 1999fv	 	 1.1900	44.19	 0.34	 0.24	gold  	Simbad	NED	352.64917	+00.27778
+SN 1999fh	 	 0.3690	41.62	 0.31	 0.70	silver	Simbad	NED	036.99304	+00.66022
+SN 1999fn	 	 0.4770	42.38	 0.21	 0.15	gold  	Simbad	NED	063.51617	+04.29861
+SN 1999gp	 	 0.0260	35.62	 0.20	 0.18	gold  	Simbad	NED	037.91312	+39.38119
+SN 2000B 	 	 0.0193	34.59	 0.23	 0.28	gold  	Simbad	NED	106.41667	+50.58625
+SN 2000bk	 	 0.0266	35.36	 0.21	 0.19	gold  	Simbad	NED	188.47475	-07.37858
+SN 2000cf	 	 0.0360	36.39	 0.18	 0.21	gold  	Simbad	NED	238.23412	+65.93686
+SN 2000cn	 	 0.0233	35.14	 0.21	 0.08	gold  	Simbad	NED	269.41842	+27.83281
+SN 2000ce	 	 0.0164	34.47	 0.23	 1.02	silver	Simbad	NED	121.28937	+66.78756
+SN 2000dk	 	 0.0164	34.41	 0.24	-0.05	gold  	Simbad	NED	016.84800	+32.40644
+SN 2000dz	 	 0.5000	42.75	 0.24	 0.09	gold  	Simbad	NED	352.67233	+00.31186
+SN 2000eh	 	 0.4900	42.41	 0.25	 0.20	gold  	Simbad	NED	063.76017	+04.38836
+SN 2000ee	 	 0.4700	42.74	 0.23	 0.13	gold  	Simbad	NED	036.89387	+01.19706
+SN 2000eg	 	 0.5400	41.96	 0.41	 0.12	gold  	Simbad	NED	037.58771	+01.06347
+SN 2000ea	 	 0.4200	40.79	 0.32	 1.05	silver	Simbad	NED	032.47508	-05.47161
+SN 2000ec	 	 0.4700	42.77	 0.21	 0.13	gold  	Simbad	NED	032.88346	-04.23225
+SN 2000fr	 	 0.5430	42.68	 0.19	     	gold  	Simbad	NED	205.50058	+04.72844
+SN 2000fa	 	 0.0218	35.06	 0.21	 0.44	gold  	Simbad	NED	108.87450	+23.42844
+SN 2001V 	 	 0.0162	34.13	 0.23	 0.28	gold  	Simbad	NED	179.35387	+25.20250
+SN 2001fs	 	 0.8730	43.75	 0.38	 0.64	gold  	Simbad	NED	069.87783	-01.47275
+SN 2001fo	 	 0.7710	43.12	 0.17	 0.05	gold  	Simbad	NED	069.42271	-01.49253
+SN 2001hy	 	 0.8110	43.97	 0.35	 0.03	gold  	Simbad	NED	132.44104	+44.25883
+SN 2001hx	 	 0.7980	43.88	 0.31	 0.31	gold  	Simbad	NED	132.35254	+44.03956
+SN 2001hs	 	 0.8320	43.55	 0.29	 0.10	gold  	Simbad	NED	069.84329	-01.54761
+SN 2001hu	 	 0.8820	43.90	 0.30	 0.12	gold  	Simbad	NED	117.64958	+09.97061
+SN 2001iw	 	 0.3400	40.71	 0.27	 0.73	gold  	Simbad	NED	117.66383	+10.33864
+SN 2001iv	 	 0.3970	40.89	 0.30	 0.91	gold  	Simbad	NED	117.55637	+10.28622
+SN 2001iy	 	 0.5700	42.88	 0.31	-0.04	gold  	Simbad	NED	163.10117	+57.27669
+SN 2001ix	 	 0.7100	43.05	 0.32	 0.53	gold  	Simbad	NED	163.07883	+57.12489
+SN 2001jp	 	 0.5280	42.77	 0.25	 0.10	gold  	Simbad	NED	131.63083	+44.06572
+SN 2001jh	 	 0.8840	44.23	 0.19	-0.01	gold  	Simbad	NED	037.25121	+00.34561
+SN 2001jb	 	 0.6980	43.33	 0.32	 0.15	silver	Simbad	NED	036.63879	+00.42639
+SN 2001jf	 	 0.8150	44.09	 0.28	 0.23	gold  	Simbad	NED	037.02971	+00.44586
+SN 2001jm	 	 0.9770	43.91	 0.26	 0.18	gold  	Simbad	NED	069.80758	-01.38839
+SN 2001kd	 	 0.9350	43.99	 0.38	 0.14	silver	Simbad	NED	117.63017	+10.35203
+SN 2002P 	 	 0.7190	43.22	 0.26	 0.11	silver	Simbad	NED	037.27379	+00.78892
+SN 2002ab	 	 0.4220	42.02	 0.17	 0.10	silver	Simbad	NED	117.23208	+10.10175
+SN 2002ad	 	 0.5140	42.39	 0.27	 0.09	silver	Simbad	NED	162.55079	+57.51989
+SN 2002dc	 	 0.4750	42.14	 0.19	 0.23	gold  	Simbad	NED	189.20732	+62.22030
+SN 2002dd	 	 0.9500	44.06	 0.26	 0.24	gold  	Simbad	NED	189.23062	+62.21281
+SN 2002fw	m	 1.3000	45.27	 0.19	 0.21	gold  	Simbad	NED	053.15633	-27.77961
+SN 2002fx	m	 1.4000	45.09	 0.45	 0.49	silver	Simbad	NED	053.02833	-27.74289
+SN 2002hr	m	 0.5260	43.01	 0.27	 0.74	gold  	Simbad	NED	053.09404	-27.69783
+SN 2002hp	m	 1.3050	44.70	 0.22	 0.19	gold  	Simbad	NED	053.10329	-27.77161
+SN 2002kc	m	 0.2160	40.33	 0.18	 1.29	silver	Simbad	NED	053.14467	-27.66619
+SN 2002kd	m	 0.7350	43.09	 0.19	 0.21	gold  	Simbad	NED	053.09308	-27.74081
+SN 2002ki	m	 1.1400	44.84	 0.30	 0.09	gold  	Simbad	NED	189.36821	+62.34419
+SN 2003az	m	 1.2650	45.20	 0.20	 0.25	gold  	Simbad	NED	189.33196	+62.31042
+SN 2003ak	m	 1.5510	45.30	 0.22	 0.86	gold  	Simbad	NED	053.19542	-27.91369
+SN 2003bd	m	 0.6700	43.19	 0.28	 0.27	gold  	Simbad	NED	189.35442	+62.22153
+SN 2003be	m	 0.6400	43.07	 0.21	 0.23	gold  	Simbad	NED	189.10821	+62.11544
+SN 2003dy	m	 1.3400	45.05	 0.25	 0.54	gold  	Simbad	NED	189.28783	+62.19133
+SN 2003es	m	 0.9540	44.28	 0.31	 0.07	gold  	Simbad	NED	189.23079	+62.21997
+SN 2003eq	m	 0.8390	43.86	 0.22	 0.22	gold  	Simbad	NED	189.45142	+62.22647
+SN 2003eb	m	 0.8990	43.64	 0.25	 0.26	gold  	Simbad	NED	189.31325	+62.22628
+SN 2003XX	m	 0.9400	43.87	 0.20	 0.15	gold  	Simbad	NED	189.37083	+62.19106
+
