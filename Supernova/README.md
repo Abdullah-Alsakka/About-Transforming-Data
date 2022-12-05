@@ -4,7 +4,7 @@ To compare the mag data with the $D_L$ data we used three different models - Ein
 
 `D_L Data` --> All the $D_L$ data files and programs for the three models used. The .csv file is ready for use.
 
-`Original Data` --> The data taken from https://iopscience.iop.org/article/10.1086/383612
+`Original Data` --> The data taken from https://doi.org/10.48550/arXiv.astro-ph/0402512
 
 `mag Data` --> All the mag data files and programs for the three models used. The .csv file is ready for use.
 
