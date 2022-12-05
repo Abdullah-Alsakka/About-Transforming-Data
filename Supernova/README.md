@@ -8,6 +8,8 @@ To compare the mag data with the $D_L$ data we used three different models - Ein
 
 `mag Data` --> All the mag data files and programs for the three models used. The .csv file is ready for use.
 
+`BONUS - Data measured with least squares method` --> Same data analyzed with the least squares technique. It is not the technique we used in our work however it is shared as a bonus for better understanding of the least squares technique and rechecking the work done with the curve fit technique.
+
 These data are from the report by A.G. Riess et al. (2004) Type Ia Supernova Discoveries at z > 1 From the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution. Astrophysical Journal, vol.607, p.665. 
 
 Some of the math used for these models can be found in A.G. Riess et al. (1998) Observational Evidence from Supernovae for an Accelerating Universe
