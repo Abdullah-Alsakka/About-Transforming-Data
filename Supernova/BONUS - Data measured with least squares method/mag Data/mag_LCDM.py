@@ -7,6 +7,7 @@ Created on Mon Aug  8 12:47:21 2022
 """
 print()
 print("This routine models the gold SNe Ia data, as mag vs redshift z, of Riess et al. 2004 with 156 data pairs. The model used is the flat, LCDM integrated solution, the standard model of cosmology, with two parameters, the Hubble constant, Hu, and the normalized matter density (\u03A9m,O_m). The value for normalized dark energy can be calculated from these results. The least_squares Python 3 regression is used specifying the loss='cauchy' robust function. Integration is necessary because the FLRW model cannot be solved exactly for mag vs. redshift z.")
+print()
 
 #import the necessary modules (libraries)
 import csv  #required to open the .csv file for reading
@@ -28,9 +29,6 @@ errors = exampledata[:,3] #the standard deviations of the ydata are not used in 
 #litesped value for the speed of light
 litesped = 299793
 
-#Hu represents the Hubble constant and O_m represents the normalized matter density. Here Hu is the initial guess, to be replaced later in this program by a computer estimated value. 
-Hu=70.0
-
 #We first have to write our integration functions, the first two functions, integr and func2 deal with the numerical integration
 def integr(x,O_m):
     return intg.quad(lambda t:1/(np.sqrt(((1+t)**2)*(1+O_m*t)- (t*(2+t)*(1-O_m)))),0,x)[0]
@@ -49,6 +47,7 @@ def func1(params, x, y):
 
 params=[70,0.35] #Initial guesses: Hubble constant value and normalized matter density: the least_squares regression routine used; x0, the parameter guesses; jac, the regression routine chosen; bounds, allowed lower, then upper bounds for params; loss, treatment of outlier data pairs; args, x and y data. 
 result2 = least_squares(func1, x0=params, jac='3-point',bounds=((50,0.001),(80,1.0)),loss='cauchy',args=(x, ydata))
+
 #extracting the Hu and O_m parameters and rounding the values
 Hu,O_m = result2.x
 Hubble = np.round(Hu,2)
@@ -64,7 +63,7 @@ ss_tot_lsq = np.sum((ydata-np.mean(ydata))**2)
 
 # We specify that the parameter count as 2
 P=2
-#r_squared = 1 - (ss_res/ss_tot)
+
 r_squared_lsq = 1 - (ss_res_lsq/ss_tot_lsq)
 #r2 = round(r_squared,3)
 r2_lsq = round(r_squared_lsq,3)
@@ -80,7 +79,6 @@ StndDev,O_mStndDev = var
 normSD = round(StndDev,2)
 normO_mStndDev = round(O_mStndDev,3)
 
-#calculate the statistical fitness, using 156 as the number of data pairs and P=2 as the degree of freedom (paramater count)
 chisq = sum(((ydata-yfit1)**2)/yfit1)
 chisquar = np.round(chisq,3)
 

@@ -7,6 +7,7 @@ Created on Mon Aug  8 12:47:21 2022
 """
 print()
 print("This routine models the gold SNe Ia data, as mag vs z, of Riess et al. 2004 with 156 data pairs. The model used is the mag arctanh analytical solution with two parameters, the Hubble constant, Hu, and the normalized matter density (\u03A9m,O_m) with no influence of dark energy. The Python 3 least_squares regression routine is used with the robust loss='cauchy' specification. Integration is unnecessary because the FLRW model can be solved exactly for mag (ydata) vs redshift.")
+print()
 
 #import the necessary modules (libraries)
 import csv  #required to open the .csv file for reading
@@ -39,7 +40,7 @@ def func1(params, x, y):
     residual = ydata-(5*np.log10((litesped*(1+x)/(Hu*np.sqrt(abs(1-O_m))))*np.sinh(2*(np.arctanh(np.sqrt(abs(1-O_m)))-np.arctanh(np.sqrt(abs(1-O_m))/np.sqrt((O_m/(1/(1+x)))+(1-O_m))))))+25)
     return residual
 
-params=[75,0.02] #Initial guesses again: Hubble constant value and normalized matter density
+params=[65,0.02] #Initial guesses again: Hubble constant value and normalized matter density
 
 #The least_squares regression routine used; x0, the parameter guesses; jac, the regression routine chosen; bounds, allowed lower, then upper bounds for params; loss, 'robust' treatment of outlier data pairs; args, x and y data. 
 result2 = least_squares(func1, x0=params, jac='3-point',bounds=((50,0.001),(80,0.99)),loss='cauchy',args=(x, ydata))
@@ -58,7 +59,7 @@ ss_res_lsq = np.sum(residuals**2)
 ss_tot_lsq = np.sum((ydata-np.mean(ydata))**2)
 
 P=2
-#r squared with the parameter count of P=2, round to 3 digits
+#r squared with the parameter count of P=2, rounded to 3 digits
 r_squared_lsq = 1 - (ss_res_lsq/ss_tot_lsq)
 r2_lsq = round(r_squared_lsq,4)
 r2adjusted = round(1-(((1-r2_lsq)*(len(ydata)-1))/(len(ydata)-P-1)),3)
@@ -73,7 +74,7 @@ StndDev,O_mStndDev = var
 normSD = round(StndDev,2)
 normO_mStndDev = round(O_mStndDev,3)
 
-#calculate the statistical fitness, using 156 as the number of data pairs and 2 as the degree of freedom (parameter count)
+#calculate the statistical fitness
 chisq = sum(((ydata-yfit1)**2)/yfit1)
 chisquar = np.round(chisq,3)
 
@@ -81,7 +82,7 @@ chisquar = np.round(chisq,3)
 normchisquar = np.round((chisquar/(156-P)),4)
 """
 #The BIC value is calculated as; BIC from Bayesian Information Criteria
-BIC = 156 * np.log10(chisq/156) + 2*np.log10(156)
+BIC = 156 * np.log10(chisq/156) + P*np.log10(156)
 normBIC = round(BIC,2)
 """
 #Plot of data and best curve regression
@@ -110,9 +111,9 @@ print()
 print("The estimated Hubble constant and S.D are: ", Hubble,",", normSD)
 print("The estimated \u03A9m and S.D. are: ", mattdens,",",normO_mStndDev)
 print ('The calculated r\u00b2_adj is:'+str(r2adjusted))
-print("The goodness of fit, \u03C7\u00b2, guesstimate is: ", chisquar)
+print("The goodness of fit, \u03C7\u00b2, estimate is: ", chisquar)
 print("The reduced goodness of fit, \u03C7\u00b2, estimate is: ", normchisquar)
-#print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the paramter count.")
+#print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
 #print("The guesstimate for BIC is: ", normBIC)
 #print("BIC is shorthand for Bayesian Information Criteria")
 

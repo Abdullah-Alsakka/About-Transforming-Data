@@ -7,6 +7,7 @@ Created on Mon Aug  8 12:47:21 2022
 """
 print()
 print("This routine models the gold SNe Ia data, as mag vs. z redshift, of Riess et al. 2004 with 156 data pairs. The Einstein-DeSitter model with only a single parameter, the Hubble constant, is employeed so estimates are not made for matter density, spacetime curvature or dark energy. The Python 3 least_squares robust regression routine is used with mag vs. redshift z data, the robust regression employees the loss='cauchy' specification.")
+print()
 
 import csv
 import numpy as np
@@ -24,10 +25,11 @@ ydata = exampledata[:,2]
 errors = exampledata[:,3] #The standard deviations are not used to calculate the best fit but only for plot display.
 
 litesped = 299793
+
 #Hu represents the Hubble constant value
 params=[65] #Initial guess of the Hubble constant, Hu, value. The mag vs. redshift Einstein-deSitter model is the right-hand term of the "residual" equation.
 def func1(params, x, y):
-    Hu = params[0] # params[1], (params[2])
+    Hu = params[0] # only a single parameter
     residual = ydata-(5*np.log10((litesped*(x+1))/Hu*(np.sinh(x/(1+x))))+25)
     return residual
 
@@ -48,7 +50,7 @@ ss_tot_lsq = np.sum((ydata-np.mean(ydata))**2)
 P=1
 #r_squared = 1 - (ss_res/ss_tot)
 r_squared_lsq = 1 - (ss_res_lsq/ss_tot_lsq)
-#r2 = round(r_squared,3)
+
 r2_lsq = round(r_squared_lsq,4)
 r2adjusted = round(1-(((1-r2_lsq)*(len(ydata)-1))/(len(ydata)-P-1)),4)
 
@@ -60,7 +62,7 @@ cov = np.linalg.inv(J.T.dot(J))
 var = np.sqrt(np.diagonal(cov))
 StndDev, = var
 
-#We write a comma after StndDev, because we are extracting this value from tuple. Below is just rounding off the value of the standard deviation to something one might believe - only three digits.
+#We write a comma after StndDev, because we are extracting this value from tuple. Below is just rounding off the value of the standard deviation to something one might believe - only two digits.
 normSD = round(StndDev,2)
 
 #calculate the statistical fitness, using 156 as the number of data pairs and 1 as the degree of freedom (paramater count).
