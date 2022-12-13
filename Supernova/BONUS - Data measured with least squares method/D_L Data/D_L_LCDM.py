@@ -7,7 +7,7 @@ Created on Mon Aug  8 12:47:21 2022
 """
 print()
 print("This routine models the 156 gold SNe Ia data and the position of the earth, as D_L vs expansion factor, of Riess et al. 2004. The model used presumes the flat, LCDM integrated solution with two parameters, the standard model with the Hubble constant, Hu, and the normalized matter density (\u03A9m,O_m). The Python 3 least_squares routine with robust loss='cauchy' is used. Integration is necessary because the FLRW model cannot be solved exactly for D_L vs. expansion factor when the influence of dark energy is considered.")
-
+print()
 #import the necessary modules (libraries)
 import csv  #required to open the .csv file for reading
 import numpy as np
@@ -29,8 +29,6 @@ errors = exampledata[:,7] #the standard deviations are not used in the regressio
 #litesped value for the speed of light
 litesped = 299793
 
-#Hu represents the Hubble constant and O_m represents the normalized matter density. Here Hu is the initial guess, to be replaced later in this program by a computer estimated value. 
-Hu=70.0
 #The long equation on the right-hand side is the FLRW model for a Universe with the Hubble expansion, matter density and spacetime - no dark energy.
 
 #We first have to write the first two functions, integr and func2 dealing with the numerical integration
@@ -46,7 +44,7 @@ def func1(params, x, y):
     residual = ydata-(litesped/(x*Hu))*np.sinh(func2(x,O_m))
     return residual
 
-params=[70,0.35] #Initial guesses: Hubble constant value and normalized matter density: the least_squares regression routine used; x0, the parameter guesses; jac, the math routine used; bounds, allowed lower, then upper bounds for params; loss, treatment of outlier data pairs; args, x and y data.
+params=[70,0.35] #Initial guesses: Hubble constant value, Hu, and normalized matter density, O_m: the least_squares regression routine used; x0, the parameter guesses; jac, the math routine used; bounds, allowed lower, then upper bounds for params; loss, treatment of outlier data pairs; args, x and y data.
 
 result2 = least_squares(func1, x0=params, jac='3-point',bounds=((50,0.001),(80,0.99)),loss='cauchy',args=(x, ydata))
 
@@ -81,11 +79,9 @@ StndDev,O_mStndDev = var
 normSD = round(StndDev,2)
 normO_mStndDev = round(O_mStndDev,3)
 
-#calculate the statistical fitness, using 157 as the number of data pairs and 2 as the degree of freedom (paramater count)
-
 chisq = sum((ydata[1:-1]-yfit1[1:-1])**2/yfit1[1:-1])
 chisquar = np.round(chisq,2)
-#normalised chisquar is calculated from the number of data pairs (60) minus the number of free parameters (2). 
+#normalised chisquar is calculated from the number of data pairs (157) minus the number of free parameters (2). 
 normchisquar = np.round((chisquar/(157-P)),2)
 """
 #The BIC value is calculated as; BIC from Bayesian Information Criteria

@@ -6,7 +6,7 @@ Created on Mon Aug  8 12:47:21 2022
 @author: mike
 """
 print()
-print("This routine models uses the 156 gold SNe Ia data and the position of the earth, as D_L vs expansion factor, of Riess et al. 2004. The model used is the arctanh analytical solution with only two parameters, the Hubble constant, Hu, and the normalized matter density (\u03A9m,O_m) with no value calculated for dark energy. The Python 3 least_squares robust regression routine employees the loss='cauchy' specification. Integration is unnecessary because the FLRW model can be solved exactly for mag (as the ydata) vs redshift.")
+print("This routine models the 156 gold SNe Ia data and the position of the earth, as D_L vs expansion factor, of Riess et al. 2004. The model used is the arctanh analytical solution with only two parameters, the Hubble constant, Hu, and the normalized matter density (\u03A9m,O_m) with no value calculated for dark energy. The Python 3 least_squares robust regression routine employees the loss='cauchy' specification. Integration is unnecessary because the FLRW model can be solved exactly for mag (as the ydata) vs redshift.")
 
 #import the necessary modules (libraries)
 import csv  #required to open the .csv file for reading
@@ -46,7 +46,7 @@ Hu,O_m = result2.x
 Hubble = np.round(Hu,2)
 mattdens = np.round(O_m,3)
 
-#the yfit1 function used to estimate goodness of fit with the Hu and O_m estimates
+#the yfit1 function used to estimate goodness of fit with the computer estimates of Hu and O_m
 yfit1 = ((litesped/(x*Hu*np.sqrt(abs(1-O_m))))*np.sinh(2*(np.arctanh(np.sqrt(abs(1-O_m)))-np.arctanh(np.sqrt(abs(1-O_m))/np.sqrt((O_m/x)+ (1-O_m))))))
 
 #calculation of residuals
@@ -60,11 +60,11 @@ r_squared_lsq = 1 - (ss_res_lsq/ss_tot_lsq)
 #r2 = round(r_squared,3)
 r2_lsq = round(r_squared_lsq,3)
 
-#We use P=2 for the parameter count, rounded to 3 digits
+#We use P=2 for the parameter count, the result rounded to 3 digits
 P=2
 r2adjusted = round(1-(((1-r2_lsq)*(len(ydata)-1))/(len(ydata)-P-1)),3)
 
-#This can be used to estimate the Covariance Matrix of the parameters using the following formula: Sigma = (J'J)^-1.
+#Estimate of the Covariance Matrix of the parameters using the following formula: Sigma = (J'J)^-1.
 J = result2.jac
 cov = np.linalg.inv(J.T.dot(J))
 
@@ -74,15 +74,15 @@ StndDev,O_mStndDev = var
 normSD = round(StndDev,2)
 normO_mStndDev = round(O_mStndDev,3)
 
-#calculate the statistical fitness, using 157 as the number of data pairs and 2 as the degree of freedom (paramater count)
+#calculate the statistical fitness of the model
 chisq = sum((ydata[1:-1]-yfit1[1:-1])**2/yfit1[1:-1])
 chisquar = np.round(chisq,2)
 
-#normalised chisquar is calculated from the number of data pairs (157) minus the number of free parameters (1). 
+#normalised chisquar is calculated from the number of data pairs (157) minus the number of free parameters (2) and rounded to 2 digits. 
 normchisquar = np.round((chisq/(157-P)),2)
 """
 #The BIC value is calculated as; BIC from Bayesian Information Criteria
-BIC = 157 * np.log10(chisq/157) + 2*np.log10(157)
+BIC = 157 * np.log10(chisq/157) + P*np.log10(157)
 normBIC = round(BIC,2)
 """
 plt.rcParams["font.family"] = "Times New Roman"

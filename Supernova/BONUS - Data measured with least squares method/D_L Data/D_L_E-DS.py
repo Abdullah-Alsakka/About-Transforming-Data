@@ -30,14 +30,16 @@ litesped = 299793
 #Initial guess of the Hubble constant, Hu, value.
 params=[70] 
 
-# he Einstein-deSitter model is the right-hand term of the "residual" equation.
+# The Einstein-deSitter model is the right-hand term of the "residual" equation.
 def func1(params, x, y):
-    Hu = params[0] # params[1], params[2]
+    Hu = params[0] # The first, only parameter
     residual = ydata-((litesped/(x*Hu))*np.sinh(1-x))
     return residual
 
 #Application of the least_squares regression routine, note that bounds=(50,80) are the allowed search limits for the Hubble constant, loss='cauchy' denotes the robust method for handling the residual values not the standard deviations.
 result2 = least_squares(func1, x0=params, jac='3-point',bounds=(50,80),method = 'trf', loss='cauchy',args=(x, ydata))
+
+#The computer estimate for the Hubble constant
 Hu, = result2.x
 
 #yfit1 now decribes the E-DeS model
@@ -69,7 +71,7 @@ StndDev, = var
 #We write a comma after StndDev, because we are extracting this value from tuple. Below is just rounding off the value of the standard deviation to something one might believe - only three digits.
 normSD = round(StndDev,3)
 
-#calculate the statistical fitness, using 157 as the number of data pairs and 1 as the degree of freedom (parameter count). Note the values of the errors are those of the tablulated SNe Ia distances.
+#calculate the statistical fitness, using 157 as the number of data pairs and 1 as the degree of freedom (parameter count). Note the values of the errors are those of the tablulated SNe Ia distances so chi^2 will be very large.
 chisq = sum((ydata[1:-1]-yfit1[1:-1])**2/yfit1[1:-1])
 chisquar = np.round(chisq,2)
 
