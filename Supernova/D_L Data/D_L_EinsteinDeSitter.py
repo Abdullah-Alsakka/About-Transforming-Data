@@ -5,9 +5,8 @@ Created on Wed Jun 15 17:41:24 2022
 
 @author: mike
 """
-print()
-print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the gold data set from Riess, A.G. et al. Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution. Astrophys. J. vol. 607(2), 665-687 (2004). The model selected is the Einstein-DeSitter analytical solution with only one parameter, the Hubble constant. No estimation is possible for the matter density nor dark energy")
-print()
+print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the Gold data set from Riess, A.G. et al. Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution. Astrophys. J. vol. 607(2), 665-687 (2004). The model selected is the Einstein-DeSitter analytical solution with only one parameter, the Hubble constant. No estimation is possible for the matter density nor dark energy")
+
 # import data and library files
 import numpy as np
 import csv
@@ -50,14 +49,14 @@ Error, = perr
 normHubble = round(Hubble,2)
 normError = round(Error,2)
 
-# calculate the statistical fitness, using 157 as the number of data pairs and P=1 as the degree of freedom (paramater count)
-# since the error at the origin is 0 we must ignore this only to estimate the goodness of fit, but not the fit itself
+# calculate the statistical fitness, using 158 as the number of data pairs and P=1 as the degree of freedom (paramater count)
+# since the error at the origin is 0 we have to ignore this only to estimate the goodness of fit, but not the fit itself
 chisq = sum((ydata[1:-1] - func(xdata,Hubble)[1:-1])**2/func(xdata,Hubble)[1:-1])
 chisquar = round(chisq,2)
 
 #normalised chisquar is calculated as
 P=1
-normchisquar = round((chisquar/(157-P)),2)
+normchisquar = round((chisquar/(157-P)),2) #rounded to 2 digits
 
 #calculation of residuals
 residuals = ydata - func(xdata,Hubble)
@@ -67,13 +66,13 @@ ss_tot = np.sum((ydata-np.mean(ydata))**2)
 #r squared calculation and round to 4 digits
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,4)
-r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-P-1)),4)
+r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-1-1)),4)
 
 #plot of data and results
 plt.rcParams["font.family"] = "Times New Roman"
 plt.rcParams['lines.linewidth'] = 3
 plt.xlim(0.3,1.0)
-plt.ylim(0.0,16000)
+plt.ylim(0.0,15000)
 plt.xscale("linear")
 plt.yscale("linear")
 fig, ax = plt.subplots()
@@ -87,7 +86,7 @@ plt.ylabel("Luminosity distance (Mpc)", fontsize=18)
 plt.rc('xtick', labelsize=14) 
 plt.rc('ytick', labelsize=14)
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 5)
-plt.title("E-DS Model, $D_L$ vs. Exp. fact.", fontsize = 18)
+#plt.title("E-DS Model, $D_L$ vs. Exp. fact.", fontsize = 18)
 plt.plot(xdata, funcdata, color = "orange", label = "E-DS model")
 plt.legend(loc='best', fancybox=True, shadow=False)
 plt.show()
@@ -99,11 +98,8 @@ print("The S.D. of the Hubble constant is ", normError)
 print("The adjusted r\u00b2 is calculated to be: ",r2adjusted)
 #print("The calculated r\u00b2 is: ",r2)
 #print("The goodness of fit \u03C7\u00b2 guesstimate is: ", chisquar)
-print("The reduced goodness of fit \u03C7\u00b2 estimate is: ", normchisquar)
-#print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
-#print(f"D_L is {func(1,normHubble)} when expansion factor is 1")
+print("And reduced goodness of fit \u03C7\u00b2 estimate is: ", normchisquar)
 
 #Routines to save figues in eps and pdf formats
 fig.savefig("EinsteinDeSitter_D_L_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
 fig.savefig("EinsteinDeSitter_D_L_data.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
-

@@ -6,8 +6,8 @@ Created on Wed Jun 15 17:41:24 2022
 @author: mike
 """
 print()
-print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the gold data set from Riess, A.G. et al. Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution. Astrophys. J. vol. 607(2), 665-687 (2004). The model selected here is the arctanh analytical solution with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. No estimate of dark energy is possible.")
-print()
+print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the Gold data set from Riess, A.G. et al. Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution. Astrophys. J. vol. 607(2), 665-687 (2004). The model selected here is the arctanh analytical solution with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. No estimate of dark energy is possible.")
+
 # import data and library files
 import numpy as np
 import csv
@@ -61,13 +61,12 @@ rans_b_SD = round(ans_b_SD,2)
 rans_c_SD = round(ans_c_SD,3)
 
 # estimating the goodness of fit
-# since the error at the origin is 0 we must ignore this only to estimate the goodness of fit, but not the fit itself
 chisq = sum((ydata[1:-1] - func(xdata,ans_b,ans_c)[1:-1])**2/func(xdata,ans_b,ans_c)[1:-1])
 chisquar = round(chisq,2)
 
-#normalised chisquar is calculated with P the parameter count as
+# normalised chisquar where P is the number of parameters (2) and is calculated as 
 P=2
-normchisquar = round((chisquar/(157-P)),2)
+normchisquar = round((chisquar/(157-P)),2) #rounded to 2 digits
 
 # calculation of residuals
 residuals = ydata - func(xdata,ans_b,ans_c)
@@ -96,7 +95,7 @@ for axis in ['top','bottom','left','right']:
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 4)
 plt.xlabel("Expansion factor, \u03BE", fontsize = 18)
 plt.ylabel("Luminosity distance (Mpc)", fontsize=18)
-plt.title("Arctanh model, $D_L$ vs. Exp. fact.", fontsize = 18)
+#plt.title("Arctanh model, $D_L$ vs. Exp. fact.", fontsize = 18)
 plt.plot(xdata, funcdata, color = "orange", label = "Arctanh Model")
 plt.legend(loc='best', fancybox=True, shadow=False)
 plt.show()
@@ -113,3 +112,22 @@ print("The reduced goodness of fit \u03C7\u00b2 is: ", normchisquar)
 # Routines to save figues in eps and pdf formats
 fig.savefig("Arctanh_D_L_data.eps", format="eps", dpi=1200, bbox_inches="tight", transparent=True)
 fig.savefig("Arctanh_D_L_data.pdf", format="pdf", dpi=1200, bbox_inches="tight", transparent=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
