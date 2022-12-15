@@ -5,10 +5,9 @@ Created on Fri Jul 29 17:53:20 2022
 
 @author: mike
 """
-print("A test of the Friedmann-Lemaitre-Robertson-Walker (FLRW) model using the curve_fit regression routine of Python scipy uses the gold SNe Ia data, as mag vs redshift (z), from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). This variation of the LCDM model used here has two parameters: Hubble constant, Hu, normalised matter density, O_m; the cosmological constant is the remainder of information in a universe with flat geometry.")
+print("A test of the Friedmann-Lemaitre-Robertson-Walker (FLRW) model using the curve_fit regression routine of Python scipy uses the SNe Ia data, as mag vs redshift (z), from the Gold data set of Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). This variation of the LCDM model used here has two parameters: Hubble constant, Hu, normalised matter density, O_m; the cosmological constant is the remainder of information in a universe with flat geometry.")
 print()
 print("This is the magLCDM model, typically known as the standard model of cosmology.")
-print()
 
 # import the data file and the Python 3 libraries
 import numpy as np
@@ -29,24 +28,23 @@ ydata = exampledata[:,2]
 error = exampledata[:,3]
 
 # initial guess for the normalized matter density, O_m
-O_m = 0.35
+O_m = 0.30
 
-# where t is the "dummy" variable during numerical integration
+# where t is the "dummy" variable during integration
 def integr(x,O_m):
     return intg.quad(lambda t: (1/(np.sqrt(((1+t)**2)*(1+O_m*t) - t*(2+t)*(1-O_m)))), 0, x)[0]
     
 def func2(x, O_m):
-    return np.asarray([integr(xx,O_m) for xx in x])
+    return np.asarray([integr(xx,O_m) for xx in x]) 
 
 # specify the speed of light
 litesped = 299793
 
-# combining func2 with the Hubble relationship in a universe with flat geometry
 def func3(x,Hu,O_m):
     return 5*(np.log10((litesped*(1+x)/Hu)*np.sinh(func2(x,O_m)))) + 25
 
 # guesses for the Hubble constant, Hu, and the normalized matter density, O_m
-init_guess = np.array([70,0.35])
+init_guess = np.array([70,0.30])
 
 # allowed range for the two parameters
 bnds=([50,0.01],[80,1.0])
@@ -59,7 +57,7 @@ ans_Hu, ans_O_m = params
 rans_Hu = round(ans_Hu,2)
 rans_O_m = round(ans_O_m,3)
 
-# extracting and rounding the calculated standard deviations
+# extracting and rounding the estimated standard deviations.
 perr = np.sqrt(np.diag(pcov))
 SD_Hu, SD_O_m = perr
 rSD_Hu = round(SD_Hu,2)
@@ -67,11 +65,11 @@ rSD_O_m = round(SD_O_m,3)
 
 # estimating the goodness of fit
 chisq = sum((ydata - func3(xdata,ans_Hu,ans_O_m))**2/func3(xdata,ans_Hu,ans_O_m))
-chisquar = round(chisq,5)
+chisquar = round(chisq,4)
 
-# normalised chisquar is calculated for 156 data pairs with P the parameter count (2) as
+# normalised chisquar is calculated for 157 data pairs with P the parameter count (2) as
 P=2
-normchisquar = round((chisquar/(156-P)),5)
+normchisquar = round((chisquar/(157-P)),4) #rounded to 4 digits
 
 # calculation of residuals
 residuals = ydata - func3(xdata,ans_Hu,ans_O_m)
@@ -101,7 +99,7 @@ plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 4)
 plt.plot(xdata, func3(xdata,ans_Hu,ans_O_m), color = "green", label = "standard model")
 plt.xlabel("Redshift z", fontsize = 18)
 plt.ylabel("mag (no units)", fontsize = 18)
-plt.title("standard model, mag vs. redshift z", fontsize = 18)
+#plt.title("standard model, mag vs. redshift z", fontsize = 18)
 plt.legend(loc='best', fancybox=True, shadow=False)
 
 #print results
@@ -109,11 +107,9 @@ print()
 print("The calculated Hubble constant and S.D. are: ", rans_Hu, ",",rSD_Hu)
 print("The calculated normalised matter density and S.D. are: ",rans_O_m, ",",rSD_O_m )
 print("The adjusted r\u00b2 is calculated to be: ",r2adjusted)
-#print("The goodness of fit \u03C7\u00b2 is: ", chisquar)
 print("The reduced goodness of fit \u03C7\u00b2 is: ", normchisquar)
-#print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
+
 
 #commands to save plots in two different formats
 fig.savefig("flatLCDM_mag_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
 fig.savefig("flatLCDM_mag_data.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
-

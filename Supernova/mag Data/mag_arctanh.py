@@ -6,7 +6,7 @@ Created on Wed Jun 15 17:41:24 2022
 @author: mike
 """
 print()
-print("This curve_fit regression routine, of Python scipy, uses the SNe Ia data, as mag vs redshift (z), of the gold data set from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). This is the arctanh, analytical solution to the Friedmann-Lemaitre-Roberston-Walker (FLRW) model with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. No estimation is possible for dark energy.")
+print("This curve_fit regression routine, of Python scipy, uses the SNe Ia data, as mag vs redshift (z), of the Gold data set from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). This is the arctanh, analytical solution to the Friedmann-Lemaitre-Roberston-Walker (FLRW) model with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. No estimation is possible for dark energy.")
 print()
 
 # import data and Python 3 library files
@@ -65,9 +65,9 @@ rans_cSD = round(ans_cSD,3)
 chisq = sum((ydata - func2(xdata,ans_b,ans_c))**2/func2(xdata,ans_b,ans_c))
 chisquar = round(chisq,5)
 
-# normalised chisquar for 156 data pairs, where P is the number of parameters (2) and is calculated as 
+# normalised chisquar where P is the number of parameters (2) and is calculated as 
 P=2
-normchisquar = round((chisquar/(156-P)),5)
+normchisquar = round((chisquar/(157-P)),5)
 
 # calculation of residuals
 residuals = ydata - func2(xdata,ans_b,ans_c)
@@ -95,7 +95,7 @@ for axis in ['top','bottom','left','right']:
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 4)
 plt.xlabel("Redshift z", fontsize = 18)
 plt.ylabel("mag (no units)", fontsize = 18)
-plt.title("magarctanh model, mag vs. redshift z", fontsize = 18)
+#plt.title("magarctanh model, mag vs. redshift z", fontsize = 18)
 plt.plot(xdata, func2(xdata,ans_b,ans_c), color = "green", label = "magarctanh model")
 plt.legend(loc='best', fancybox=True, shadow=False)
 plt.show()
@@ -105,13 +105,19 @@ print()
 print("The calculated Hubble constant with S.D. is: ", rans_b, ",",rans_bSD )
 print("The normalised matter density with S.D. is: ", rans_c,"," , rans_cSD)
 print("The adjusted r\u00b2 is calculated to be: ",r2adjusted)
-#print("The r\u00b2 is calculated to be: ",r2)
-#print("The goodness of fit \u03C7\u00b2 is: ", chisquar)
 print("The reduced goodness of fit \u03C7\u00b2 is: ", normchisquar)
 
 #Routines to save figues in eps and pdf formats
 fig.savefig("Arctanh_mag_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
 fig.savefig("Arctanh_mag_data.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
+
+
+
+
+
+
+
+
 
 
 
