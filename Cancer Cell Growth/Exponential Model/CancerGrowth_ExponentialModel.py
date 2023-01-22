@@ -13,6 +13,7 @@ import numpy as np
 import csv
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
+import math
 
 # Open data file
 with open("CancerGrowth-Time.csv","r") as i:
@@ -60,11 +61,18 @@ cvalue=ans_c
 funcdata = func(xdata,bvalue,cvalue)
 
 # Estimating the goodness of fit from the difference between the observed distance data (ydata) and the calculated distances using the term on the right-hand side, below.
-chisq = sum((ydata - func(xdata,ans_b,ans_c))**2/(func(xdata,ans_b,ans_c)))
+chisq = sum((ydata - func(xdata,ans_b,ans_c))**2/(error**2))
 chisquar = round(chisq,2)
+
 # Normalized chisquar is calculated with the number of observations (60) and P the number of parameters
 P=2
+N=60
+e = 2.718281
 normchisquar = round((chisquar/(60-P)),3)
+
+#The BIC value is calculated as
+BIC = N*math.log(e,chisq/N) + P*math.log(e,N)
+normBIC = round(BIC,2)
 
 # To calculate the r**2 value
 resids = ydata - func(xdata,ans_b,ans_c)
@@ -100,11 +108,11 @@ plt.legend(loc='best', fancybox=True, shadow=False)
 print()
 print("The calculated initial number and S.D. are: ", rans_b, ",",rans_b_SD)
 print("The calculated growth constant and S.D are: ", rans_c, ",",rans_c_SD)
+print()
 print("The adjusted r\u00b2 is calculated to be: ",r2adjusted)
 #print("The r\u00b2 value is calculated as: ",r2)
 print("The goodness of fit, \u03C7\u00b2, is: ", chisquar)
-#print("The reduced goodness of fit, \u03C7\u00b2, is: ", normchisquar)
-#print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
+print("The BIC value is calculated as: ",normBIC)
 
 #Routines to save figues in eps and pdf formats
 fig.savefig("CellGrowth_vs_time.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
