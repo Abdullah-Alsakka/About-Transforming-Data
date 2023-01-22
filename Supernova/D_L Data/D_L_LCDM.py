@@ -5,13 +5,14 @@ Created on Fri Jul 29 17:53:20 2022
 
 @author: mike
 """
-print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the Gold data set from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). The LCDM model used here requires numerical integration with two parameters, the Hubble constant, Hu and the normalised matter density, O_m in a flat geometry. An estimate of the normalized cosmological constant (dark energy) is possible presuming a Universe with flat geometry.")
+print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the Gold data set from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z>1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). The LCDM model used here requires numerical integration with two parameters, the Hubble constant, Hu and the normalised matter density, O_m with flat spacetime geometry. An estimate of the normalized cosmological constant (dark energy) is possible.")
 
 import numpy as np
 import csv
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 from scipy import integrate as intg
+import math
 
 # open data file
 with open("Gold_Riess_D_L_2004.csv","r") as i:
@@ -60,9 +61,19 @@ Rans_O_m_SD = round(ans_O_m_SD,3)
 chisq = sum((ydata[1:-1] - func3(xdata,ans_Hu,ans_O_m)[1:-1])**2/func3(xdata,ans_Hu,ans_O_m)[1:-1])
 chisquar = round(chisq,2)
 
-# normalised chisquar where P is the number of parameters (2) and is calculated as 
+# normalised chisquar where P is the number of parameters (2), N is the numbver of data pairs and normchisquar is calculated as 
 P=2
+N=157
+e = 2.718281
 normchisquar = round((chisquar/(157-P)),2)
+
+#Calculate the chi^2 according to astronomers
+newxsqrd = sum(((ydata[1:-1] - func3(xdata,ans_Hu,ans_O_m)[1:-1])**2)/(error[1:-1]**2))
+newxsqrded = round(newxsqrd/(N-P),2)
+
+#The BIC value is calculated as
+BIC = N*math.log(e,chisq/N) + P*math.log(e,N)
+normBIC = round(BIC,2)
 
 #calculation of residuals
 residuals = ydata - func3(xdata,ans_Hu,ans_O_m)
@@ -102,10 +113,13 @@ plt.legend(loc='best', fancybox=True, shadow=False)
 print()
 print("The calculated Hubble constant with S.D. is: ", Rans_Hu,",", Rans_Hu_SD)
 print("The calculated matter density with S.D. is: ", Rans_O_m,",",Rans_O_m_SD)
+print()
 print("The adjusted r\u00b2 is calculated to be: ",r2adjusted)
 #print("The calculated r\u00b2 is: ",r2)
 #print("The goodness of fit, \u03C7\u00b2, estimate: ", chisquar)
-print("The reduced goodness of fit, \u03C7\u00b2, is: ", normchisquar)
+print("The reduced goodness of fit, \u03C7\u00b2, is: ", newxsqrded)
+print("The estimate for BIC is: ", normBIC)
+print()
 
 #Saving the plots in two different formats
 fig.savefig("flatLCDM_D_L_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)

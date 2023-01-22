@@ -14,6 +14,7 @@ import numpy as np
 import csv
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
+import math
 
 # open data file and extract the data
 with open("Gold_Riess_mag_2004.csv","r") as i:
@@ -52,17 +53,20 @@ Hubble, = params
 Error, = perr
 
 # rounding the above two values to 2 decimal places
-normHubble = round(Hubble,2)
-normError = round(Error,2)
+normHubble = np.round(Hubble,2)
+normError = np.round(Error,2)
 
-# calculate the statistical fitness, using 157 as the number of data pairs and P=1 as the degree of freedom (parameter count)
-chisq = sum((ydata - func2(xdata,Hubble))**2/func2(xdata,Hubble))
-chisquar = round(chisq,4)
-
-# P is the number of parameters in the function
+# calculate the statistical fitness, using N=156 as the number of data pairs and P=1 as the degree of freedom (parameter count)
 P=1
-#normalised chisquar is calculated as 
-normchisquar = round((chisquar/(157-P)),4)
+N=156
+e = 2.718281
+#Calculate the chi^2 according to astronomers
+newxsqrd = sum(((ydata - func2(xdata,Hubble))**2)/(error**2))
+newxsqrded = np.round(newxsqrd/(N-P),2)
+
+#The BIC value is calculated as
+BIC = N * math.log(e,(newxsqrd/N)) + P*math.log(e,N)
+normBIC = np.round(BIC,2)
 
 # calculation of residuals
 residuals = ydata - func2(xdata,Hubble)
@@ -72,7 +76,7 @@ ss_tot = np.sum((ydata-np.mean(ydata))**2)
 # r squared calculation
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,3)
-r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-P-1)),3)
+r2adjusted = np.round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-P-1)),3)
 
 # plot of imported data
 plt.rcParams["font.family"] = "Times New Roman"
@@ -101,9 +105,11 @@ plt.show()
 print("\n")
 print("The estimated Hubble constant is: ", normHubble)
 print("The S.D. of the Hubble constant is ", normError)
+print()
 print("The adjusted r\u00b2 is calculated to be: ",r2adjusted)
-print("And reduced goodness of fit \u03C7\u00b2 estimate: ", normchisquar)
-
+print("And reduced goodness of fit \u03C7\u00b2 estimate: ", newxsqrded)
+print("The estimate for BIC is: ", normBIC)
+print()
 
 #Routines to save figues in eps and pdf formats
 fig.savefig("EinsteinDeSitter_mag_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)

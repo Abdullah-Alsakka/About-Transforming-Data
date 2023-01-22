@@ -6,13 +6,13 @@ Created on Mon Aug  8 12:47:21 2022
 @author: mike
 """
 print()
-print("This routine models the gold SNe Ia data, as mag vs. z redshift, of Riess et al. 2004 with 156 data pairs. The Einstein-DeSitter model with only a single parameter, the Hubble constant, is employeed so estimates are not made for matter density, spacetime curvature or dark energy. The Python 3 least_squares robust regression routine is used with mag vs. redshift z data, the robust regression employees the loss='cauchy' specification.")
-print()
+print("This routine models the gold SNe Ia data, as mag vs. z redshift, of Riess et al. 2004 with 156 data pairs. The Einstein-DeSitter model with only a single parameter, the Hubble constant, is employed so estimates are not made for matter density, spacetime curvature or dark energy. The Python 3 least_squares robust regression routine is used with mag vs. redshift z data, the robust regression employees the loss='cauchy' specification.")
 
 import csv
 import numpy as np
 from scipy.optimize import least_squares
 import matplotlib.pyplot as plt
+import math
 
 #open data file
 with open("Gold_Riess_mag_2004.csv","r") as i:
@@ -25,11 +25,10 @@ ydata = exampledata[:,2]
 errors = exampledata[:,3] #The standard deviations are not used to calculate the best fit but only for plot display.
 
 litesped = 299793
-
 #Hu represents the Hubble constant value
 params=[65] #Initial guess of the Hubble constant, Hu, value. The mag vs. redshift Einstein-deSitter model is the right-hand term of the "residual" equation.
 def func1(params, x, y):
-    Hu = params[0] # only a single parameter
+    Hu = params[0] # params[1], (params[2])
     residual = ydata-(5*np.log10((litesped*(x+1))/Hu*(np.sinh(x/(1+x))))+25)
     return residual
 
@@ -46,11 +45,14 @@ residuals = ydata - yfit1
 ss_res_lsq = np.sum(residuals**2)
 ss_tot_lsq = np.sum((ydata-np.mean(ydata))**2)
 
-#r squared with the parameter count P=1
+#r squared with the parameter count P=1 and the number of data pairs is N
 P=1
+N=156
+e = 2.718281
+
 #r_squared = 1 - (ss_res/ss_tot)
 r_squared_lsq = 1 - (ss_res_lsq/ss_tot_lsq)
-
+#r2 = round(r_squared,3)
 r2_lsq = round(r_squared_lsq,4)
 r2adjusted = round(1-(((1-r2_lsq)*(len(ydata)-1))/(len(ydata)-P-1)),4)
 
@@ -62,18 +64,18 @@ cov = np.linalg.inv(J.T.dot(J))
 var = np.sqrt(np.diagonal(cov))
 StndDev, = var
 
-#We write a comma after StndDev, because we are extracting this value from tuple. Below is just rounding off the value of the standard deviation to something one might believe - only two digits.
+#We write a comma after StndDev, because we are extracting this value from tuple. Below is just rounding off the value of the standard deviation to something one might believe - only three digits.
 normSD = round(StndDev,2)
 
 #calculate the statistical fitness, using 156 as the number of data pairs and 1 as the degree of freedom (paramater count).
-chisq = sum((ydata-yfit1)**2/(yfit1))
+chisq = sum((ydata-yfit1)**2/(errors**2))
 chisquar = np.round(chisq,2)
-normchisquar = np.round((chisquar/(156-P)),4)
-"""
+normchisquar = np.round((chisquar/(N-P)),4)
+
 #The BIC value is calculated as; BIC from Bayesian Information Criteria
-BIC = 156 * np.log10(chisq/156) + P*np.log10(156)
+BIC = N * math.log(e,(chisq/N)) + P*math.log(e,N)
 normBIC = round(BIC,2)
-"""
+
 #Plot of data and best model regression.
 plt.rcParams["font.family"] = "Times New Roman"
 plt.rcParams['lines.linewidth'] = 3
@@ -98,10 +100,11 @@ plt.show()
 
 print()
 print("The estimated Hubble constant and S.D. are:", Hubble, ",",normSD)
+print()
 print ('The r\u00b2_adj is:'+str(r2adjusted))
-print("The goodness of fit, \u03C7\u00b2, estimate is: ", chisquar)
-print("The reduced goodness of fit, \u03C7\u00b2, guesstimate is: ", normchisquar)
-#print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
+#print("The goodness of fit, \u03C7\u00b2, estimate is: ", chisquar)
+print("The reduced goodness of fit, \u03C7\u00b2, estimate is: ", normchisquar)
+print("The BIC value is:", normBIC)
 print()
 print("There is no value for the cosmological constant in this solution")
 

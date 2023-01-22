@@ -6,12 +6,13 @@ Created on Wed Jun 15 17:41:24 2022
 @author: mike
 """
 print("This curve_fit regression routine uses the SNe Ia data, as D_L vs expansion factor, calculated using the Gold data set from Riess, A.G. et al. Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution. Astrophys. J. vol. 607(2), 665-687 (2004). The model selected is the Einstein-DeSitter analytical solution with only one parameter, the Hubble constant. No estimation is possible for the matter density nor dark energy")
-
+print()
 # import data and library files
 import numpy as np
 import csv
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
+import math
 
 # open data file
 with open("Gold_Riess_D_L_2004.csv","r") as i:
@@ -49,14 +50,28 @@ Error, = perr
 normHubble = round(Hubble,2)
 normError = round(Error,2)
 
-# calculate the statistical fitness, using 158 as the number of data pairs and P=1 as the degree of freedom (paramater count)
+# calculate the statistical fitness, using N=157 as the number of data pairs and P=1 as the degree of freedom (paramater count)
+
+#set some constant values
+P=1
+N=157
+e = 2.718281
+
+#Calculate the chi^2 according to astronomers
+newxsqrd = sum(((ydata[1:-1] - func(xdata,Hubble)[1:-1])**2)/(error[1:-1]**2))
+newxsqrded = round(newxsqrd/(N-P),2)
+
 # since the error at the origin is 0 we have to ignore this only to estimate the goodness of fit, but not the fit itself
 chisq = sum((ydata[1:-1] - func(xdata,Hubble)[1:-1])**2/func(xdata,Hubble)[1:-1])
 chisquar = round(chisq,2)
 
 #normalised chisquar is calculated as
-P=1
-normchisquar = round((chisquar/(157-P)),2) #rounded to 2 digits
+
+normchisquar = round((chisquar/(N-P)),2) #rounded to 2 digits
+
+#The BIC value is calculated as
+BIC = N*math.log(e,chisq/N) + P*math.log(e,N)
+normBIC = round(BIC,2)
 
 #calculation of residuals
 residuals = ydata - func(xdata,Hubble)
@@ -66,7 +81,7 @@ ss_tot = np.sum((ydata-np.mean(ydata))**2)
 #r squared calculation and round to 4 digits
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,4)
-r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-1-1)),4)
+r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-P-1)),4)
 
 #plot of data and results
 plt.rcParams["font.family"] = "Times New Roman"
@@ -95,10 +110,12 @@ plt.show()
 print()
 print("The estimated Hubble constant is: ", normHubble)
 print("The S.D. of the Hubble constant is ", normError)
+print()
 print("The adjusted r\u00b2 is calculated to be: ",r2adjusted)
 #print("The calculated r\u00b2 is: ",r2)
 #print("The goodness of fit \u03C7\u00b2 guesstimate is: ", chisquar)
-print("And reduced goodness of fit \u03C7\u00b2 estimate is: ", normchisquar)
+print("And reduced goodness of fit \u03C7\u00b2 estimate is: ", newxsqrded)
+print("The estimate for BIC is: ", normBIC)
 
 #Routines to save figues in eps and pdf formats
 fig.savefig("EinsteinDeSitter_D_L_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)

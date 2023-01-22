@@ -12,6 +12,7 @@ import csv
 import numpy as np
 from scipy.optimize import least_squares
 import matplotlib.pyplot as plt
+import math
 
 #open data file
 with open("Gold_Riess_D_L_2004.csv","r") as i:
@@ -30,16 +31,14 @@ litesped = 299793
 #Initial guess of the Hubble constant, Hu, value.
 params=[70] 
 
-# The Einstein-deSitter model is the right-hand term of the "residual" equation.
+# he Einstein-deSitter model is the right-hand term of the "residual" equation.
 def func1(params, x, y):
-    Hu = params[0] # The first, only parameter
+    Hu = params[0] # params[1], params[2]
     residual = ydata-((litesped/(x*Hu))*np.sinh(1-x))
     return residual
 
 #Application of the least_squares regression routine, note that bounds=(50,80) are the allowed search limits for the Hubble constant, loss='cauchy' denotes the robust method for handling the residual values not the standard deviations.
 result2 = least_squares(func1, x0=params, jac='3-point',bounds=(50,80),method = 'trf', loss='cauchy',args=(x, ydata))
-
-#The computer estimate for the Hubble constant
 Hu, = result2.x
 
 #yfit1 now decribes the E-DeS model
@@ -58,6 +57,8 @@ r2_lsq = round(r_squared_lsq,3)
 
 # where P is the parameter count, the r2adjusted value rounded to 3 digits
 P=1
+N=157
+e = 2.718281
 r2adjusted = round(1-(((1-r2_lsq)*(len(ydata)-1))/(len(ydata)-P-1)),3)
 
 #Below will be used to estimate the Covariance Matrix of the parameters using the following formula: Sigma = (J'J)^-1.
@@ -71,17 +72,17 @@ StndDev, = var
 #We write a comma after StndDev, because we are extracting this value from tuple. Below is just rounding off the value of the standard deviation to something one might believe - only three digits.
 normSD = round(StndDev,3)
 
-#calculate the statistical fitness, using 157 as the number of data pairs and 1 as the degree of freedom (parameter count). Note the values of the errors are those of the tablulated SNe Ia distances so chi^2 will be very large.
-chisq = sum((ydata[1:-1]-yfit1[1:-1])**2/yfit1[1:-1])
+#calculate the statistical fitness, using 157 as the number of data pairs and 1 as the degree of freedom (parameter count). Note the values of the errors are those of the tablulated SNe Ia distances.
+chisq = sum((ydata[1:-1]-yfit1[1:-1])**2/(errors[1:-1])**2)
 chisquar = np.round(chisq,2)
 
 #normalised chisquar is calculated from the number of data pairs (157) minus the number of free parameters (1). 
-normchisquar = np.round((chisquar/(157-P)),2)
-"""
+normchisquar = np.round((chisquar/(N-P)),2)
+
 #The BIC value is calculated as; BIC from Bayesian Information Criteria
-BIC = 157 * np.log10(chisq/157) + 1*np.log10(157)
+BIC = N * math.log(e,(chisq/N)) + P*math.log(e,N)
 normBIC = round(BIC,2)
-"""
+
 plt.rcParams["font.family"] = "Times New Roman"
 plt.rcParams['lines.linewidth'] = 3
 plt.xlim(0.3,1.0)
@@ -106,10 +107,11 @@ plt.show()
 print()
 print("The estimated Hubble constant is:", Hubble)
 print("The S.D. of the Hubble constant is", normSD)
+print()
 print ('The r\u00b2_adj is:'+str(r2adjusted))
-print("The goodness of fit, \u03C7\u00b2, estimate is:", chisquar)
+#print("The goodness of fit, \u03C7\u00b2, estimate is:", chisquar)
 print("The reduced goodness of fit, \u03C7\u00b2, estimate is:", normchisquar)
-#print("Reduced goodness of fit \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
+print("The BIC value is:", normBIC)
 print()
 print("There is no value for the cosmological constant in this solution")
 

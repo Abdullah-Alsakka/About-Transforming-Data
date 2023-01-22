@@ -6,7 +6,7 @@ Created on Wed Jun 15 17:41:24 2022
 @author: mike
 """
 print()
-print("This curve_fit regression routine, of Python scipy, uses the SNe Ia data, as mag vs redshift (z), of the Gold data set from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). This is the arctanh, analytical solution to the Friedmann-Lemaitre-Roberston-Walker (FLRW) model with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. No estimation is possible for dark energy.")
+print("This curve_fit regression routine, of Python scipy, uses the SNe Ia data, as mag vs redshift (z), of the Gold data set from Riess, A.G. et al. 'Type Ia Supernova Discoveries at z> 1 from the Hubble Space Telescope: Evidence for Past Deceleration and Constraints on Dark Energy Evolution' Astrophys. J. vol. 607(2), 665-687 (2004). This is the arctanh, analytical solution to the Friedmann-Lemaitre-Roberston-Walker (FLRW) model with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. No estimation is possible for \Omega_L, dark energy.")
 print()
 
 # import data and Python 3 library files
@@ -14,6 +14,7 @@ import numpy as np
 import csv
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
+import math
 
 # open data file
 with open("Gold_Riess_mag_2004.csv","r") as i:
@@ -61,13 +62,18 @@ ans_bSD, ans_cSD = perr
 rans_bSD = round(ans_bSD,2)
 rans_cSD = round(ans_cSD,3)
 
-# estimating the goodness of fit
-chisq = sum((ydata - func2(xdata,ans_b,ans_c))**2/func2(xdata,ans_b,ans_c))
-chisquar = round(chisq,5)
-
-# normalised chisquar where P is the number of parameters (2) and is calculated as 
+# normalised chisquar where P is the number of parameters (2) and N the number of data pairs
 P=2
-normchisquar = round((chisquar/(157-P)),5)
+N=156
+e = 2.718281
+
+#Calculate the chi^2 according to astronomers
+newxsqrd = sum(((ydata - func2(xdata,ans_b,ans_c))**2)/(error**2))
+newxsqrded = np.round(newxsqrd/(N-P),2)
+
+#The BIC value is calculated as
+BIC = N * math.log(e,(newxsqrd/N)) + P*math.log(e,N)
+normBIC = round(BIC,2)
 
 # calculation of residuals
 residuals = ydata - func2(xdata,ans_b,ans_c)
@@ -104,8 +110,10 @@ plt.show()
 print()
 print("The calculated Hubble constant with S.D. is: ", rans_b, ",",rans_bSD )
 print("The normalised matter density with S.D. is: ", rans_c,"," , rans_cSD)
+print()
 print("The adjusted r\u00b2 is calculated to be: ",r2adjusted)
-print("The reduced goodness of fit \u03C7\u00b2 is: ", normchisquar)
+print("The reduced goodness of fit \u03C7\u00b2 is: ", newxsqrded)
+print("The estimate for BIC is: ", normBIC)
 
 #Routines to save figues in eps and pdf formats
 fig.savefig("Arctanh_mag_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)

@@ -6,14 +6,15 @@ Created on Mon Aug  8 12:47:21 2022
 @author: mike
 """
 print()
-print("This routine models the 156 gold SNe Ia data and the position of the earth, as D_L vs expansion factor, of Riess et al. 2004. The model used presumes the flat, LCDM integrated solution with two parameters, the standard model with the Hubble constant, Hu, and the normalized matter density (\u03A9m,O_m). The Python 3 least_squares routine with robust loss='cauchy' is used. Integration is necessary because the FLRW model cannot be solved exactly for D_L vs. expansion factor when the influence of dark energy is considered.")
-print()
+print("This routine models the 156 gold SNe Ia data and the position of the earth, as D_L vs expansion factor, of Riess et al. 2004. The model presumes the flat, LCDM integrated solution with two parameters, the standard model with the Hubble constant, Hu, and the normalized matter density (\u03A9m,O_m). The Python 3 least_squares routine with robust loss='cauchy' is used. Integration is necessary because the FLRW model cannot be solved exactly for D_L vs. expansion factor when the influence of dark energy is considered.")
+
 #import the necessary modules (libraries)
 import csv  #required to open the .csv file for reading
 import numpy as np
 from scipy.optimize import least_squares
 import matplotlib.pyplot as plt
 from scipy import integrate as intg
+import math
 
 #open data file
 with open("Gold_Riess_D_L_2004.csv","r") as i:
@@ -29,6 +30,8 @@ errors = exampledata[:,7] #the standard deviations are not used in the regressio
 #litesped value for the speed of light
 litesped = 299793
 
+#Hu represents the Hubble constant and O_m represents the normalized matter density. Here Hu is the initial guess, to be replaced later in this program by a computer estimated value. 
+Hu=70.0
 #The long equation on the right-hand side is the FLRW model for a Universe with the Hubble expansion, matter density and spacetime - no dark energy.
 
 #We first have to write the first two functions, integr and func2 dealing with the numerical integration
@@ -44,7 +47,7 @@ def func1(params, x, y):
     residual = ydata-(litesped/(x*Hu))*np.sinh(func2(x,O_m))
     return residual
 
-params=[70,0.35] #Initial guesses: Hubble constant value, Hu, and normalized matter density, O_m: the least_squares regression routine used; x0, the parameter guesses; jac, the math routine used; bounds, allowed lower, then upper bounds for params; loss, treatment of outlier data pairs; args, x and y data.
+params=[70,0.35] #Initial guesses: Hubble constant value and normalized matter density: the least_squares regression routine used; x0, the parameter guesses; jac, the math routine used; bounds, allowed lower, then upper bounds for params; loss, treatment of outlier data pairs; args, x and y data.
 
 result2 = least_squares(func1, x0=params, jac='3-point',bounds=((50,0.001),(80,0.99)),loss='cauchy',args=(x, ydata))
 
@@ -63,6 +66,9 @@ ss_tot_lsq = np.sum((ydata-np.mean(ydata))**2)
 
 # here P is the number of free parameters
 P=2
+N=157
+e = 2.718281
+
 #r_squared = 1 - (ss_res/ss_tot)
 r_squared_lsq = 1 - (ss_res_lsq/ss_tot_lsq)
 #r2 = round(r_squared,3)
@@ -79,15 +85,16 @@ StndDev,O_mStndDev = var
 normSD = round(StndDev,2)
 normO_mStndDev = round(O_mStndDev,3)
 
-chisq = sum((ydata[1:-1]-yfit1[1:-1])**2/yfit1[1:-1])
+#calculate the statistical fitness, using 157 as the number of data pairs and 2 as the degree of freedom (paramater count)
+chisq = sum((ydata[1:-1]-yfit1[1:-1])**2/(errors[1:-1])**2)
 chisquar = np.round(chisq,2)
 #normalised chisquar is calculated from the number of data pairs (157) minus the number of free parameters (2). 
-normchisquar = np.round((chisquar/(157-P)),2)
-"""
+normchisquar = np.round((chisquar/(N-P)),2)
+
 #The BIC value is calculated as; BIC from Bayesian Information Criteria
-BIC = 157 * np.log10(chisq/157) + P*np.log10(157)
+BIC = N * math.log(e,(chisq/N)) + P*math.log(e,N)
 normBIC = round(BIC,2)
-"""
+
 #Plot of data and fitted curve
 plt.rcParams["font.family"] = "Times New Roman"
 plt.rcParams['lines.linewidth'] = 3
@@ -113,12 +120,13 @@ plt.show()
 print()
 print("The estimated Hubble constant and S.D. are:", Hubble, ","  , normSD)
 print("The estimated \u03A9m and S.D. are:", mattdens, ",", normO_mStndDev)
+print()
 print ('The calculated r\u00b2_adj is:'+str(r2adjusted))
-print("The goodness of fit, \u03C7\u00b2, guesstimate is:", chisquar)
+#print("The goodness of fit, \u03C7\u00b2, guesstimate is:", chisquar)
 print("The reduced goodness of fit, \u03C7\u00b2, estimate is:", normchisquar)
 #print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the paramter count.")
-#print("The guesstimate for BIC is: ", normBIC)
-#print("BIC is shorthand for Bayesian Information Criteria")
+print("The estimate for BIC is: ", normBIC)
+
 
 #Routines to save figues in eps and pdf formats
 fig.savefig("LCDM_least_squares_D_L_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
