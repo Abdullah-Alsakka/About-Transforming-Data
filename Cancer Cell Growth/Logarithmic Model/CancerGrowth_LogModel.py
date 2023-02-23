@@ -79,7 +79,8 @@ e = 2.718281
 normchisquar = round((chisquar/(N-P)),5)
 
 #The BIC value is calculated as
-BIC = N*math.log(e,chisq/N) + P*math.log(e,N)
+SSE=sum((ydata - func(xdata,ans_b,ans_c))**2)
+BIC = N*math.log(e,SSE/N) + P*math.log(e,N)
 normBIC = round(BIC,2)
 
 # To calculate the r**2 value
