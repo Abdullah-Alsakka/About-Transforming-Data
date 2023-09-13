@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
+This code solves equation 5 of section 2.5.1, Einstein-DeSitter mode
 @author: mike
 """
 print()
