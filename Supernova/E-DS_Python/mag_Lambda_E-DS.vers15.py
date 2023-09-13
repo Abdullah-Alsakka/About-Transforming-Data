@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
+This code solves equation A26 of Appendix, section A3.2, E-DS universe with \Omega_m=0 and \Omega_{\Lambda}>0. This code uses distance mag and redshift data for solution.
 @author: Mike
 """
 print()
