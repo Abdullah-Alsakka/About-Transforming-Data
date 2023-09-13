@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
+TThis code solves equation A26 of Appendix, section A3.2, E-DS universe with \Omega_m=0 and \Omega_{\Lambda}>0.
 @author: Mike
 """
 print()
