@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
+This code solves equation 6 of section 2.5.1, Einstein-DeSitter model.
 @author: mike
 """
 print("This curve_fit regression routine of Python scipy, uses the data, as distance mag vs redshift, z, from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. The model selected is the Einstein-DeSitter solution, not the Freidmann-Lemaitre-Robertson-Walker (FLRW) model. This model presents only one parameter, the Hubble constant. No estimation is possible for either the normalized matter density, which is presumed to be about 0, nor dark energy nor space geometry.")
