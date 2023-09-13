@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jul 29 17:53:20 2022
-
+This code solves equation A28 of Appendix, section A3.2, E-DS universe with \Omega_m=0 and \Omega_{\Lambda}>0
 @author: Mike
 """
 print("This curve_fit regression routine of Python scipy, uses the mag vs redshift (z) data  after calculations of the D_L and recession velocities from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. The measured distances, D_L, are plotted vs. the recession velocity (1/1+z). This variation of the Einstein-Newcomb-Desitter model has two parameters: Hubble constant, Hu, normalised matter density, O_m; in a universe with flat geometry. This model is reviewed in Yershov, V.N. 2023, Universe, vol. 9(5), 204. The corrected version of his model is used here with the Python curve_fit regression routine.")
