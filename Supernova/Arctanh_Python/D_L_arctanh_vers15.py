@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
+This code referers to section 2.5.5 Arctanh model, equation 16 and section 3.4.
 @author: Mike
 """
 print()
