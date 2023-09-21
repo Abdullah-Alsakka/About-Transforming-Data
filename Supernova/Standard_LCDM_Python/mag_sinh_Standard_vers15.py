@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jul 29 17:53:20 2022
-
+This model is outlined in section 3.3 and Appendix B2 of the manuscript.
 @author: Mike
 """
 print("This curve_fit regression routine of Python scipy, uses the mag vs redshift (z) data from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. This variation of the standard (LCDM) model used here has two parameters: Hubble constant, Hu, normalised matter density, O_m; the cosmological constant, \Omega_L, is the remainder of information in a universe with flat geometry.")
