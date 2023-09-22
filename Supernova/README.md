@@ -2,7 +2,7 @@
 
 To compare the mag data with the $D_L$ data we used three different models - Einstein-de Sitter (E-DS) model, the Flat LCDM and standard models (with the cosmological constant and numerical integration) and arctanh model (without the cosmological constant and without numerical integration).  
 
-`D_L Data` --> All the $D_L$ data files and programs for the several models provided. The .csv file is ready for use.
+`D_L Data` --> All the $D_L$ data files and programs for the several models provided. The .csv file is ready for use. NOTE: the values for the location and error for the MILKY WAY are listed as 0.0 and 0.0 in the xlsx file which may be problematic if this file is used with our .py codes. These are edited to 0.01 and 0.01 in the .csv file for immediate use.
 
 `Original Data` --> The data taken from https://doi.org/10.48550/arXiv.astro-ph/0402512
 
