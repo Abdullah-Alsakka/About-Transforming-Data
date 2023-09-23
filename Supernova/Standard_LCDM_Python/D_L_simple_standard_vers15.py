@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jul 29 17:53:20 2022
-This model is outlined in section 3.3 and Appendix B2 of the manuscript.
+This model is outlined in sections 2.5.4, 3.3, equations 11 and 12 and Appendix B2 of the manuscript.
 @author: Mike
 """
 print("This curve_fit regression routine of Python scipy, uses the 'distance mag' data, converted to luminosity distances, D_L, vs expansion factor, from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. The standard (LCDM) model used here requires numerical integration with two parameters, the Hubble constant, Hu and the normalised matter density, O_m with presumed flat spacetime geometry. An estimate of the normalized cosmological constant (dark energy) is possible but nothing is uncovered about the geometry of space which is presumed Euclidean.")
