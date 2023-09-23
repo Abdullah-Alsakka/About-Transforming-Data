@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-This model is described in section 2.5.2 and Appendix B1.
+This model is described in section 2.5.2, equation 7 and Appendix B1.
 @author: Mike
 """
 print("This curve_fit regression routine of Python scipy, uses the 'distance mag' data, converted to luminosity distances, D_L, vs expansion factor, from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. The model selected is the Melia 2012, analytical solution with only one parameter, the Hubble constant. No estimation is possible for the matter density nor dark energy")
