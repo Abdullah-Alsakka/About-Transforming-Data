@@ -8,7 +8,7 @@ Created on Sun Dec 18 23:05:42 2022
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jul 29 17:53:20 2022
-
+The model used here refers to section 2.5.3, equations 9 and 10 of the manuscript. This specific evaluation presumes sinn =1 as per Appendix A4. 
 @author: mike
 
 @co-author: Abdullah Alsakka
