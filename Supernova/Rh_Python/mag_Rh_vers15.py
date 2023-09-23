@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-This model is described in section 2.5.2 and Appendix B1.
+This model is described in section 2.5.2, euqation 8 and Appendix B1.
 @author: mike
 """
 print()
