@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Dec 20 11:57:07 2022
-The model used here refers to section 2.5.3, equations 9, 10 and 14 of the manuscript. This specific evaluation presumes sinn =1 as per Appendix A4. 
+The model used here refers to section 2.5.3, equations 9, 10 and 14 of the manuscript. This specific evaluation presumes sinn = 1 as per Appendix A4. 
 @author: abd__
 """
 
