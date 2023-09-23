@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Dec 18 23:05:42 2022
-
+The model used here refers to section 2.5.3, equations 9 and 10 of the manuscript. This specific evaluation presumes sinn = sinh as per Appendix A4. 
 @author: abd__
 """
 #!/usr/bin/env python3
