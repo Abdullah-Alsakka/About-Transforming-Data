@@ -107,7 +107,7 @@ for axis in ['top','bottom','left','right']:
     ax.spines[axis].set_linewidth(3)
     ax.tick_params(width=3)
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 4)
-plt.plot(xdata, func3(xdata,ans_Hu,ans_O_m), color = "green", label = "sin standard model")
+plt.plot(xdata, func3(xdata,ans_Hu,ans_O_m), color = "green", label = "sin_standard model")
 plt.xlabel("Redshift z", fontsize = 18)
 plt.ylabel("mag (no units)", fontsize = 18)
 plt.legend(loc='best', fancybox=True, shadow=False)
@@ -124,5 +124,5 @@ print("The estimate for BIC is: ", normalt_BIC)
 print()
 
 #commands to save plots in two different formats
-fig.savefig("flat_sin_LCDM_mag_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
-fig.savefig("flat_sin_LCDM_mag_data.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
+fig.savefig("sin_LCDM_mag_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
+fig.savefig("sin_LCDM_mag_data.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
