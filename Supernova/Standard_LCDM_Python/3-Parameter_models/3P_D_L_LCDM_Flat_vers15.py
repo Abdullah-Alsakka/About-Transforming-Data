@@ -60,8 +60,8 @@ params, pcov = curve_fit(func3, xdata, ydata, p0 = init_guess, bounds = bnds, si
 #extracting the two parameters from the solution and rounding the values
 ans_Hu, ans_O_m, ans_O_L = params
 Rans_Hu = round(ans_Hu,2)
-Rans_O_m = round(ans_O_m,5)
-Rans_O_L = round(ans_O_L,5)
+Rans_O_m = round(ans_O_m,3)
+Rans_O_L = round(ans_O_L,3)
 Rans_O_k = round(1 - Rans_O_m - Rans_O_L,3)
 
 # extracting the S.D. and rounding the values
