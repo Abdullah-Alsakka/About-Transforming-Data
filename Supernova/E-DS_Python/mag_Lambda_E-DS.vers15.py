@@ -125,8 +125,8 @@ print("The estimate for BIC is: ", normalt_BIC)
 print()
 
 #Routines to save figues in eps and pdf formats
-fig.savefig("magArctanh_LE-DS.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
-fig.savefig("magArctanh_LE-DS.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
+fig.savefig("mag_LE-DS.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
+fig.savefig("mag_LE-DS.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
 
 
 
