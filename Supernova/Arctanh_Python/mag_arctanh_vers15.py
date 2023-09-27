@@ -106,7 +106,7 @@ for axis in ['top','bottom','left','right']:
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 4)
 plt.xlabel("Redshift z", fontsize = 18)
 plt.ylabel("$\mu$ (mag)", fontsize = 18)
-plt.plot(xdata, func2(xdata,ans_b,ans_c), color = "green", label = "magarctanh model")
+plt.plot(xdata, func2(xdata,ans_b,ans_c), color = "green", label = "magArctanh model")
 plt.legend(loc='best', fancybox=True, shadow=False)
 plt.show()
 
