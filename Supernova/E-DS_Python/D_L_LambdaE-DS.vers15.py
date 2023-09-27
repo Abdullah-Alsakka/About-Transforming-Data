@@ -125,8 +125,8 @@ print("The reduced goodness of fit in the more common manner \u03C7\u00b2 is: ",
 print("The estimate for BIC is: ", normBIC)
 
 # Routines to save figues in eps and pdf formats
-fig.savefig("D_L_arctanh_L_E-DS.eps", format="eps", dpi=1200, bbox_inches="tight", transparent=True)
-fig.savefig("D_L_arctanh_L_E-DS.pdf", format="pdf", dpi=1200, bbox_inches="tight", transparent=True)
+fig.savefig("D_L_L_E-DS.eps", format="eps", dpi=1200, bbox_inches="tight", transparent=True)
+fig.savefig("D_L_L_E-DS.pdf", format="pdf", dpi=1200, bbox_inches="tight", transparent=True)
 
 
 
