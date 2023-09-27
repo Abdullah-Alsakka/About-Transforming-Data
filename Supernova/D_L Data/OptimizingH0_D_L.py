@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Jan  3 13:42:32 2023
-
+A general file (template) for use as wished.
 @author: Abdullah Alsakka
 
 In this program we run through a desired Hubble range to find at which value we
