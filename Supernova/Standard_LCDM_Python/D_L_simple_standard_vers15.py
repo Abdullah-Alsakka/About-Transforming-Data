@@ -107,7 +107,7 @@ for axis in ['top','bottom','left','right']:
     ax.spines[axis].set_linewidth(3)
     ax.tick_params(width=3)
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 4)
-plt.plot(xdata, func3(xdata,ans_Hu,ans_O_m), color = "orange", label = "flat $\Lambda$CDM model")
+plt.plot(xdata, func3(xdata,ans_Hu,ans_O_m), color = "orange", label = "$D_L$ flat $\Lambda$CDM model")
 plt.legend(loc='best', fancybox=True, shadow=False)
 
 #print results
