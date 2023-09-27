@@ -60,8 +60,8 @@ params, pcov = curve_fit(func3, xdata, ydata, p0 = init_guess, bounds = bnds, si
 #extracting the two parameters from the solution and rounding the values
 ans_Hu, ans_O_m, ans_O_L = params
 Rans_Hu = round(ans_Hu,2)
-Rans_O_m = round(ans_O_m,5)
-Rans_O_L = round(ans_O_L,5)
+Rans_O_m = round(ans_O_m,3)
+Rans_O_L = round(ans_O_L,3)
 Rans_O_k = round(1 - Rans_O_m - Rans_O_L,3)
 
 # extracting the S.D. and rounding the values
@@ -70,12 +70,12 @@ Rans_O_k = round(1 - Rans_O_m - Rans_O_L,3)
 perr = np.sqrt(np.diag(pcov))
 ans_Hu_SD, ans_O_m_SD, ans_O_L_SD = np.sqrt(np.diag(pcov))
 Rans_Hu_SD = round(ans_Hu_SD,2)
-Rans_O_m_SD = round(ans_O_m_SD,5)
-Rans_O_L_SD = round(ans_O_L_SD,5)
+Rans_O_m_SD = round(ans_O_m_SD,3)
+Rans_O_L_SD = round(ans_O_L_SD,3)
 est_O_k_SD = np.sqrt(ans_O_m_SD**2 + ans_O_L_SD**2)
-Rans_O_k_SD = round(est_O_k_SD,5)
+Rans_O_k_SD = round(est_O_k_SD,3)
 
-# normalised chisquar where P is the number of parameters (3), N is the number of data pairs (1702) 
+# normalised chisquare where P is the number of parameters (3), N is the number of data pairs (1702) 
 P=3
 N=1702
 e = 2.71828183
