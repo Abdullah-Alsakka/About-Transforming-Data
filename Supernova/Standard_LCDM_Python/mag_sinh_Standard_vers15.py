@@ -124,5 +124,5 @@ print("The estimate for BIC is: ", normalt_BIC)
 print()
 
 #commands to save plots in two different formats
-fig.savefig("flat_sinh_LCDM_mag_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
-fig.savefig("flat_sinh_LCDM_mag_data.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
+fig.savefig("sinh_LCDM_mag_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
+fig.savefig("sinh_LCDM_mag_data.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
