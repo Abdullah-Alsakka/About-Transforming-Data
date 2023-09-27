@@ -65,9 +65,9 @@ params, pcov = curve_fit(func3, xdata, ydata,p0 = init_guess, bounds = bnds, sig
 # extracting and rounding the parameter, Hu, O_m, O_L, O_k values
 ans_Hu, ans_O_m, ans_O_L = params
 rans_Hu = round(ans_Hu,2)
-rans_O_m = round(ans_O_m,4)
-rans_O_L = round(ans_O_L,4)
-rans_O_k = round(1 - rans_O_m - rans_O_L,4)
+rans_O_m = round(ans_O_m,3)
+rans_O_L = round(ans_O_L,3)
+rans_O_k = round(1 - rans_O_m - rans_O_L,3)
 
 # extracting and rounding the estimated standard deviations.
 perr = np.sqrt(np.diag(pcov))
@@ -80,7 +80,7 @@ rSD_O_L = round(SD_O_L,3)
 O_k_SD = np.sqrt((SD_O_m)**2 + (SD_O_L)**2)
 rSD_O_k = round(O_k_SD,3)
 
-# normalised chisquar is calculated for N=1701 data pairs with P the parameter count (3) as
+# normalised chisquare is calculated for N=1701 data pairs with P the parameter count (3) as
 P=3
 N=1701
 e=2.71828183
