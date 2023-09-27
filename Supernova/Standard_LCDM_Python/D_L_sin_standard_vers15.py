@@ -122,5 +122,5 @@ print("The estimate for BIC is: ", normBIC)
 print()
 
 #Saving the plots in two different formats
-fig.savefig("flat_sin_LCDM_D_L_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
-fig.savefig("flat_sin_LCDM_D_L_data.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
+fig.savefig("sin_LCDM_D_L_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
+fig.savefig("sin_LCDM_D_L_data.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
