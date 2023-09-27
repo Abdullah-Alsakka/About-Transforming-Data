@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 import math
 
 # open data file selecting the distance, distance standard deviation and recession velocity columns
-with open("DATA2.csv","r") as i:
+with open("DATA2B.csv","r") as i:
     rawdata = list(csv.reader(i, delimiter = ","))
     
 # ignoring the first row
