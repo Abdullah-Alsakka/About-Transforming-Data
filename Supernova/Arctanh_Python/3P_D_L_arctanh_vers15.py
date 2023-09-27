@@ -108,7 +108,7 @@ for axis in ['top','bottom','left','right']:
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 4)
 plt.xlabel("Expansion factor, \u03BE", fontsize = 18)
 plt.ylabel("Luminosity distance (Mpc)", fontsize=18)
-plt.plot(xdata, funcdata, color = "orange", label = "3Parctanh Model")
+plt.plot(xdata, funcdata, color = "orange", label = "3P$D_L$Arctanh Model")
 plt.legend(loc='best', fancybox=True, shadow=False)
 plt.show()
 
