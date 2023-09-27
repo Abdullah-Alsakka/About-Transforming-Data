@@ -107,7 +107,7 @@ for axis in ['top','bottom','left','right']:
     ax.spines[axis].set_linewidth(3)
     ax.tick_params(width=3)
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 4)
-plt.plot(xdata, func3(xdata,ans_Hu,ans_O_m), color = "green", label = "simple standard model")
+plt.plot(xdata, func3(xdata,ans_Hu,ans_O_m), color = "green", label = "flat standard model")
 plt.xlabel("Redshift z", fontsize = 18)
 plt.ylabel("$\mu$ (mag)", fontsize = 18)
 plt.legend(loc='best', fancybox=True, shadow=False)
