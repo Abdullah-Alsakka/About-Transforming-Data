@@ -107,7 +107,7 @@ for axis in ['top','bottom','left','right']:
     ax.spines[axis].set_linewidth(3)
     ax.tick_params(width=3)
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 4)
-plt.plot(xdata, func3(xdata,ans_Hu,ans_O_m), color = "orange", label = "flat simple $\Lambda$CDM model")
+plt.plot(xdata, func3(xdata,ans_Hu,ans_O_m), color = "orange", label = "flat $\Lambda$CDM model")
 plt.legend(loc='best', fancybox=True, shadow=False)
 
 #print results
@@ -122,5 +122,5 @@ print("The estimate for BIC is: ", normBIC)
 print()
 
 #Saving the plots in two different formats
-fig.savefig("flat_simple_LCDM_D_L_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
-fig.savefig("flat_simple_LCDM_D_L_data.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
+fig.savefig("flat_LCDM_D_L_data.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
+fig.savefig("flat_LCDM_D_L_data.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
