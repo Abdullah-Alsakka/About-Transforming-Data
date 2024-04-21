@@ -14,7 +14,6 @@ parameter, O_k. No estimate of dark energy is possible.
 
 """
 # import data and library files
-import os
 import numpy as np
 import csv
 from scipy.optimize import curve_fit
