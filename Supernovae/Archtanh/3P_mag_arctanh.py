@@ -24,7 +24,7 @@ from sklearn.metrics import r2_score
 from astropy.stats.info_theory import bayesian_info_criterion
 
 print()
-print("This is the 3PmagArctanh model. The correlation is distance mag vs. redshift, z, ","with sinn(x) = sinh(x) for elliptical space geometry.",os.linesep)
+print("This is the 3PmagArctanh model. The correlation is distance mag vs. redshift, z, with sinn(x) = sinh(x) for elliptical space geometry.")
 
 
 # open data file
@@ -84,11 +84,11 @@ e=2.718281828
 #Calculate the chi^2 according to astronomers
 newxsqrd = sum(((ydata - func2(xdata,ans_b,ans_c,ans_d))**2)/(error**2))
 newxsqrded = np.round(newxsqrd/(N-P),2)
-
+"""
 # estimating the goodness of fit in the common manner
 chisq = sum(((ydata - func2(xdata,ans_b,ans_c,ans_d))**2)/func2(xdata,ans_b,ans_c,ans_d))
 normchisquar = round((chisq/(N-P)),6) 
-
+"""
 #The usual method for BIC calculation is
 SSE = sum((ydata - func2(xdata,ans_b,ans_c,ans_d))**2)
 log_SSE = math.log(e,SSE)
@@ -144,7 +144,7 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
 print("The reduced goodness of fit, as per astronomers, \u03C7\u00b2 is: ", newxsqrded)
-print("The common reduced goodness of fit \u03C7\u00b2 is: ", normchisquar)
+#print("The common reduced goodness of fit \u03C7\u00b2 is: ", normchisquar)
 print("The BIC estimate is: ",rBIC)
 print()
 
