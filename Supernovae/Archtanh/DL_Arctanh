@@ -24,7 +24,6 @@ import math
 from sklearn.metrics import r2_score
 from astropy.stats.info_theory import bayesian_info_criterion
 
-
 # open data file selecting the distance, distance standard deviation and recession velocity columns
 with open("DATA2B.csv","r") as i:
     rawdata = list(csv.reader(i, delimiter = ","))
@@ -70,7 +69,7 @@ ans_b_SD, ans_c_SD = perr
 rans_b_SD = round(ans_b_SD,2)
 rans_c_SD = round(ans_c_SD,4)
 
-# normalised chisquar where P is the number of parameters (2), N the number of data pairs and normchisquar is calculated from 
+# normalised chi^2 where P is the number of parameters (2), N the number of data pairs
 P=2
 N=1702
 e = 2.718281
@@ -78,11 +77,11 @@ e = 2.718281
 #Calculate the chi^2 according to astronomers
 newxsqrd = sum(((ydata[1:-1] - func(xdata,ans_b,ans_c)[1:-1])**2)/(error[1:-1]**2))
 newxsqrded = round(newxsqrd/(N-P),2)
-
+"""
 # estimating the goodness of fit in the more common manner
 chisq = sum((ydata[1:-1] - func(xdata,ans_b,ans_c)[1:-1])**2/func(xdata,ans_b,ans_c)[1:-1])
 normchisquar = round((chisq/(N-P)),2) #rounded to 2 digits
-
+"""
 #The usual method for BIC calculation is
 SSE = sum((ydata - func(xdata,ans_b,ans_c))**2)
 log_SSE = math.log(e,SSE)
@@ -102,10 +101,8 @@ R_square = round(R_sqrd,4)
 #Calculation of the F-statistic (weighted)
 SSEw = sum((1/error)*(residuals)**2)
 SSM = sum((1/error)*(ydata - np.mean(ydata))**2) 
-
 MSR = (SSM - SSEw)/(P)
 MSE = SSEw/(N-P)
-
 Fstat = MSR/MSE
 rFstat = round(Fstat,1)
 
@@ -138,7 +135,7 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighed F-statistic is:', rFstat)
 print("The reduced goodness of fit, according to astronomers, \u03C7\u00b2 is: ", newxsqrded)
-print("The reduced goodness of fit in the more common manner \u03C7\u00b2 is: ", normchisquar)
+#print("The reduced goodness of fit in the more common manner \u03C7\u00b2 is: ", normchisquar)
 print("The estimate for BIC is: ",rBIC)
 print()
 
