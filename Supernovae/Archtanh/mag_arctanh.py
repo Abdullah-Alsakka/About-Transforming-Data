@@ -86,16 +86,6 @@ newxsqrded = np.round(newxsqrd/(N-P),2)
 chisq = sum(((ydata - func2(xdata,ans_b,ans_c))**2)/func2(xdata,ans_b,ans_c))
 normchisquar = round((chisq/(N-P)),5) #rounded to 2 digits
 """
-#Calculation of the weighted F-statistic
-SSEw = sum((1/error)*(ydata - func2(xdata,ans_b,ans_c))**2)
-yAve = sum(ydata)/N
-SSM = sum((1/error)*(ydata - yAve)**2)
-
-MSR = (SSM - SSEw)/(P)
-MSE = SSEw/(N-P)
-
-Fstat = MSR/MSE
-rFstat = round(Fstat,1)
 
 #The usual method for BIC calculation is
 SSE = sum((ydata - func2(xdata,ans_b,ans_c))**2)
@@ -147,7 +137,7 @@ print("The calculated Hubble constant with S.D. is:", rans_b, ",",rans_bSD )
 print("The normalised spacetime density with S.D. is:", rans_c,"," , rans_cSD)
 print()
 print('The r\u00b2 is:', R_square)
-print('The statistic is:', rFstat)
+print('The F-statistic is:', rFstat)
 print("The reduced goodness of fit, according to astronomers, \u03C7\u00b2 is:", newxsqrded)
 #print("The common reduced goodness of fit \u03C7\u00b2 is:", normchisquar)
 print("The BIC estimate is:",rBIC)
