@@ -12,7 +12,6 @@ with three parameters, the Hubble constant, Hu, the normalised matter density, O
 spacetime parameter, O_k. No estimation is possible for dark energy.")
 
 """
-
 # import data and Python 3 library files
 import os
 import numpy as np
@@ -25,7 +24,6 @@ from astropy.stats.info_theory import bayesian_info_criterion
 
 print()
 print("This is the 3PmagArctanh model. The correlation is distance mag vs. redshift, z, with sinn(x) = sinh(x) for elliptical space geometry.")
-
 
 # open data file
 with open("DATA.csv","r") as i:
