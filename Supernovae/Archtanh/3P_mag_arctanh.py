@@ -13,7 +13,6 @@ spacetime parameter, O_k. No estimation is possible for dark energy.")
 
 """
 # import data and Python 3 library files
-import os
 import numpy as np
 import csv
 from scipy.optimize import curve_fit
@@ -145,7 +144,6 @@ print("The reduced goodness of fit, as per astronomers, \u03C7\u00b2 is: ", newx
 #print("The common reduced goodness of fit \u03C7\u00b2 is: ", normchisquar)
 print("The BIC estimate is: ",rBIC)
 print()
-
 
 #Routines to save figues in eps and pdf formats
 fig.savefig("3P_mag_Arctanh.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
