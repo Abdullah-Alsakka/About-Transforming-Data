@@ -26,7 +26,6 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
 from astropy.stats.info_theory import bayesian_info_criterion
 
-
 # open data file
 with open("DATA.csv","r") as i:
     rawdata = list(csv.reader(i, delimiter = ","))
@@ -82,11 +81,11 @@ e = 2.718281
 #Calculate the chi^2 according to astronomers
 newxsqrd = sum(((ydata - func2(xdata,ans_b,ans_c))**2)/error**2)
 newxsqrded = np.round(newxsqrd/(N-P),2)
-
+"""
 # estimating the goodness of fit in the common manner
 chisq = sum(((ydata - func2(xdata,ans_b,ans_c))**2)/func2(xdata,ans_b,ans_c))
 normchisquar = round((chisq/(N-P)),5) #rounded to 2 digits
-
+"""
 #Calculation of the weighted F-statistic
 SSEw = sum((1/error)*(ydata - func2(xdata,ans_b,ans_c))**2)
 yAve = sum(ydata)/N
@@ -117,10 +116,8 @@ R_square = round(R_sqrd,4)
 #Calculation of the weighted F-statistic
 SSEw = sum((1/error)*(residuals)**2)
 SSM = sum((1/error)*(ydata - np.mean(ydata))**2) 
-
 MSR = (SSM - SSEw)/(P)
 MSE = SSEw/(N-P)
-
 Fstat = MSR/MSE
 rFstat = round(Fstat,1)
 
@@ -152,7 +149,7 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The statistic is:', rFstat)
 print("The reduced goodness of fit, according to astronomers, \u03C7\u00b2 is:", newxsqrded)
-print("The common reduced goodness of fit \u03C7\u00b2 is:", normchisquar)
+#print("The common reduced goodness of fit \u03C7\u00b2 is:", normchisquar)
 print("The BIC estimate is:",rBIC)
 print()
 
