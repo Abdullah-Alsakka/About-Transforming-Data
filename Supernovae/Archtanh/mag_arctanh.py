@@ -73,7 +73,7 @@ ans_bSD, ans_cSD = perr
 rans_bSD = round(ans_bSD,2)
 rans_cSD = round(ans_cSD,5)
 
-# normalised chisquar where P is the number of parameters (2) and N the number of data pairs
+# normalised chisquar where P is the number of parameters (2) and N the number of data pairs (1701)
 P=2
 N=1701
 e = 2.718281
