@@ -66,7 +66,7 @@ Error, = perr
 normHubble = np.round(Hubble,2)
 normError = np.round(Error,2)
 
-# calculate the statistical fitness, using N=156 as the number of data pairs and P=1 as the degree of freedom (parameter count)
+# calculate the statistical fitness, using N=1701 as the number of data pairs and P=1 as the parameter count
 P=1
 N=1701
 e = 2.718281
@@ -74,11 +74,11 @@ e = 2.718281
 #Calculate the chi^2 according to astronomers
 newxsqrd = sum(((ydata - func2(xdata,Hubble))**2)/error**2)
 newxsqrded = np.round(newxsqrd/(N-P),2)
-
+"""
 #Calculate the chi^2 according in the common manner
 normxsqrd = sum(((ydata - func2(xdata,Hubble))**2)/func2(xdata,Hubble))
 normxsqrded = np.round(normxsqrd/(N-P),6) #rounded to 6 digits
-
+"""
 #The usual method for BIC calculation is
 SSE = sum((ydata - func(xdata,Hubble))**2)
 log_SSE = math.log(e,SSE)
@@ -98,10 +98,8 @@ R_square = round(R_sqrd,4)
 #Calculation of the weighted F-statistic
 SSEw = sum((1/error)*(residuals)**2)
 SSM = sum((1/error)*(ydata - np.mean(ydata))**2) 
-
 MSR = (SSM - SSEw)/(P)
 MSE = SSEw/(N-P)
-
 Fstat = MSR/MSE
 rFstat = round(Fstat,1)
 
@@ -140,7 +138,7 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighed Fstat is:', rFstat)
 print("And reduced goodness of fit, according to astronomers, \u03C7\u00b2 estimate:", newxsqrded)
-print("And common reduced goodness of fit \u03C7\u00b2 estimate:", normxsqrded)
+#print("And common reduced goodness of fit \u03C7\u00b2 estimate:", normxsqrded)
 print("The BIC estimate is:",rBIC)
 print()
 
