@@ -5,15 +5,15 @@ Created on Wed Jun 15 17:41:24 2022
 
 @author: mike
 
-This curve_fit regression routine of Python scipy, uses the data, as luminosity distance vs. 
+This curve_fit regression routine of Python scipy, uses the data, as luminosity distance, D_L, vs. 
 recession velocity (1/1+z), from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints'
  Astrophys. J. vol. 938, 110. The model selected is the E-DS (from Oeztas, Smith, Paul, 2008). 
 This model presents only one parameter, the Hubble constant. No estimation is possible for either 
 the normalized matter density, which is presumed to be about 0, nor dark energy nor space density.
 """
 print()
-print("This is our E-DS model, a version of the Einstein-DeSitter model of cosmology. It is not possible" )
-print("to estimate the matter density nor dark energy.")
+print("This is our E-DS model, a version of the Einstein-DeSitter model of cosmology." )
+print("It is not possible to estimate the matter density nor dark energy.")
 print()
 # import the data and library files
 import numpy as np
@@ -61,7 +61,7 @@ Error, = perr
 normHub = np.round(Hubble,2)
 normError = np.round(Error,2)
 
-# calculate the statistical fitness, using N=1702 as the number of data pairs and P=1 as the degree of freedom (parameter count)
+# calculate the statistical fitness, using N=1702 the number of data pairs and P=1 the parameter count
 P=1
 N=1702
 e = 2.718281
@@ -69,11 +69,11 @@ e = 2.718281
 #Calculate the chi^2 according to astronomers
 newxsqrd = sum(((ydata[1:-1] - func(xdata,Hubble)[1:-1])**2)/(error[1:-1]**2))
 newxsqrded = round(newxsqrd/(N-P),2)
-
+"""
 # estimating the goodness of fit in the more common manner
 chisq = sum((ydata[1:-1] - func(xdata,Hubble)[1:-1])**2/func(xdata,Hubble)[1:-1])
 normchisquar = round((chisq/(N-P)),2) #rounded to 2 digits
-
+"""
 #The usual method for BIC calculation is
 SSE = sum((ydata - func(xdata,Hubble))**2)
 log_SSE = math.log(e,SSE)
@@ -93,10 +93,8 @@ R_square = round(R_sqrd,4)
 #Calculation of the weighted F-statistic
 SSEw = sum((1/error)*(residuals)**2)
 SSM = sum((1/error)*(ydata - np.mean(ydata))**2) 
-
 MSR = (SSM - SSEw)/(P)
 MSE = SSEw/(N-P)
-
 Fstat = MSR/MSE
 rFstat = round(Fstat,1)
 
@@ -132,7 +130,7 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
 print("The reduced goodness of fit, according to astronomers, \u03C7\u00b2 estimate: ", newxsqrded)
-print("The common reduced goodness of fit \u03C7\u00b2 estimate: ", normchisquar)
+#print("The common reduced goodness of fit \u03C7\u00b2 estimate: ", normchisquar)
 print("The BIC estimate is: ",rBIC)
 print()
 
