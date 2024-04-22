@@ -61,7 +61,8 @@ def func4(x,Hu,O_m):
 # allowed range for the two parameters
 bnds=([40,0.00001],[90,0.999])
 
-# fitting the model to the data, note that when choosing absolute_sigma = False the standard deviations (error) are normalized for use in weighted regression.
+# fitting the model to the data, note that when choosing absolute_sigma = False the standard deviations (error) 
+#are normalized for use in weighted regression.
 params, pcov = curve_fit(func4, xdata, ydata, p0 = init_guess, bounds = bnds, sigma = error, absolute_sigma = False)
 
 # extracting and rounding the parameter, Hu and O_m, values
@@ -83,11 +84,11 @@ e=2.71828183
 #Calculate the reduced chi^2 according to astronomers
 newxsqrd = sum(((ydata - func4(xdata,ans_Hu,ans_O_m))**2)/(error**2))
 newxsqrded = np.round(newxsqrd/(N-P),2)
-
+"""
 #Calculate the reduced chi^2 as commonly done
 xsqrd = sum(((ydata - func4(xdata,ans_Hu,ans_O_m))**2)/func4(xdata,ans_Hu,ans_O_m))
 normxsqrd = np.round(xsqrd/(N-P),5)
-
+"""
 #The BIC value is calculated as 
 SSE = sum((ydata - func4(xdata,ans_Hu,ans_O_m))**2)
 alt_BIC = N*math.log(e,SSE/N) + P*math.log(e,N)
@@ -119,7 +120,6 @@ SSEw = sum((1/error)*(residuals)**2)
 SSM = sum((1/error)*(ydata - np.mean(ydata))**2)
 MSR = (SSM - SSEw)/(P)
 MSE = SSEw/(N-P)
-
 Fstat = MSR/MSE
 rFstat = round(Fstat,1)
 
@@ -152,10 +152,9 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
 print("The reduced goodness of fit, as per astronomers, \u03C7\u00b2 is: ", newxsqrded)
-print("The reduced goodness of fit, as commonly done, \u03C7\u00b2 is: ", normxsqrd)
+#print("The reduced goodness of fit, as commonly done, \u03C7\u00b2 is: ", normxsqrd)
 print("The BIC estimate is: ",rBIC)
 print()
-
 
 #commands to save plots in two different formats
 fig.savefig("magENdS.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
