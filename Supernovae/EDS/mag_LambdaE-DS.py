@@ -7,7 +7,6 @@ Created on Wed Jun 15 17:41:24 2022
 """
 
 # import data and Python 3 library files
-import os
 import numpy as np
 import csv
 import math
@@ -16,7 +15,11 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
 from astropy.stats.info_theory import bayesian_info_criterion
 
-print("This curve_fit regression routine of Python scipy, uses the distance mag vs redshift, z,"," data, from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints'"," Astrophys. J. vol. 38, 110. This is the arctanh, analytical solution to the"," Einstein-DeSitter model with two parameters, the Hubble constant, Hu and"," the normalised spacetime density, \u03A9k, which is presumed to be small."," The value of the normalised contribution from the cosmological constant,","\u039B, is large.",os.linesep)
+print("This curve_fit regression routine of Python scipy, uses the distance mag vs redshift, z, data, ")
+print("from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 38, 110. ")
+print("This is the arctanh, analytical solution to the Einstein-DeSitter model with two parameters, ")
+print("the Hubble constant, Hu and the normalised spacetime density, \u03A9k, which is presumed to be small. ")
+print("The value of the normalised contribution from the cosmological constant, \u039B, is presumed large.")
 print()
 
 # open data file
@@ -30,7 +33,8 @@ xdata = exampledata[:,0]
 ydata = exampledata[:,2]
 error = exampledata[:,3]
 
-# define the function - the model to be examined, where x represents the independent variable values and b (Hubble constant) and c (space density) are the parameters to be estimated
+# define the function - the model to be examined, where x represents the independent variable values and b (Hubble constant) 
+# and c (space density) are the parameters to be estimated
 def func(x,b,c):
     return (((litesped*(1+x))/(b*np.sqrt(c)))*np.sinh(np.arctanh(np.sqrt(c)/(np.sqrt((1-c)/(1+x)**2)+c))-np.arctanh(np.sqrt(c))))
 
@@ -75,11 +79,11 @@ e = 2.718281
 #Calculate the chi^2 according to astronomers
 newxsqrd = sum(((ydata - func2(xdata,ans_b,ans_c))**2)/error**2)
 newxsqrded = np.round(newxsqrd/(N-P),2)
-
+"""
 # estimating the goodness of fit in the common manner
 chisq = sum(((ydata - func2(xdata,ans_b,ans_c))**2)/func2(xdata,ans_b,ans_c))
 normchisquar = round((chisq/(N-P)),4) #rounded to 4 digits
-
+"""
 #the BIC value is calculated as 
 SSE = sum((ydata - func2(xdata,ans_b,ans_c))**2)
 alt_BIC = N*math.log(e,SSE/N) + P*math.log(e,N)
@@ -104,10 +108,8 @@ R_square = round(R_sqrd,4)
 #Calculation of the weighted F-statistic
 SSEw = sum((1/error)*(residuals)**2)
 SSM = sum((1/error)*(ydata - np.mean(ydata))**2) 
-
 MSR = (SSM - SSEw)/(P)
 MSE = SSEw/(N-P)
-
 Fstat = MSR/MSE
 rFstat = round(Fstat,1)
 
@@ -140,7 +142,7 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
 print("The reduced goodness of fit, according to astronomers, \u03C7\u00b2 is:", newxsqrded)
-print("The common reduced goodness of fit \u03C7\u00b2 is:", normchisquar)
+#print("The common reduced goodness of fit \u03C7\u00b2 is:", normchisquar)
 print("The BIC estimate is: ",rBIC)
 print()
 
