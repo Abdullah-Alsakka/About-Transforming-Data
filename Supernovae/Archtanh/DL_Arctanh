@@ -69,7 +69,7 @@ ans_b_SD, ans_c_SD = perr
 rans_b_SD = round(ans_b_SD,2)
 rans_c_SD = round(ans_c_SD,4)
 
-# normalised chi^2 where P is the number of parameters (2), N the number of data pairs
+# normalised chi^2 where P is the number of parameters (2), N the number of data pairs (1702)
 P=2
 N=1702
 e = 2.718281
