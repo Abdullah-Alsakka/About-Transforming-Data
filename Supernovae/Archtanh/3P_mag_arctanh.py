@@ -105,10 +105,8 @@ R_square = round(R_sqrd,4)
 #Calculation of the weighted F-statistic
 SSEw = sum((1/error)*(residuals)**2)
 SSM = sum((1/error)*(ydata - np.mean(ydata))**2) 
-
 MSR = (SSM - SSEw)/(P)
 MSE = SSEw/(N-P)
-
 Fstat = MSR/MSE
 rFstat = round(Fstat,1)
 
