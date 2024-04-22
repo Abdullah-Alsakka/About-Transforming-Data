@@ -5,13 +5,13 @@ Created on Wed Jun 15 17:41:24 2022
 
 @author: Mike
 
-This curve_fit regression routine of Python scipy, uses the distance mag data, converted to 
-luminosity distances, D_L, vs expansion factor, from Brout et al. 2022, 'The Pantheon+ Analysis: 
+This curve_fit regression routine of Python scipy converts the distance mag data to 
+luminosity distances, D_L, vs expansion factor; data from Brout et al. 2022, 'The Pantheon+ Analysis: 
 Cosmological Constraints' Astrophys. J. vol. 938, 110. The model selected is the Melia 2012 solution,
 with only one parameter, the Hubble constant. No estimation is possible for the matter density nor dark energy
 """
 print()
-print("This is the Rh modeled using distance mag data as luminosity distances, D-L, vs. the expansion factor.")
+print("This is the Rh modeled using distance mag data as luminosity distances, D_L, vs. the expansion factor.")
 print("Estimates for the matter density and dark energy (cosmological constant) cannot be made with this model")
 # import data and library files
 import numpy as np
@@ -59,7 +59,7 @@ Error, = perr
 normHubble = round(Hubble,2)
 normError = round(Error,2)
 
-# calculate the statistical fitness, using N=1702 as the number of data pairs and P=1 as the degree of freedom (paramater count)
+# calculate the statistical fitness, using N=1702 as the number of data pairs plus the Milky Way position, and P=1 the paramater count
 
 #set some constant values
 P=1
@@ -69,13 +69,13 @@ N=1702
 newxsqrd = sum(((ydata[1:-1] - func(xdata,Hubble)[1:-1])**2)/(error[1:-1]**2))
 #normalised newxsqrded is calculated as
 newxsqrded = round(newxsqrd/(N-P),3)
-
+"""
 #Calculate the chi^2 according in the common manner
 # since the error at the origin is 0 we have to ignore this only to estimate the common goodness of fit, but not the fit itself
 chisq = sum((ydata[1:-1] - func(xdata,Hubble)[1:-1])**2/func(xdata,Hubble)[1:-1])
 #normalised chisquar is calculated as
 normchisquar = round((chisq/(N-P)),2) #rounded to 3 digits
-
+"""
 #The usual method for BIC calculation is
 SSE = sum((ydata - func(xdata,Hubble))**2)
 log_SSE = math.log(e,SSE)
@@ -95,10 +95,8 @@ R_square = round(R_sqrd,4)
 #Calculation of the weighted F-statistic
 SSEw = sum((1/error)*(residuals)**2)
 SSM = sum((1/error)*(ydata - np.mean(ydata))**2) 
-
 MSR = (SSM - SSEw)/(P)
 MSE = SSEw/(N-P)
-
 Fstat = MSR/MSE
 rFstat = round(Fstat,1)
 
@@ -132,7 +130,7 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighed Fstat is:', rFstat)
 print("And reduced goodness of fit, according to astronomers, \u03C7\u00b2 estimate is:", newxsqrded)
-print("And the common reduced goodness of fit \u03C7\u00b2 estimate is:", normchisquar)
+#print("And the common reduced goodness of fit \u03C7\u00b2 estimate is:", normchisquar)
 print("The BIC estimate is:",rBIC)
 print()
 
