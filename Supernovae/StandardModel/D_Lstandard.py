@@ -10,10 +10,9 @@ converted to luminosity distances, D_L, vs expansion factor, from Brout et al. 2
 The standard (LCDM) model used here requires numerical integration with two parameters, 
 the Hubble constant, Hu and the normalised matter density, O_m with presumed flat space 
 geometry. An estimate of the normalized cosmological constant (dark energy) is possible 
-but nothing is uncovered about the geometry of space which is presumed Euclidean.
+but nothing is about the geometry of space which is presumed Euclidean.
 
 """
-
 import numpy as np
 import csv
 import matplotlib.pyplot as plt
@@ -23,7 +22,7 @@ import math
 from sklearn.metrics import r2_score
 from astropy.stats.info_theory import bayesian_info_criterion
 
-print("This is the current standard model of cosmology presuming flat space geometry, sinn(x) = x.")
+print("This is the current standard model of cosmology presuming Euclidean space geometry, sinn(x) = x.")
 
 # open data file
 with open("DATA2B.csv","r") as i:
@@ -69,15 +68,15 @@ Rans_Hu_SD = round(ans_Hu_SD,2)
 Rans_O_m_SD = round(ans_O_m_SD,3)
 
 # normalised chisquared where P is the number of parameters (2), N is the number of data pairs and normchisquar is calculated using 
-P=2
-N=1702
+P=2   # parameter count
+N=1702   # data pairs
 e = 2.718281
-
-#calculate the common statistical fitness, using 1701 as the number of data pairs and 1 as the degree of freedom (paramater count).
+"""
+#calculate the common statistical fitness, using 1702 as the number of data pairs and 2 as the degree of freedom (paramater count).
 chisqed = sum(((ydata[1:-1]-func3(xdata,ans_Hu,ans_O_m)[1:-1])**2)/(func3(xdata,ans_Hu,ans_O_m)[1:-1]))
 #Calculating the common reduced goodness of fit and rounding to 2 digits
 normchisquared = np.round((chisqed/(N-P)),2)
-
+"""
 #Calculate the chi^2 according to astronomers
 newxsqrd = sum(((ydata[1:-1] - func3(xdata,ans_Hu,ans_O_m)[1:-1])**2)/(error[1:-1]**2))
 #Calculating the reduced goodness of fit according to astronomers
@@ -105,7 +104,6 @@ SSEw = sum((1/error)*(residuals)**2)
 SSM = sum((1/error)*(ydata - np.mean(ydata))**2)
 MSR = (SSM - SSEw)/(P)
 MSE = SSEw/(N-P)
-
 Fstat = MSR/MSE
 rFstat = round(Fstat,1)
 
@@ -139,7 +137,7 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
 print("The reduced goodness of fit, according to astronomers \u03C7\u00b2, is:", newxsqrded)
-print("The reduced goodness of fit, according to astronomers \u03C7\u00b2, is:", normchisquared)
+#print("The reduced goodness of fit, as commonly calculated \u03C7\u00b2, is:", normchisquared)
 print("The BIC estimate is:",rBIC)
 print()
 
