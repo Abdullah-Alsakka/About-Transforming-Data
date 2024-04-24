@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jul 29 17:53:20 2022
-
 @author: Mike
 
 This curve_fit regression routine of Python scipy, uses the 'distance mag' data,
@@ -13,7 +12,6 @@ parameters, the Hubble constant, Hu and the normalised matter density, O_m with
 presumed elliptical space geometry. An estimate of the normalized cosmological 
 constant (dark energy) is possible but nothing is uncovered about the geometry of 
 space which is presumed elliptical.
-
 """
 
 import numpy as np
@@ -27,7 +25,6 @@ from astropy.stats.info_theory import bayesian_info_criterion
 
 print()
 print("This is the D_L_standard model of cosmology, but using sinn(x) = sinh(x).")
-
 
 # open data file
 with open("DATA2B.csv","r") as i:
@@ -72,16 +69,16 @@ ans_Hu_SD, ans_O_m_SD = np.sqrt(np.diag(pcov))
 Rans_Hu_SD = round(ans_Hu_SD,2)
 Rans_O_m_SD = round(ans_O_m_SD,3)
 
-# normalised chisquared where P is the number of parameters (2), N is the number of data pairs and normchisquar is calculated using 
+# normalised chisquared where P is the number of parameters (2), N is the number of data pairs
 P=2
 N=1702
 e = 2.718281
-
-#calculate the common statistical fitness, using 1701 as the number of data pairs and 1 as the degree of freedom (paramater count).
+"""
+#calculate the common statistical fitness, using 1702 as the number of data pairs and 2 as the paramater count.
 chisqed = sum(((ydata[1:-1]-func3(xdata,ans_Hu,ans_O_m)[1:-1])**2)/(func3(xdata,ans_Hu,ans_O_m)[1:-1]))
 #Calculating the common reduced goodness of fit and rounding to 2 digits
 normchisquared = np.round((chisqed/(N-P)),2)
-
+"""
 #Calculate the chi^2 according to astronomers
 newxsqrd = sum(((ydata[1:-1] - func3(xdata,ans_Hu,ans_O_m)[1:-1])**2)/(error[1:-1]**2))
 #Calculating the reduced goodness of fit according to astronomers
@@ -109,16 +106,9 @@ SSEw = sum((1/error)*(residuals)**2)
 SSM = sum((1/error)*(ydata - np.mean(ydata))**2)
 MSR = (SSM - SSEw)/(P)
 MSE = SSEw/(N-P)
-
 Fstat = MSR/MSE
 rFstat = round(Fstat,1)
 
-"""
-# r squared adjusted
-r_squared = 1 - (ss_res/ss_tot)
-r2 = np.round(r_squared,3)
-r2adjusted = np.round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-P-1)),3)
-"""
 #plot of imported data and model
 plt.rcParams["font.family"] = "Times New Roman"
 plt.rcParams['lines.linewidth'] = 3
@@ -145,11 +135,10 @@ print()
 print("The calculated Hubble constant with S.D. is: ", Rans_Hu,",", Rans_Hu_SD)
 print("The calculated matter density with S.D. is: ", Rans_O_m,",",Rans_O_m_SD)
 print()
-#print("The adjusted r\u00b2 is calculated to be: ",r2adjusted)
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
 print("The reduced goodness of fit, according to astronomers \u03C7\u00b2, is: ", newxsqrded)
-print("The usual goodness of fit, \u03C7\u00b2, is: ", normchisquared)
+#print("The usual goodness of fit, \u03C7\u00b2, is: ", normchisquared)
 print("The BIC estimate is: ",rBIC)
 print()
 
