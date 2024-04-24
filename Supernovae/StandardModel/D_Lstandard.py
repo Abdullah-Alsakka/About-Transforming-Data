@@ -67,7 +67,7 @@ ans_Hu_SD, ans_O_m_SD = np.sqrt(np.diag(pcov))
 Rans_Hu_SD = round(ans_Hu_SD,2)
 Rans_O_m_SD = round(ans_O_m_SD,3)
 
-# normalised chisquared where P is the number of parameters (2), N is the number of data pairs and normchisquar is calculated using 
+# normalised chisquared where P is the number of parameters (2), N is the number of data pairs
 P=2   # parameter count
 N=1702   # data pairs
 e = 2.718281
