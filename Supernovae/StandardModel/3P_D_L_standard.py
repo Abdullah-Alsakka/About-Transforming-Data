@@ -2,25 +2,16 @@
 """
 Created on Sun Dec 18 23:05:42 2022
 
-@author: abd__
-"""
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jul 29 17:53:20 2022
-
-@author: mike
-
+@author: Mike
 @co-author: Abdullah Alsakka
 
 This curve_fit regression routine of Python scipy, uses the 'distance mag' data, 
 converted to luminosity distances, D_L, vs expansion factor, from Brout et al. 2022, 
 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. 
-The LCDM model used here requires numerical integration with two parameters the 
-normalised matter density, O_m, and O_L, dark energy. The third parameter, Hubble constant, 
-is then used during the regression. An estimate of \Omega_k is possible though the sin(x) = x
-condition is used for Euclidean space geometry.
-
+The LCDM model requires numerical integration and regression with three parameters: 
+the Hubble constant (Hu),the normalised matter density, O_m, and O_L, dark energy. 
+An estimate of \Omega_k is possible though the sin(x) = x condition is used presuming 
+Euclidean space geometry.
 """
 print()
 print("This is the 3P_D_L_standard model. The correlation is luminosity distance, D_L vs. expansion factor with sinn(x) = x for Euclidean geometry.")
@@ -96,11 +87,11 @@ e = 2.71828183
 #Calculate the chi^2 according to astronomers
 newxsqrd = sum(((ydata[1:-1] - func3(xdata,ans_Hu,ans_O_m,ans_O_L)[1:-1])**2)/(error[1:-1]**2))
 newxsqrded = round(newxsqrd/(N-P),2) #rounded to 2 digits
-
+"""
 # estimating the goodness of fit in the common manner
 chisq = sum((ydata[1:-1] - func3(xdata,ans_Hu,ans_O_m,ans_O_L)[1:-1])**2/func3(xdata,ans_Hu,ans_O_m,ans_O_L)[1:-1])
 normchisquar = round((chisq/(N-P)),2) #rounded to 2 digits
-
+"""
 #The usual method for BIC calculation is
 SSE = sum((ydata - func3(xdata,ans_Hu,ans_O_m,ans_O_L))**2)
 log_SSE = math.log(e,SSE)
@@ -121,10 +112,8 @@ R_square = round(R_sqrd,4)
 #Calculation of the weighted F-statistic
 SSEw = sum((1/error)*(residuals)**2)
 SSM = sum((1/error)*(ydata - np.mean(ydata))**2) 
-
 MSR = (SSM - SSEw)/(P)
 MSE = SSEw/(N-P)
-
 Fstat = MSR/MSE
 rFstat = round(Fstat,1)
 
@@ -160,10 +149,9 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
 print("The reduced goodness of fit, according to astronomers, \u03C7\u00b2, is: ", newxsqrded)
-print("The common reduced goodness of fit, \u03C7\u00b2, is: ", normchisquar)
+#print("The common reduced goodness of fit, \u03C7\u00b2, is: ", normchisquar)
 print("The BIC estimate is: ",rBIC)
 print()
-
 
 #Saving the plots in two different formats
 fig.savefig("3P_D_L_standard.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
