@@ -1,23 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Dec 20 11:57:07 2022
-
-@author: abd__
-"""
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
 Created on Fri Jul 29 17:53:20 2022
-
 @author: Mike
 
-This curve_fit regression routine of Python scipy, uses the data, as mag vs redshift (z) data from 
+This curve_fit regression routine of Python scipy, uses the mag vs redshift (z) data from 
 Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. 
-This variation of the LCDM model used has three free parameters: Hubble constant, Hu, normalised 
+This variation of the LCDM model has three free parameters: Hubble constant, Hu, normalised 
 matter density, O_m; the cosmological constant, O_L, with 1=O_m+O_L+O_k as the remainder of 
-information.
-
+information. This model presumes Euclidean space geometry.
 """
 print()
 print("This is the 3PmagStandard model, typically known as the standard model of cosmology.")
@@ -99,17 +89,18 @@ rSD_O_k = round(O_k_SD,3)
 P=3
 N=1701
 e=2.71828183
+
 #Calculate the sum of the individual errors squared
 SSE = sum((ydata - func3(xdata,ans_Hu,ans_O_m,ans_O_L))**2)
 
 #Calculate chi^2 as per astronomers
 newxsqrd = sum(((ydata - func3(xdata,ans_Hu,ans_O_m,ans_O_L))**2)/(error**2))
 newxsqrded = round(newxsqrd/(N-P),2)
-
+"""
 #Calculate the chi^2 as commonly done
 chisqrd = sum(((ydata - func3(xdata,ans_Hu,ans_O_m,ans_O_L))**2)/(func3(xdata,ans_Hu,ans_O_m,ans_O_L)))
 normchisqrd = round(chisqrd/(N-P),5)
-
+"""
 #The usual method for BIC calculation is
 log_SSE = math.log(e,SSE)
 small_bic = bayesian_info_criterion(log_SSE, P, N)
@@ -130,7 +121,6 @@ SSEw = sum((1/error)*(residuals)**2)
 SSM = sum((1/error)*(ydata - np.mean(ydata))**2)
 MSR = (SSM - SSEw)/(P)
 MSE = SSEw/(N-P)
-
 Fstat = MSR/MSE
 rFstat = round(Fstat,1)
 
@@ -164,11 +154,9 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
 print("The reduced goodness of fit, as per astronomers, \u03C7\u00b2, is: ", newxsqrded)
-print("The common reduced goodness of fit, \u03C7\u00b2, is: ", normchisqrd)
+#print("The common reduced goodness of fit, \u03C7\u00b2, is: ", normchisqrd)
 print("The BIC estimate is: ",rBIC)
 print()
-
-
 
 #commands to save plots in two different formats
 fig.savefig("3PmagStandard.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
