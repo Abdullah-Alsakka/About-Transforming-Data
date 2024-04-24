@@ -14,7 +14,7 @@ An estimate of \Omega_k is possible allowing sinn(x) = sinh(x) condition is used
 elliptical space geometry.
 """
 print()
-print("This is the sinh_3P_D_L_standard model. The correlation is luminosity distance, D_L vs. expansion factor with sinn(x) = x for Euclidean geometry.")
+print("This is the sinh_3P_D_L_standard model. The correlation is luminosity distance, D_L vs. expansion factor with sinn(x) = sinh(x) for elliptical geometry.")
 print("")
 
 import numpy as np
@@ -58,7 +58,7 @@ def func3(x,Hu,O_m,O_k):
 init_guess = np.array([70,0.30,0.69])
 bnds=([50,0.001,0.001],[80,1.0,1.0])
 
-# the bnds are the two lower and two higher bounds for the unknowns (parameters), when absolute_sigma = False the errors are "normalized"
+# the bnds are the three lower and three higher bounds for the unknowns (parameters), when absolute_sigma = False the errors are "normalized"
 params, pcov = curve_fit(func3, xdata, ydata, p0 = init_guess, bounds = bnds, sigma = error, absolute_sigma = False)
 
 #extracting the two parameters from the solution and rounding the values
@@ -79,7 +79,7 @@ Rans_O_k_SD = round(ans_O_k_SD,5)
 est_O_L_SD = np.sqrt(ans_O_m_SD**2 + ans_O_k_SD**2)
 Rans_O_L_SD = round(est_O_L_SD,5)
 
-# normalised chisquar where P is the number of parameters (3), N is the number of data pairs (1702) 
+# statistics where P is the number of parameters (3), N is the number of data pairs (1702) 
 P=3
 N=1702
 e = 2.71828183
