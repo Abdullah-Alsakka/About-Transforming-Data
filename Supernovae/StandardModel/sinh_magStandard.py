@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jul 29 17:53:20 2022
-
 @author: Mike
+
 This curve_fit regression routine of Python scipy, uses the mag vs redshift (z) data
 from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. 
-vol. 938, 110. This variation of the standard (LCDM) model used, with sinh, has two 
+vol. 938, 110. This variation of the standard (LCDM) model used, with sinn(x) = sinh(x), has two 
 parameters: Hubble constant, Hu, normalised matter density, O_m; the cosmological 
-constant, \Omega_L, is the remainder of information in a universe with elliptical geometry.
+constant, \Omega_L, is the remainder of information in a universe with presumed elliptical geometry.
 
 """
 # import the data file and the Python 3 libraries
@@ -82,11 +82,11 @@ newxsqrded = np.round(newxsqrd/(N-P),4)
 #easy routine for calculating r squared
 ycalc = func3(xdata,ans_Hu,ans_O_m)
 R_square = r2_score(ydata, ycalc)
-
+"""
 #Calculate the reduced chi^2 as commonly done
 xsqrd = sum(((ydata - func3(xdata,ans_Hu,ans_O_m))**2)/func3(xdata,ans_Hu,ans_O_m))
 normxsqrd = np.round(xsqrd/(N-P),6)
-
+"""
 #The BIC calculation is
 SSE = sum((ydata - func3(xdata,ans_Hu,ans_O_m))**2)
 log_SSE = math.log(e,SSE)
@@ -102,18 +102,17 @@ ss_tot = np.sum((ydata-np.mean(ydata))**2)
 ycalc = func3(xdata,ans_Hu,ans_O_m)
 R_sqrd = r2_score(ydata, ycalc)
 R_square = round(R_sqrd,4)
-
-#r squared calculation
+"""
+#weighted r squared calculation
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,4)
 r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-P-1)),4)
-
+"""
 #Calculation of the weighted F-statistic
 SSEw = sum((1/error)*(residuals)**2)
 SSM = sum((1/error)*(ydata - np.mean(ydata))**2)
 MSR = (SSM - SSEw)/(P)
 MSE = SSEw/(N-P)
-
 Fstat = MSR/MSE
 rFstat = round(Fstat,1)
 
@@ -145,7 +144,7 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
 print("The reduced goodness of fit, as per astronomers, \u03C7\u00b2 is:", newxsqrded)
-print("The reduced goodness of fit, as commonly done, \u03C7\u00b2 is:", normxsqrd)
+#print("The reduced goodness of fit, as commonly done, \u03C7\u00b2 is:", normxsqrd)
 print("The BIC estimate is:",rBIC)
 print()
 
