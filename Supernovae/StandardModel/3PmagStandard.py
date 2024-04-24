@@ -43,12 +43,6 @@ O_L = 0.69 #initial guess for Omega_L
 def integr(x,O_m,O_L):
     return intg.quad(lambda t: 1/(((np.sqrt(((1+t)**3)*O_m + (1+t)**2*(1-O_m-O_L) + O_L)))), 0, x)[0]
 
-"""
-def integr(x,O_m,O_L):
-    return intg.quad(lambda t: 
-
-"""
-   
 def func2(x, O_m, O_L):
     return np.asarray([integr(xx,O_m,O_L) for xx in x])
 
