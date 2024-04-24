@@ -50,7 +50,7 @@ def func2(x, O_m, O_L):
 litesped = 299793
 
 def func3(x,Hu,O_m,O_L):
-    return 5*(np.log10((litesped*(1+x)/(np.sqrt(np.abs(1-O_m-O_L))*Hu))*np.sinh(np.sqrt(np.abs(1-O_m-O_L))*func2(x,O_m,O_L)))) + 25
+    return 5*(np.log10((litesped*(1+x)/(np.sqrt(np.abs(1-O_m-O_L))*Hu))*(np.sqrt(np.abs(1-O_m-O_L))*func2(x,O_m,O_L)))) + 25
 
 # guess for the Hubble constant, Hu. No need to input numbers for the initial guesses but use the normalized matter density, O_m, and dark energy, O_L.
 init_guess = np.array([70,O_m,O_L])
