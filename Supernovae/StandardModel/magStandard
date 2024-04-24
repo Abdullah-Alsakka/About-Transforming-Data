@@ -8,8 +8,8 @@ This curve_fit regression routine of Python scipy, uses the mag vs redshift (z) 
 Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. 
 This variation of the standard (LCDM) model used here has two parameters: Hubble constant, Hu, 
 normalised matter density, O_m; the cosmological constant, \Omega_L, is the remainder of 
-information in a universe with Euclidean space geometry. This is sometimes termed the standard 
-model of cosmology, Riess et al. ApJL vol. 934(1) L7 (2022) and previous articles.
+information in a universe with presumed Euclidean space geometry. This is sometimes termed the standard 
+model of cosmology, Riess et al. ApJL vol. 934(1) L7 (2022) and previous articles by that group.
 """
 print()
 print("This is the magStandard model presuming Euclidean space geometry, sinn(x) = x.")
@@ -79,11 +79,11 @@ e=2.71828183
 #Calculate the reduced chi^2 according to astronomers
 newxsqrd = sum(((ydata - func3(xdata,ans_Hu,ans_O_m))**2)/(error**2))
 newxsqrded = np.round(newxsqrd/(N-P),2)
-
+"""
 #Calculate the reduced chi^2 as commonly done
 xsqrd = sum(((ydata - func3(xdata,ans_Hu,ans_O_m))**2)/func3(xdata,ans_Hu,ans_O_m))
 normxsqrd = np.round(xsqrd/(N-P),6)
-
+"""
 #The usual method for BIC calculation is
 SSE = sum((ydata - func3(xdata,ans_Hu,ans_O_m))**2)
 log_SSE = math.log(e,SSE)
@@ -105,7 +105,6 @@ SSEw = sum((1/error)*(residuals)**2)
 SSM = sum((1/error)*(ydata - np.mean(ydata))**2)
 MSR = (SSM - SSEw)/(P)
 MSE = SSEw/(N-P)
-
 Fstat = MSR/MSE
 rFstat = round(Fstat,1)
 
@@ -137,7 +136,7 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
 print("The reduced goodness of fit, as per astronomers, \u03C7\u00b2 is:", newxsqrded)
-print("The reduced goodness of fit, as commonly done, \u03C7\u00b2 is:", normxsqrd)
+#print("The reduced goodness of fit, as commonly done, \u03C7\u00b2 is:", normxsqrd)
 print("The BIC estimate is: ",rBIC)
 print()
 
