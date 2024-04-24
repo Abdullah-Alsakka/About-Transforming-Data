@@ -2,15 +2,14 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jul 29 17:53:20 2022
-
 @author: Mike
 
 print("This curve_fit regression routine of Python scipy, uses the mag vs redshift (z) 
-      data from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' 
-      Astrophys. J. vol. 938, 110. This variation of the standard (LCDM) model used here 
-      has two parameters: Hubble constant, Hu, normalised matter density, O_m; 
-      the cosmological constant, \Omega_L, is the remainder of information in a universe 
-      with hyperbolic, sin(x), geometry.")
+data from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' 
+Astrophys. J. vol. 938, 110. This variation of the standard (LCDM) model used here 
+has two parameters: Hubble constant, Hu, normalised matter density, O_m; 
+the cosmological constant, \Omega_L, is the remainder of information in a universe 
+with sin(x) presuming hypebolic space geometry.")
 """
 print()
 print("This is the sin_magStandard model of cosmology, but with sinn(x) = sin(x).")
@@ -72,7 +71,7 @@ SD_Hu, SD_O_m = perr
 rSD_Hu = round(SD_Hu,2)
 rSD_O_m = round(SD_O_m,3)
 
-# normalised chisquar is calculated for 1701 data pairs with P the parameter count (2) as
+# statistics are calculated for 1701 data pairs with P the parameter count (2)
 P=2
 N=1701
 e=2.71828183
@@ -80,15 +79,10 @@ e=2.71828183
 #Calculate the reduced chi^2 according to astronomers
 newxsqrd = sum(((ydata - func3(xdata,ans_Hu,ans_O_m))**2)/(error**2))
 newxsqrded = np.round(newxsqrd/(N-P),4)
-
+"""
 #Calculate the reduced chi^2 as commonly done
 xsqrd = sum(((ydata - func3(xdata,ans_Hu,ans_O_m))**2)/func3(xdata,ans_Hu,ans_O_m))
 normxsqrd = np.round(xsqrd/(N-P),6)
-"""
-#The BIC value is calculated as 
-SSE = sum((ydata - func3(xdata,ans_Hu,ans_O_m))**2)
-alt_BIC = N*math.log(e,SSE/N) + P*math.log(e,N)
-normalt_BIC = round(alt_BIC,2)
 """
 #The usual method for BIC calculation is
 SSE = sum((ydata - func3(xdata,ans_Hu,ans_O_m))**2)
@@ -105,18 +99,17 @@ ss_tot = np.sum((ydata-np.mean(ydata))**2)
 ycalc = func3(xdata,ans_Hu,ans_O_m)
 R_sqrd = r2_score(ydata, ycalc)
 R_square = round(R_sqrd,4)
-
-#r squared calculation
+"""
+# a weighted r squared calculation
 r_squared = 1 - (ss_res/ss_tot)
 r2 = round(r_squared,3)
 r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-P-1)),3)
-
+"""
 #Calculation of the weighted F-statistic
 SSEw = sum((1/error)*(residuals)**2)
 SSM = sum((1/error)*(ydata - np.mean(ydata))**2)
 MSR = (SSM - SSEw)/(P)
 MSE = SSEw/(N-P)
-
 Fstat = MSR/MSE
 rFstat = round(Fstat,1)
 
@@ -147,9 +140,8 @@ print("The calculated normalised matter density and S.D. are:", rans_O_m, ",",rS
 print()
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
-#print("The adjusted r\u00b2 is calculated as: ",r2adjusted)
 print("The reduced goodness of fit, as per astronomers, \u03C7\u00b2 is:", newxsqrded)
-print("The reduced goodness of fit, as commonly done, \u03C7\u00b2 is:", normxsqrd)
+#print("The reduced goodness of fit, as commonly done, \u03C7\u00b2 is:", normxsqrd)
 print("The BIC estimate is:",rBIC)
 print()
 
