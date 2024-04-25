@@ -2,19 +2,16 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
 @author: mike
 
-This curve_fit regression routine of Python scipy, uses the data, as mag vs redshift (z), 
-from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. 
-vol. 938, 110. The model selected is the Melia 2012 solution, not the Freidmann-Lemaitre-
-Robertson-Walker (FLRW) model. This model presents only one parameter, the Hubble constant. 
-No estimation is possible for either the normalized matter density, which is presumed to be 
-about 1, nor dark energy.")
-
+This curve_fit regression routine of Python scipy using the distance mag data and redshift, z. 
+Data from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. 
+vol. 938, 110. The model selected is the solution in F. Melia and A.S.H. Shevchuk 2012, 
+'The Rh=ct Universe' MNRAS vol. 419, 2579-2586, with only oneparameter, the Hubble constant. 
+No estimation is possible for the matter density nor dark energy
 """
 print()
-print("This is the Rh modeled using distance mag data as luminosity distances, D-L, vs. the expansion factor.")
+print("This is the Rh modeled using distance mag vs. redshift, z, data.")
 print("Estimates for the matter density and dark energy (cosmological constant) cannot be made with this model")
 
 # import the data and library files
