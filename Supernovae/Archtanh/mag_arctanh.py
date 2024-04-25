@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
 @author: Mike
+
 This curve_fit regression routine of Python scipy, uses the distance mag vs redshift (z)
 data, from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints'
 Astrophys. J. vol. 938, 110. This is the arctanh, analytical solution to the 
@@ -41,7 +41,7 @@ error = exampledata[:,3]
 #and b (Hubble constant) and c (matter density) are the parameters to be estimated
 def func(x,b,c):
     return (((litesped*(1+x))/(b*np.sqrt(np.abs(1-c))))*np.sinh(2*(np.arctanh(np.sqrt(np.abs(1-c)))-np.arctanh(np.sqrt(np.abs(1-c))/np.sqrt(((c*(1+x))+ (1-c)))))))
-#     return ((litesped*(1+x))/(b*np.sqrt(abs(1-c))))*np.sinh(2*(np.arctanh(np.sqrt(abs(1-c)))-np.arctanh(np.sqrt(abs(1-c))/np.sqrt((c/x)+ (1-c)))))
+
 def func2(x,b,c):
     return 5*np.log10(func(x,b,c)) + 25
 
@@ -52,7 +52,7 @@ p0=[70.0,0.002]
 litesped = 299793
 
 # curve fit the model to the data, the bnds are the lower and upper bounds for the two parameters
-bnds = ([50.0, 0.0002],[80.0,1.0])
+bnds = ([50.0, 0.0001],[80.0,1.0])
 params, pcov = curve_fit(func2,xdata,ydata, p0, bounds = bnds, sigma = error, absolute_sigma = False)
 
 # extracting the two parameter values and rounding the values
@@ -73,7 +73,7 @@ ans_bSD, ans_cSD = perr
 rans_bSD = round(ans_bSD,2)
 rans_cSD = round(ans_cSD,5)
 
-# normalised chisquar where P is the number of parameters (2) and N the number of data pairs (1701)
+# For statistics P is the number of parameters (2) and N the number of data pairs (1701)
 P=2
 N=1701
 e = 2.718281
@@ -146,21 +146,3 @@ print()
 #Routines to save figues in eps and pdf formats
 fig.savefig("magArctanh.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
 fig.savefig("magArctanh.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
