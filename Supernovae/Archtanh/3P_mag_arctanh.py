@@ -2,14 +2,13 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
 @author: Mike
 
 print("This curve_fit regression routine of Python scipy, uses the mag vs redshift (z) data from 
 Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110.
 This is the arctanh, analytical solution to the Friedmann-Lemaitre-Roberston-Walker (FLRW) model 
 with three parameters, the Hubble constant, Hu, the normalised matter density, O_m and the 
-spacetime parameter, O_k. No estimation is possible for dark energy.")
+spacetime parameter, O_k. No estimate for dark energy is possible.")
 
 """
 # import data and Python 3 library files
@@ -35,7 +34,8 @@ xdata = exampledata[:,0]
 ydata = exampledata[:,2]
 error = exampledata[:,3]
 
-# define the function - the model to be examined, where x represents the independent variable; b (Hubble constant), c (matter density), d spacetime density are the parameters to be estimated
+# define the function - the model to be examined, where x represents the independent variable; b (Hubble constant), 
+# c (matter density), d spacetime density are the parameters to be estimated
 def func(x,b,c,d):
     return (litesped*(1+x)/(b*np.sqrt(abs(d))))*np.sinh(2*(np.arctanh(np.sqrt(abs(d)))-np.arctanh(np.sqrt(abs(d))/np.sqrt((c/(1/(1+x)))+ (d)))))
 
@@ -73,7 +73,7 @@ rans_bSD = round(ans_bSD,2)
 rans_cSD = round(ans_cSD,5)
 rans_dSD = round(ans_dSD,5)
 
-# normalised chisquar where P the parameter number (3) and N the number of data pairs (1701) as 
+# For statistics where P the parameter number (3) and N the number of data pairs (1701) as 
 P=3
 N=1701
 e=2.718281828
