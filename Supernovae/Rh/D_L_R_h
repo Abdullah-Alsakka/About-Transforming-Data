@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
 @author: Mike
 
 This curve_fit regression routine of Python scipy converts the distance mag data to 
 luminosity distances, D_L, vs expansion factor; data from Brout et al. 2022, 'The Pantheon+ Analysis: 
-Cosmological Constraints' Astrophys. J. vol. 938, 110. The model selected is the Melia 2012 solution,
-with only one parameter, the Hubble constant. No estimation is possible for the matter density nor dark energy
+Cosmological Constraints' Astrophys. J. vol. 938, 110. The model selected is the solution in 
+F. Melia and A.S.H. Shevchuk 2012, 'The Rh=ct Universe' MNRAS vol. 419, 2579-2586, with only one
+parameter, the Hubble constant. No estimation is possible for the matter density nor dark energy
 """
 print()
 print("This is the Rh modeled using distance mag data as luminosity distances, D_L, vs. the expansion factor.")
