@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jul 29 17:53:20 2022
-
 @author: Mike
+
 This curve_fit regression routine of Python scipy, uses data from Brout et al. 2022,
 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110,
 after calculations of the D_L and recession velocities. The measured distances, D_L, 
@@ -73,7 +73,7 @@ SD_Hu, SD_O_m = perr
 rSD_Hu = round(SD_Hu,2)
 rSD_O_m = round(SD_O_m,3)
 
-# normalised chisquar is calculated for 1702 data pairs with P the parameter count (2) as
+# statistics are calculated for 1702 data pairs with P the parameter count (2) as
 P=2
 N=1702
 e=2.71828183
