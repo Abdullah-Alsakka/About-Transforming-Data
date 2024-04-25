@@ -2,13 +2,15 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
 @author: Mike
-This curve_fit regression routine of Python scipy, uses the distance mag data, converted to 
-luminosity distances, D_L, vs expansion factor (1/(1+z)), from Brout et al. 2022, 'The Pantheon+ Analysis: 
-Cosmological Constraints' Astrophys. J. vol. 938, 110. The model selected here is the Einstein-DeSitter solution
-with two parameters, the Hubble constant and the normalised spacetime density. No estimate of matter density is possible.
+
+This curve_fit regression routine of Python scipy, uses the distance mag data and redshift data from, 
+Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110,
+After calculations to luminosity distances, D_L, vs expansion factor (1/(1+z)).The model selected here is 
+a version of the Einstein-DeSitter solution with two parameters, the Hubble constant and the normalised 
+space density. No direct estimate of matter density is possible.
 """
+print()
 # import data and library files
 import numpy as np
 import csv
