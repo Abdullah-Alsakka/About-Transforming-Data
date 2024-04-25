@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Jun 15 17:41:24 2022
 
+Created on Wed Jun 15 17:41:24 2022
 @author: Mike
+"""
 print()
 This curve_fit regression routine of Python scipy, uses the 'distance mag' data, 
 converted to luminosity distances, D_L, vs expansion factor, from Brout et al. 2022,
 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110.
 The model selected here is the arctanh analytical solution with two parameters,
-the Hubble constant, Hu and the normalised matter density, O_m.
+the Hubble constant, Hu, and the normalised matter density, O_m.
 No estimate of dark energy is possible.
 """
 print()
@@ -69,7 +69,7 @@ ans_b_SD, ans_c_SD = perr
 rans_b_SD = round(ans_b_SD,2)
 rans_c_SD = round(ans_c_SD,4)
 
-# normalised chi^2 where P is the number of parameters (2), N the number of data pairs (1702)
+# For statistics where P is the number of parameters (2), N the number of data pairs (1702)
 P=2
 N=1702
 e = 2.718281
@@ -85,7 +85,7 @@ normchisquar = round((chisq/(N-P)),2) #rounded to 2 digits
 #The usual method for BIC calculation is
 SSE = sum((ydata - func(xdata,ans_b,ans_c))**2)
 log_SSE = math.log(e,SSE)
-small_bic = bayesian_info_criterion(log_SSE, P, N)
+small_bic = bayesian_info_criterion(log_SSE, P, N) #loaded from the'astropy.stats.info_theory' module
 rBIC = round(small_bic,2)
 
 # calculation of residuals
@@ -95,7 +95,7 @@ ss_tot = np.sum((ydata-np.mean(ydata))**2)
 
 #easy routine for calculating r squared using the r2_score routine
 ycalc = func(xdata,ans_b,ans_c)
-R_sqrd = r2_score(ydata, ycalc)
+R_sqrd = r2_score(ydata, ycalc)  #loaded from the 'sklearn.metrics' module
 R_square = round(R_sqrd,4)
 
 #Calculation of the F-statistic (weighted)
