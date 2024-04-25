@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
 @author: Mike
 
 This curve_fit regression routine of Python scipy, uses the distance mag data, 
@@ -11,7 +10,6 @@ converted to luminosity distances, D_L, vs expansion factor, from Brout et al. 2
 The model selected here is the arctanh analytical solution with three parameters, 
 the Hubble constant, Hu, the normalised matter density, O_m, and the spacetime 
 parameter, O_k. No estimate of dark energy is possible.
-
 """
 # import data and library files
 import numpy as np
@@ -23,9 +21,10 @@ from sklearn.metrics import r2_score
 from astropy.stats.info_theory import bayesian_info_criterion
 
 print()
-print("This 3P_D_L_arctanh model is evaluated using sinn(x) = sinh(x) presuming elliptical space geometry. This model does not evaluate the cosmological constant.")
+print("This 3P_D_L_arctanh model is evaluated using sinn(x) = sinh(x) presuming elliptical space geometry.")
+print("This model does not evaluate the cosmological constant.")
 
-# open data file selecting the distance, distance standard deviation and recession velocity columns
+# open data file selecting the distance, D_L, distance standard deviation and recession velocity columns
 with open("DATA2B.csv","r") as i:
     rawdata = list(csv.reader(i, delimiter = ","))
     
@@ -41,7 +40,7 @@ def func(x,b,c,d):
     return (litesped/(x*b*np.sqrt(abs(d))))*np.sinh(2*(np.arctanh(np.sqrt(abs(d)))-np.arctanh(np.sqrt(abs(d))/np.sqrt((c/x)+ (d)))))
 
 #The initial guesses of the model parameters
-p0=[65.0,0.001,0.999]
+p0=[70.0,0.001,0.999]
 
 # define the lightspeed constant
 litesped = 299793
@@ -52,7 +51,7 @@ bnds = ([60.0, 0.00001, 0.00001],[80.0, 1.0, 1.0])
 # when absolute_sigma = False the regression routine "normalizes" the standard deviations (errors)
 params, pcov = curve_fit(func,xdata,ydata, p0, bounds = bnds, sigma = error, absolute_sigma = False)
 
-# extracting the Hubble constant, normalized matter density and rounding the values
+# extracting the Hubble constant, normalized matter density and space parameter value then rounding these values
 ans_b, ans_c, ans_d = params
 rans_b = round(ans_b,2)
 rans_c = round(ans_c,5)
@@ -73,7 +72,7 @@ rans_b_SD = round(ans_b_SD,2)
 rans_c_SD = round(ans_c_SD,5)
 rans_d_SD = round(ans_d_SD,5)
 
-# normalised chisquar where P is the number of parameters (3), N is the number of data pairs (1702) 
+# statistics where P is the number of parameters (3), N is the number of data pairs (1702) 
 P=3
 N=1702
 e=2.71828183
@@ -147,22 +146,3 @@ print()
 # Routines to save figues in eps and pdf formats
 fig.savefig("3P_Arctanh_D_L_data.eps", format="eps", dpi=1200, bbox_inches="tight", transparent=True)
 fig.savefig("3P_Arctanh_D_L_data.pdf", format="pdf", dpi=1200, bbox_inches="tight", transparent=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
