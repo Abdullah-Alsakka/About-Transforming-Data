@@ -2,14 +2,13 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
 @author: mike
 
 This curve_fit regression routine of Python scipy, uses the data, as luminosity distance, D_L, vs. 
 recession velocity (1/1+z), from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints'
- Astrophys. J. vol. 938, 110. The model selected is the E-DS (from Oeztas, Smith, Paul, 2008). 
+Astrophys. J. vol. 938, 110. The model selected is the E-DS (from Oeztas, Smith, Paul, 2008). 
 This model presents only one parameter, the Hubble constant. No estimation is possible for either 
-the normalized matter density, which is presumed to be about 0, nor dark energy nor space density.
+the normalized matter density, which is presumed to be nearly 0, nor dark energy nor space density.
 """
 print()
 print("This is our E-DS model, a version of the Einstein-DeSitter model of cosmology." )
@@ -133,7 +132,6 @@ print("The reduced goodness of fit, according to astronomers, \u03C7\u00b2 estim
 #print("The common reduced goodness of fit \u03C7\u00b2 estimate: ", normchisquar)
 print("The BIC estimate is: ",rBIC)
 print()
-
 
 #Routines to save figues in eps and pdf formats
 fig.savefig("D_L_E-DS.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
