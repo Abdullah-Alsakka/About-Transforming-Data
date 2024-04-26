@@ -6,7 +6,7 @@ Created on Fri Jul 29 17:53:20 2022
 This curve_fit regression routine of Python scipy, uses the mag vs redshift (z) data from 
 Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. 
 This variation of the LCDM model has three free parameters: Hubble constant, Hu, normalised 
-matter density, O_m; the cosmological constant, O_k, with O_L = 1-O_m+O_k as the remainder of 
+matter density, O_m; the cosmological constant, O_k, with O_L = 1-O_m-O_k as the remainder of 
 information. This model presumes elliptical space geometry.
 """
 print()
@@ -34,9 +34,9 @@ xdata = exampledata[:,0]
 ydata = exampledata[:,2]
 error = exampledata[:,3]
 
-# initial guesses for the normalized matter density, O_m and dark energy, O_L
-O_m = 0.3 #initial guess for matter density
-O_L = 0.69 #initial guess for Omega_L
+# initial guesses for the normalized matter density, O_m and dark energy, O_k
+O_m = 0.3 #initial guess for normalised matter density
+O_k = 0.69 #initial guess for Omega_k
 
 # where t is the "dummy" variable for integration
 
@@ -75,7 +75,7 @@ rSD_Hu = round(SD_Hu,2)
 rSD_O_m = round(SD_O_m,3)
 rSD_O_k = round(SD_O_k,3)
 
-# calculating the value of O_k, S.D. and rounding off 
+# calculating the value of the S.D. of O_L and rounding off 
 O_L_SD = np.sqrt((SD_O_m)**2 + (SD_O_k)**2)
 rSD_O_L = round(O_L_SD,3)
 
