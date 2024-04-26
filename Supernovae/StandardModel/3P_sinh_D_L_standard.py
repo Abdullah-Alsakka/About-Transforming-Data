@@ -9,9 +9,10 @@ This curve_fit regression routine of Python scipy, uses the 'distance mag' data,
 converted to luminosity distances, D_L, vs expansion factor, from Brout et al. 2022, 
 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. 
 The LCDM model requires numerical integration and regression with three parameters: 
-the Hubble constant (Hu),the normalised matter density, O_m, and O_L, dark energy. 
+the Hubble constant (Hu),the normalised matter density, O_m, and O_k, parameter for space. 
 An estimate of \Omega_k is possible allowing sinn(x) = sinh(x) condition is used presuming 
-elliptical space geometry.
+elliptical space geometry. The value of O_L for normalised dark energy is determined indirectly 
+from O_L = 1-O_m-O_k.
 """
 print()
 print("This is the sinh_3P_D_L_standard model. The correlation is luminosity distance, D_L vs. expansion factor with sinn(x) = sinh(x) for elliptical geometry.")
@@ -39,7 +40,7 @@ error = exampledata[:,7]
 
 #Model function
 O_m = 0.30 #initial guess for matter density
-O_L = 0.60 #initial guess for Omega_k
+O_k = 0.60 #initial guess for Omega_k
 
 # where t is the "dummy" variable for integration
 
@@ -100,7 +101,6 @@ rBIC = round(small_bic,2)
 
 #calculation of residuals
 residuals = ydata - func3(xdata,ans_Hu,ans_O_m,ans_O_k)
-#residuals_lsq = data - data_fit_lsq
 ss_res = np.sum(residuals**2)
 ss_tot = np.sum((ydata-np.mean(ydata))**2)
 
