@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Dec 18 23:05:42 2022
-
 @author: Mike
 @co-author: Abdullah Alsakka
 
@@ -10,12 +9,13 @@ converted to luminosity distances, D_L, vs expansion factor, from Brout et al. 2
 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. 
 The LCDM model requires numerical integration and regression with three parameters: 
 the Hubble constant (Hu),the normalised matter density, O_m, and O_L, dark energy. 
-An estimate of \Omega_k is possible though the sin(x) = x condition is used presuming 
-Euclidean space geometry.
+An estimate of \Omega_k is possible though the sin(x) = x condition is used here 
+presuming Euclidean space geometry. The geometry of space, O_k, is indirectly determined. 
 """
 print()
-print("This is the 3P_D_L_standard model. The correlation is luminosity distance, D_L vs. expansion factor with sinn(x) = x for Euclidean geometry.")
-print("")
+print("This is the 3P_D_L_standard model. The correlation is luminosity distance, D_L vs. ")
+print("expansion factor with sinn(x) = x for Euclidean geometry.")
+print()
 
 import numpy as np
 import csv
@@ -39,9 +39,9 @@ error = exampledata[:,7]
 
 #Model function
 O_m = 0.30 #initial guess for matter density
-O_L = 0.60 #initial guess for Omega_k
+O_L = 0.60 #initial guess for Omega_L
 
-# where t is the "dummy" variable for integration
+# where t is the dummy variable for integration
 
 def integr(x,O_m,O_L):
     return intg.quad(lambda t: 1/(t*(np.sqrt((O_m/t)+((O_L)*(t**2))+(1-O_m-O_L)))), x, 1)[0]
@@ -56,7 +56,7 @@ def func3(x,Hu,O_m,O_L):
     return (litesped/(x*Hu*np.sqrt(np.abs(1-O_m-O_L))))*(np.sqrt(np.abs(1-O_m-O_L))*func2(x,O_m,O_L))
 
 init_guess = np.array([70,0.30,0.69])
-bnds=([50,0.001,0.001],[80,1.0,1.0])
+bnds=([60,0.001,0.001],[80,1.0,1.0])
 
 # the bnds are the three lower and three higher bounds for the unknowns (parameters), when absolute_sigma = False the errors are "normalized"
 params, pcov = curve_fit(func3, xdata, ydata, p0 = init_guess, bounds = bnds, sigma = error, absolute_sigma = False)
@@ -89,7 +89,7 @@ newxsqrd = sum(((ydata[1:-1] - func3(xdata,ans_Hu,ans_O_m,ans_O_L)[1:-1])**2)/(e
 newxsqrded = round(newxsqrd/(N-P),2) #rounded to 2 digits
 """
 # estimating the goodness of fit in the common manner
-chisq = sum((ydata[1:-1] - func3(xdata,ans_Hu,ans_O_m,ans_O_L)[1:-1])**2/func3(xdata,ans_Hu,ans_O_m,ans_O_L)[1:-1])
+chisq = sum(((ydata[1:-1] - func3(xdata,ans_Hu,ans_O_m,ans_O_L)[1:-1])**2)/func3(xdata,ans_Hu,ans_O_m,ans_O_L)[1:-1])
 normchisquar = round((chisq/(N-P)),2) #rounded to 2 digits
 """
 #The usual method for BIC calculation is
@@ -100,7 +100,6 @@ rBIC = round(small_bic,2)
 
 #calculation of residuals
 residuals = ydata - func3(xdata,ans_Hu,ans_O_m,ans_O_L)
-#residuals_lsq = data - data_fit_lsq
 ss_res = np.sum(residuals**2)
 ss_tot = np.sum((ydata-np.mean(ydata))**2)
 
@@ -136,7 +135,7 @@ for axis in ['top','bottom','left','right']:
     ax.spines[axis].set_linewidth(3)
     ax.tick_params(width=3)
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 4)
-plt.plot(xdata, func3(xdata,ans_Hu,ans_O_m,ans_O_L), color = "orange", label = "3P $D_L$standard model")
+plt.plot(xdata, func3(xdata,ans_Hu,ans_O_m,ans_O_L), color = "orange", label = "3P$D_L$standard model")
 plt.legend(loc='best', fancybox=True, shadow=False)
 
 #print results
