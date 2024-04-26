@@ -7,7 +7,7 @@ This curve_fit regression routine of Python scipy, uses the mag vs redshift (z) 
 Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. 
 This variation of the LCDM model has three free parameters: Hubble constant, Hu, normalised 
 matter density, O_m; the cosmological constant, O_L, with 1=O_m+O_L+O_k as the remainder of 
-information. This model presumes Euclidean space geometry.
+information. This model presumes Euclidean space geometry with sinn(x) = x.
 """
 print()
 print("This is the 3PmagStandard model, typically known as the standard model of cosmology.")
