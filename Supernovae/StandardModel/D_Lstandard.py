@@ -2,16 +2,15 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jul 29 17:53:20 2022
-
 @author: Mike
+
 This curve_fit regression routine of Python scipy, uses the 'distance mag' data, 
 converted to luminosity distances, D_L, vs expansion factor, from Brout et al. 2022, 
 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. 
 The standard (LCDM) model used here requires numerical integration with two parameters, 
 the Hubble constant, Hu and the normalised matter density, O_m with presumed flat space 
-geometry. An estimate of the normalized cosmological constant (dark energy) is the remainder 
-and space geometry is presumed Euclidean.
-
+geometry, that is sinn(x) = x. An estimate of the normalized cosmological constant 
+(dark energy) is the remainder and space geometry is presumed Euclidean.
 """
 
 import numpy as np
@@ -52,7 +51,7 @@ def func3(x,Hu,O_m):
     return (litesped/(x*Hu))*(func2(x,O_m))
 
 init_guess = np.array([70,0.30])
-bnds=([50,0.001],[80,1.0])
+bnds=([60,0.001],[80,1.0])
 
 # the bnds are the two lower and two higher bounds for the unknowns (parameters), when absolute_sigma = False the errors are "normalized"
 params, pcov = curve_fit(func3, xdata, ydata, p0 = init_guess, bounds = bnds, sigma = error, absolute_sigma = False)
@@ -68,12 +67,12 @@ ans_Hu_SD, ans_O_m_SD = np.sqrt(np.diag(pcov))
 Rans_Hu_SD = round(ans_Hu_SD,2)
 Rans_O_m_SD = round(ans_O_m_SD,3)
 
-# normalised chisquared where P is the number of parameters (2), N is the number of data pairs and normchisquar is calculated using 
+# where P is the number of parameters (2), N is the number of data pairs (1702)
 P=2
 N=1702
 e = 2.718281
 """
-#calculate the common statistical fitness, using 1701 as the number of data pairs and 1 as the degree of freedom (paramater count).
+#calculate the common statistical fitness
 chisqed = sum(((ydata[1:-1]-func3(xdata,ans_Hu,ans_O_m)[1:-1])**2)/(func3(xdata,ans_Hu,ans_O_m)[1:-1]))
 normchisquared = np.round((chisqed/(N-P)),2)
 """
