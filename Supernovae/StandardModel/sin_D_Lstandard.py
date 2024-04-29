@@ -7,13 +7,13 @@ Created on Fri Jul 29 17:53:20 2022
 This curve_fit regression routine of Python scipy, uses the 'distance mag' data, 
 converted to luminosity distances, D_L, vs expansion factor, from Brout et al. 2022, 
 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. 
-The standard (LCDM) model used here, with sin(x), requires numerical integration with 
+The standard (LCDM) model used here, with sinn(x) = sin(x), requires numerical integration with 
 two parameters, the Hubble constant, Hu and the normalised matter density, O_m with presumed hyperbolic 
 space geometry. An estimate of the normalized cosmological constant (dark energy) 
 is possible but nothing is uncovered about the contribution of space to the Hubble flow.
 """
 print()
-print("This is the D_L_standard model, a version the standard model of cosmology with sinn(x) = sin(x).")
+print("This is a version the standard model of cosmology using D_L vs. expansion factor data and sinn(x) = sin(x).")
 print()
 
 import numpy as np
@@ -68,14 +68,13 @@ ans_Hu_SD, ans_O_m_SD = np.sqrt(np.diag(pcov))
 Rans_Hu_SD = round(ans_Hu_SD,2)
 Rans_O_m_SD = round(ans_O_m_SD,3)
 
-# normalised chisquared where P is the number of parameters (2), N is the number of data pairs
+# normalised chisquared where P is the number of parameters (2), N is the number of data pairs (1702)
 P=2
 N=1702
 e = 2.718281
 """
 #calculate the common statistical fitness
 chisqed = sum(((ydata[1:-1]-func3(xdata,ans_Hu,ans_O_m)[1:-1])**2)/(func3(xdata,ans_Hu,ans_O_m)[1:-1]))
-#Calculating the common reduced goodness of fit and rounding to 2 digits
 normchisquared = np.round((chisqed/(N-P)),2)
 """
 #Calculate the chi^2 according to astronomers
@@ -95,7 +94,7 @@ residuals = ydata - func3(xdata,ans_Hu,ans_O_m)
 ss_res = np.sum(residuals**2)
 ss_tot = np.sum((ydata-np.mean(ydata))**2)
 
-#easy routine for calculating r squared
+#routine for calculating r squared
 ycalc = func3(xdata,ans_Hu,ans_O_m)
 R_sqrd = r2_score(ydata, ycalc)
 R_square = round(R_sqrd,4)
