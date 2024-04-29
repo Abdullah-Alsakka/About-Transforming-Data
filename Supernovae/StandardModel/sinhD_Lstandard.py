@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jul 29 17:53:20 2022
-
 @author: Mike
 
 This curve_fit regression routine of Python scipy, uses the 'distance mag' data,
@@ -13,7 +12,6 @@ numerical integration with two parameters, the Hubble constant, Hu and the
 normalised matter density, O_m with presumed elliptical space geometry. 
 An estimate of the normalized cosmological constant (dark energy) is possible but 
 nothing about the geometry of space which is presumed elliptical.
-
 """
 
 import numpy as np
@@ -27,7 +25,6 @@ from astropy.stats.info_theory import bayesian_info_criterion
 
 print()
 print("This is the D_L_standard model version of cosmology, but using sinn(x) = sinh(x).")
-
 
 # open data file
 with open("DATA2B.csv","r") as i:
@@ -72,7 +69,7 @@ ans_Hu_SD, ans_O_m_SD = np.sqrt(np.diag(pcov))
 Rans_Hu_SD = round(ans_Hu_SD,2)
 Rans_O_m_SD = round(ans_O_m_SD,3)
 
-# normalised chisquared, P is the number of parameters (2), N is the number of data pairs 
+# Here P is the number of parameters (2), N is the number of data pairs (1702)
 P=2
 N=1702
 e = 2.718281
