@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """
+
 Created on Sun Dec 18 23:05:42 2022
 @author: Mike
 @co-author: Abdullah Alsakka
@@ -10,7 +11,7 @@ converted to luminosity distances, D_L, vs expansion factor, from Brout et al. 2
 The LCDM model requires numerical integration and regression with three parameters: 
 the Hubble constant (Hu),the normalised matter density, O_m, and O_L, dark energy. 
 An estimate of \Omega_k is possible though the sin(x) = x condition is used here 
-presuming Euclidean space geometry. The geometry of space, O_k, is indirectly determined. 
+presuming Euclidean space geometry.
 """
 print()
 print("This is the 3P_D_L_standard model. The correlation is luminosity distance, D_L vs. ")
@@ -79,7 +80,7 @@ Rans_O_L_SD = round(ans_O_L_SD,5)
 est_O_k_SD = np.sqrt(ans_O_m_SD**2 + ans_O_L_SD**2)
 Rans_O_k_SD = round(est_O_k_SD,5)
 
-# statistics where P is the number of parameters (3), N is the number of data pairs (1702) 
+# P is the number of parameters (3), N is the number of data pairs (1702) 
 P=3
 N=1702
 e = 2.71828183
@@ -103,7 +104,7 @@ residuals = ydata - func3(xdata,ans_Hu,ans_O_m,ans_O_L)
 ss_res = np.sum(residuals**2)
 ss_tot = np.sum((ydata-np.mean(ydata))**2)
 
-#easy routine for calculating r squared
+#routine for calculating r squared
 ycalc = func3(xdata,ans_Hu,ans_O_m,ans_O_L)
 R_sqrd = r2_score(ydata, ycalc)
 R_square = round(R_sqrd,4)
