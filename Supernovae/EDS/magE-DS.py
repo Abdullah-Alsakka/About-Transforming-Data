@@ -11,7 +11,7 @@ only one parameter, the Hubble constant. No estimation is possible for either th
 density, which is presumed to be close to 1, nor dark energy nor space geometry.")
 """
 print()
-print("The matter density is presumed to be close to 1, the values for dark energy and space geometry cannot be estimated.")
+print("The matter density is presumed to be negligible, the values for dark energy and space geometry cannot be estimated.")
 print()
 
 # import the data and library files
