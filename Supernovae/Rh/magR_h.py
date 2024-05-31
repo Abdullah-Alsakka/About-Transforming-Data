@@ -2,16 +2,14 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
 @author: mike
 
 This curve_fit regression routine of Python scipy, uses the data, as mag vs redshift (z), 
 from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. 
-vol. 938, 110. The model selected is the Melia 2012 solution, not formally the Freidmann-
-Lemaitre-Robertson-Walker (FLRW) model. This model presents 
-only one parameter, the Hubble constant. No estimation is 
-possible for either the normalized matter density, which is 
-presumed to be about 1, nor dark energy.")
+vol. 938, 110. The model selected is the Melia 2012 solution, not exactly the Freidmann-
+Lemaitre-Robertson-Walker (FLRW) model. This model presents only one parameter, the Hubble 
+constant. No estimation is possible for either the normalized matter density, which is 
+presumed to be about 0, nor dark energy.")
 """
 print()
 print("This is the R_h modeled using distance mag data as ")
@@ -56,7 +54,7 @@ p0 = [60]
 funcdata = func2(xdata,p0)
 bnds = (60.0, 80.0)
 
-# curve fit nodel to the data where absolute_sigma = False means the standard deviations are normlaized
+# curve fit nodel to the data where absolute_sigma = False means the standard deviations are normalized
 params, pcov = curve_fit(func2,xdata,ydata,bounds = bnds, sigma = error, absolute_sigma = False)
 perr = np.sqrt(np.diag(pcov))
 
@@ -68,7 +66,7 @@ Error, = perr
 normHubble = np.round(Hubble,2)
 normError = np.round(Error,2)
 
-# calculate the statistical fitness, using N=156 as the number of data pairs and P=1 as the degree of freedom (parameter count)
+# calculate the statistical fitness, using N=1701 as the number of data pairs and P=1 as the degree of freedom (parameter count)
 P=1
 N=1701
 e = 2.718281
@@ -76,11 +74,7 @@ e = 2.718281
 #Calculate the chi^2 according to astronomers
 newxsqrd = sum(((ydata - func2(xdata,Hubble))**2)/error**2)
 newxsqrded = np.round(newxsqrd/(N-P),2)
-"""
-#Calculate the chi^2 according in the common manner
-normxsqrd = sum(((ydata - func2(xdata,Hubble))**2)/func2(xdata,Hubble))
-normxsqrded = np.round(normxsqrd/(N-P),6) #rounded to 6 digits
-"""
+
 #The usual method for BIC calculation is
 SSE = sum((ydata - func(xdata,Hubble))**2)
 log_SSE = math.log(e,SSE)
@@ -140,7 +134,6 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighed Fstat is:', rFstat)
 print("And reduced goodness of fit, according to astronomers, \u03C7\u00b2 estimate:", newxsqrded)
-#print("And common reduced goodness of fit \u03C7\u00b2 estimate:", normxsqrded)
 print("The BIC estimate is:",rBIC)
 print()
 
