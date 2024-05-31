@@ -2,14 +2,13 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
 @author: Mike
 
 This curve_fit regression routine of Python scipy, using the 
 distance mag data, converted to luminosity distances, D_L, 
 vs expansion factor, from Brout et al. 2022, 'The Pantheon+ 
 Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. 
-The model selected is the Melia 2012 solution,with only one 
+The model selected is the Melia 2012 solution, with only one 
 parameter, the Hubble constant. No estimation is possible 
 for the matter density nor dark energy nor space contributions.
 """
@@ -52,7 +51,7 @@ funcdata = func(xdata,70) # The initial guess for the Hubble constant, 70, is th
 # the lower and upper bounds allowed for the Hubble constant
 bnds = (60.0, 80.0)
 
-# curve_fit the model to the data, note that when absolute_sigma = False the errors are "normalized"
+# curve_fit the model to the data, note that when "...absolute_sigma = False" the errors are "normalized"
 params, pcov = curve_fit(func,xdata,ydata,bounds = bnds, sigma = error, absolute_sigma = False)
 perr = np.sqrt(np.diag(pcov))
       
@@ -65,8 +64,6 @@ normHubble = round(Hubble,2)
 normError = round(Error,2)
 
 # calculate the statistical fitness, using N=1702 as the number of data pairs and P=1 as the degree of freedom (paramater count)
-
-#insert some constant values
 P=1
 N=1702
 
@@ -74,13 +71,7 @@ N=1702
 newxsqrd = sum(((ydata[1:-1] - func(xdata,Hubble)[1:-1])**2)/(error[1:-1]**2))
 #normalised newxsqrded is calculated as
 newxsqrded = round(newxsqrd/(N-P),3)
-"""
-#Calculate the chi^2 according in the common manner
-# since the error at the origin is 0 we have to ignore this only to estimate the common goodness of fit, but not the fit itself
-chisq = sum((ydata[1:-1] - func(xdata,Hubble)[1:-1])**2/func(xdata,Hubble)[1:-1])
-#normalised chisquar is calculated as
-normchisquar = round((chisq/(N-P)),2) #rounded to 3 digits
-"""
+
 #The usual method for BIC calculation is
 SSE = sum((ydata - func(xdata,Hubble))**2)
 log_SSE = math.log(e,SSE)
@@ -92,7 +83,7 @@ residuals = ydata - func(xdata,Hubble)
 ss_res = np.sum(residuals**2)
 ss_tot = np.sum((ydata-np.mean(ydata))**2)
 
-#easy routine for calculating r squared
+#routine for calculating r squared
 ycalc = func(xdata,Hubble)
 R_sqrd = r2_score(ydata, ycalc)
 R_square = round(R_sqrd,4)
