@@ -2,16 +2,15 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
 @author: mike
 This curve_fit regression routine of Python scipy, uses the data, as distance mag vs redshift, z, 
 from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 
 110. The model selected is the Einstein-DeSitter solution, not the FLRW model. This model presents 
 only one parameter, the Hubble constant. No estimation is possible for either the normalized matter 
-density, which is presumed to be about 0, nor dark energy nor space geometry.")
+density, which is presumed to be close to 1, nor dark energy nor space geometry.")
 """
 print()
-print("The matter density is presumed to be about 0, the values for dark energy and space geometry cannot be estimated.")
+print("The matter density is presumed to be close to 1, the values for dark energy and space geometry cannot be estimated.")
 print()
 
 # import the data and library files
@@ -51,8 +50,7 @@ p0 = [65]
 funcdata = func2(xdata,p0)
 bnds = (50.0, 80.0)
 
-# curve fit model of the data where absolute_sigma = False, 
-#this means the standard deviations are normalized for the weighted regression.
+# curve fit model of the data where absolute_sigma = False, meaning the standard deviations are normalized for the weighted regression.
 params, pcov = curve_fit(func2,xdata,ydata,bounds = bnds,sigma = error, absolute_sigma = False)
 perr = np.sqrt(np.diag(pcov))
 
@@ -73,11 +71,7 @@ e = 2.718281
 #Calculate the chi^2 according to astronomers
 newxsqrd = sum(((ydata - func2(xdata,Hubble))**2)/error**2)
 newxsqrded = np.round(newxsqrd/(N-P),2)
-"""
-#Calculate the chi^2 in the common manner
-xsqrd = sum(((ydata - func2(xdata,Hubble))**2)/func2(xdata,Hubble))
-normxsqrd = np.round(xsqrd/(N-P),5)
-"""
+
 #The usual method for BIC calculation is
 SSE = sum((ydata - func2(xdata,Hubble))**2)
 log_SSE = math.log(e,SSE)
@@ -116,7 +110,7 @@ for axis in ['top','bottom','left','right']:
     ax.spines[axis].set_linewidth(3)
     ax.tick_params(width=3)
 plt.xlabel("Redshift z", fontsize=18)
-plt.ylabel("$\mu$ (distance mag)", fontsize=18)
+plt.ylabel("$\mu$ (5*log$_{10}$(distance)+25)", fontsize=16)
 plt.rc('xtick', labelsize=14) 
 plt.rc('ytick', labelsize=14)
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 5)
@@ -133,7 +127,6 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
 print("And reduced goodness of fit, according to astronomers, \u03C7\u00b2 estimate: ", newxsqrded)
-#print("And common reduced goodness of fit \u03C7\u00b2 estimate: ", normxsqrd)
 print("The BIC estimate is: ",rBIC)
 print()
 
