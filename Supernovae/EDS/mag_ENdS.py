@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jul 29 17:53:20 2022
-
 @author: Mike
 
 This curve_fit regression routine of Python scipy, uses the mag vs redshift, z, data from 
@@ -13,7 +12,7 @@ a universe with flat geometry. This model is reviewed in Yershov, V.N. 2023, Uni
 The corrected version of his model is used here with the Python curve_fit regression routine.
 """
 print()
-print("This is our magENdS model, a version of the Einstein-DeSitter model of cosmology.")
+print("This is our magENDS model, a version of the Einstein-DeSitter model of cosmology.")
 
 # import the data file and the Python 3 libraries
 import numpy as np
@@ -37,7 +36,7 @@ ydata = exampledata[:,2]
 error = exampledata[:,3]
 
 # initial guess for the normalized matter density, O_m
-O_m = 0.02
+O_m = 0.10
 
 # where t is the "dummy" variable during integration
 def integr(x,O_m):
@@ -76,23 +75,14 @@ SD_Hu, SD_O_m = perr
 rSD_Hu = round(SD_Hu,2)
 rSD_O_m = round(SD_O_m,3)
 
-# normalised chisquar is calculated for 1702 data pairs with P the parameter count (2) as
+# normalised chisquar is calculated for 1701 data pairs with P the parameter count (2) as
 P=2
-N=1702
+N=1701
 e=2.71828183
 
 #Calculate the reduced chi^2 according to astronomers
 newxsqrd = sum(((ydata - func4(xdata,ans_Hu,ans_O_m))**2)/(error**2))
 newxsqrded = np.round(newxsqrd/(N-P),2)
-"""
-#Calculate the reduced chi^2 as commonly done
-xsqrd = sum(((ydata - func4(xdata,ans_Hu,ans_O_m))**2)/func4(xdata,ans_Hu,ans_O_m))
-normxsqrd = np.round(xsqrd/(N-P),5)
-"""
-#The BIC value is calculated as 
-SSE = sum((ydata - func4(xdata,ans_Hu,ans_O_m))**2)
-alt_BIC = N*math.log(e,SSE/N) + P*math.log(e,N)
-normalt_BIC = round(alt_BIC,2)
 
 #The usual method for BIC calculation is
 SSE = sum((ydata - func4(xdata,ans_Hu,ans_O_m))**2)
@@ -105,12 +95,7 @@ residuals = ydata - func4(xdata,ans_Hu,ans_O_m)
 ss_res = np.sum(residuals**2)
 ss_tot = np.sum((ydata-np.mean(ydata))**2)
 
-#r squared calculation
-r_squared = 1 - (ss_res/ss_tot)
-r2 = round(r_squared,4)
-r2adjusted = round(1-(((1-r2)*(len(ydata)-1))/(len(ydata)-P-1)),3)
-
-#easy routine for calculating r squared
+#routine for calculating r squared
 ycalc = func4(xdata,ans_Hu,ans_O_m)
 R_sqrd = r2_score(ydata, ycalc)
 R_square = round(R_sqrd,4)
@@ -138,9 +123,9 @@ for axis in ['top','bottom','left','right']:
     ax.spines[axis].set_linewidth(3)
     ax.tick_params(width=3)
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 4)
-plt.plot(xdata, func4(xdata,ans_Hu,ans_O_m), color = "green", label = "magENdS model")
+plt.plot(xdata, ycalc, color = "green", label = "magENDS model")
 plt.xlabel("Redshift, z", fontsize = 18)
-plt.ylabel("$\mu$ (distance mag)", fontsize = 18)
+plt.ylabel("$\mu$ (log$_{10}$(distance)+25)", fontsize = 18)
 plt.legend(loc='best', fancybox=True, shadow=False)
 
 #print results
@@ -149,13 +134,12 @@ print("The calculated Hubble constant and S.D. are: ", rans_Hu, ",",rSD_Hu)
 print("The calculated normalised matter density and S.D. are: ",rans_O_m, ",",rSD_O_m )
 print("Note that values for \u03A9k and \u03A9\u039B cannot be calculated with this model.")
 print()
-print('The r\u00b2 is:', R_square)
+print('The r\u00b2 is:', R_sqrd)
 print('The weighted F-statistic is:', rFstat)
 print("The reduced goodness of fit, as per astronomers, \u03C7\u00b2 is: ", newxsqrded)
-#print("The reduced goodness of fit, as commonly done, \u03C7\u00b2 is: ", normxsqrd)
 print("The BIC estimate is: ",rBIC)
 print()
 
 #commands to save plots in two different formats
-fig.savefig("magENdS.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
-fig.savefig("magENdS.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
+fig.savefig("magENDS.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
+fig.savefig("magENDS.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
