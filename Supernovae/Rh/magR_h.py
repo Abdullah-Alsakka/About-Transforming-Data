@@ -118,7 +118,7 @@ for axis in ['top','bottom','left','right']:
     ax.spines[axis].set_linewidth(3)
     ax.tick_params(width=3)
 plt.xlabel("Redshift z", fontsize=18)
-plt.ylabel("$\mu$ (distance mag, no units)", fontsize=18)
+plt.ylabel("$\mu$ (5*log$_{10}$(distance)+5)", fontsize=18)
 plt.rc('xtick', labelsize=14) 
 plt.rc('ytick', labelsize=14)
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 5)
