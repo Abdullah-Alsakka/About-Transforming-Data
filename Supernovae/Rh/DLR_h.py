@@ -10,7 +10,7 @@ vs expansion factor, from Brout et al. 2022, 'The Pantheon+
 Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. 
 The model selected is the Melia 2012 solution, with only one 
 parameter, the Hubble constant. No estimation is possible 
-for the matter density nor dark energy nor space contributions.
+for the matter density, dark energy nor space contributions.
 """
 print()
 print("This is the R_h modeled using distance mag data as") 
