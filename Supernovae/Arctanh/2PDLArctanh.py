@@ -2,9 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
 @author: Mike
-print()
+
 This curve_fit regression routine of Python scipy, uses the 'distance mag' data, 
 converted to luminosity distances, D_L, vs expansion factor, from Brout et al. 2022,
 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110.
@@ -24,7 +23,6 @@ import matplotlib.pyplot as plt
 import math
 from sklearn.metrics import r2_score
 from astropy.stats.info_theory import bayesian_info_criterion
-
 
 # open data file selecting the distance, distance standard deviation and recession velocity columns
 with open("DATA2B.csv","r") as i:
@@ -59,7 +57,7 @@ ans_b, ans_c = params
 rans_b = round(ans_b,2)
 rans_c = round(ans_c,10)
 
-# evaluate and plot the function
+# evaluate the function for the plot
 funcdata = func(xdata,ans_b,ans_c)
 
 # extracting the S.D. of both above values
@@ -76,11 +74,7 @@ e = 2.718281
 #Calculate the chi^2 according to astronomers
 newxsqrd = sum(((ydata[1:-1] - func(xdata,ans_b,ans_c)[1:-1])**2)/(error[1:-1]**2))
 newxsqrded = round(newxsqrd/(N-P),2)
-"""
-# estimating the goodness of fit in the more common manner
-chisq = sum((ydata[1:-1] - func(xdata,ans_b,ans_c)[1:-1])**2/func(xdata,ans_b,ans_c)[1:-1])
-normchisquar = round((chisq/(N-P)),2) #rounded to 2 digits
-"""
+
 #The usual method for BIC calculation is
 SSE = sum((ydata - func(xdata,ans_b,ans_c))**2)
 log_SSE = math.log(e,SSE)
@@ -134,7 +128,6 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighed F-statistic is:', rFstat)
 print("The reduced goodness of fit, according to astronomers, \u03C7\u00b2 is: ", newxsqrded)
-#print("The reduced goodness of fit in the more common manner \u03C7\u00b2 is: ", normchisquar)
 print("The estimate for BIC is: ",rBIC)
 print()
 
