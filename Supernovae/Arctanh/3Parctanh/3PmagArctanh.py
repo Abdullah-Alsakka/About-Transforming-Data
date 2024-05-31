@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
 @author: Mike
 
 print("This curve_fit regression routine of Python scipy, uses the distance mag (\mu)
@@ -11,7 +10,6 @@ Constraints' Astrophys. J. vol. 938, 110. This is the arctanh, analytical soluti
 to the Friedmann-Lemaitre-Roberston-Walker (FLRW) model with three parameters, 
 the Hubble constant, Hu, the normalised matter density, O_m and the space parameter,
  O_k. No estimation is possible for dark energy.")
-
 """
 
 # import data and Python 3 library files
@@ -71,7 +69,7 @@ rans_bSD = round(ans_bSD,2)
 rans_cSD = round(ans_cSD,5)
 rans_dSD = round(ans_dSD,5)
 
-# normalised chisquar where P the parameter number (3) and N the number of data pairs (1701) as 
+# normalised chisquare where P the parameter number (3) and N the number of data pairs (1701) as 
 P=3
 N=1701
 e=2.718281828
