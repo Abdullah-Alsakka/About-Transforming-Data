@@ -3,9 +3,10 @@
 """
 Created on Wed Jun 15 17:41:24 2022
 @author: mike
+
 This curve_fit regression routine of Python scipy, uses the data, as distance mag vs redshift, z, 
 from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 
-110. The model selected is the Einstein-DeSitter solution, not the FLRW model. This model presents 
+110. The model selected is the Einstein-deSitter solution, not the FLRW model. This model presents 
 only one parameter, the Hubble constant. No estimation is possible for either the normalized matter 
 density, which is presumed to be close to 1, nor dark energy nor space geometry.")
 """
@@ -36,7 +37,7 @@ error = exampledata[:,3]
 # define the constant
 litesped = 299793
 
-# define the function, where Hu is the Hubble constant the only parameter
+# define the function, where Hu is the Hubble constant, the only parameter
 def func(x,Hu):
     return (litesped*(1+x)/Hu)*np.sinh(x/(1+x))
 
@@ -114,7 +115,6 @@ plt.ylabel("$\mu$ (5*log$_{10}$(distance)+25)", fontsize=16)
 plt.rc('xtick', labelsize=14) 
 plt.rc('ytick', labelsize=14)
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 5)
-#plt.title("magE-DS model, mag vs. redshift data", fontsize = 18)
 plt.plot(xdata, funcdata, color = "green", label = "magE-DS model")
 plt.legend(loc='best', fancybox=True, shadow=False)
 plt.show()
@@ -122,7 +122,7 @@ plt.show()
 #print results
 print("The estimated Hubble constant is: ", normHub)
 print("The S.D. of the Hubble constant is ", normError)
-print("Note that values for \u03A9_m and \u03A9_k and \u03A9_\u039B cannot be calculated with this model.")
+print("Note that values for \u03A9_m and \u03A9_k and \u03A9_\u039B cannot be estimated with this model.")
 print()
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
