@@ -2,17 +2,14 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
 @author: Mike
-
+"""
 print("This curve_fit regression routine of Python scipy, uses the distance mag (\mu)
 vs redshift (z) data from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological 
 Constraints' Astrophys. J. vol. 938, 110. This is the arctanh, analytical solution 
 to the Friedmann-Lemaitre-Roberston-Walker (FLRW) model with three parameters, 
 the Hubble constant, Hu, the normalised matter density, O_m and the space parameter,
  O_k. No estimation is possible for dark energy.")
-
-"""
 
 # import data and Python 3 library files
 import numpy as np
@@ -49,13 +46,13 @@ def func2(x,b,c,d):
     return 5*np.log10(func(x,b,c,d)) + 25
 
 # the initial guesses of the model parameters
-p0=[70.0,0.001, 0.999]
+p0=[70.0,0.0001, 0.999]
 
 # specify the constant speed of light
 litesped = 299793
 
 # curve fit the model to the data, the bnds are the lower and upper bounds for the two parameters
-bnds = ([50.0, 0.00001, 0.00001],[80.0,1.0,1.0])
+bnds = ([60.0, 0.00001, 0.00001],[80.0,1.0,1.0])
 params,pcov = curve_fit(func2,xdata,ydata, p0, bounds = bnds, sigma = error, absolute_sigma = False)
 
 # extracting the two parameter values and rounding the values
@@ -98,7 +95,7 @@ residuals = ydata - func2(xdata,ans_b,ans_c,ans_d)
 ss_res = np.sum(residuals**2)
 ss_tot = np.sum((ydata-np.mean(ydata))**2)
 
-#easy routine for calculating r squared
+#routine for calculating r squared
 ycalc = func2(xdata,ans_b,ans_c,ans_d)
 R_sqrd = r2_score(ydata, ycalc)
 R_square = round(R_sqrd,4)
@@ -126,7 +123,7 @@ for axis in ['top','bottom','left','right']:
     ax.tick_params(width=3)
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 4)
 plt.xlabel("Redshift z", fontsize = 18)
-plt.ylabel("\u03bc (distance mag, no units)", fontsize = 16)
+plt.ylabel("\u03bc (5log$_{10}$(distance)+25)", fontsize = 16)
 plt.plot(xdata, func2(xdata,ans_b,ans_c,ans_d), color = "green", label = "3PmagArctanh model")
 plt.legend(loc='best', fancybox=True, shadow=False)
 plt.show()
