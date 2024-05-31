@@ -10,7 +10,7 @@ Astrophys. J. vol. 938, 110. This is the arctanh, analytical solution to the
 Friedmann-Lemaitre-Roberston-Walker (FLRW) model with two parameters, the 
 Hubble constant, Hu and the normalised matter density, O_m. No estimation is
 possible for \Omega_L, the normalised cosmological constant (dark energy) but O_k, 
-the normlaised contribution from space is estimated, this is the remainder.
+the normalised contribution from space is estimated, this is the remainder.
 """
 
 print()
@@ -25,7 +25,6 @@ from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
 from astropy.stats.info_theory import bayesian_info_criterion
-
 
 # open data file
 with open("DATA.csv","r") as i:
@@ -44,7 +43,7 @@ error = exampledata[:,3]
 def func(x,b,c):
     return (((litesped*(1+x))/(b*np.sqrt(np.abs(1-c))))*np.sinh(2*(np.arctanh(np.sqrt(np.abs(1-c)))-np.arctanh(np.sqrt(np.abs(1-c))/np.sqrt(((c*(1+x))+ (1-c)))))))
 
-# log transformation is reuired for use with distance mag and redshift data.
+# log transformation is required for use with distance mag and redshift data.
 def func2(x,b,c):
     return 5*np.log10(func(x,b,c)) + 25
 
@@ -77,11 +76,11 @@ e = 2.718281
 #Calculate the chi^2 according to astronomers
 newxsqrd = sum(((ydata - func2(xdata,ans_b,ans_c))**2)/error**2)
 newxsqrded = np.round(newxsqrd/(N-P),2)
-
+"""
 # estimating the goodness of fit in the common manner
 chisq = sum(((ydata - func2(xdata,ans_b,ans_c))**2)/func2(xdata,ans_b,ans_c))
 normchisquar = round((chisq/(N-P)),5) #rounded to 2 digits
-
+"""
 #Calculation of the weighted F-statistic
 SSEw = sum((1/error)*(ydata - func2(xdata,ans_b,ans_c))**2)
 yAve = sum(ydata)/N
@@ -89,7 +88,6 @@ SSM = sum((1/error)*(ydata - yAve)**2)
 
 MSR = (SSM - SSEw)/(P)
 MSE = SSEw/(N-P)
-
 Fstat = MSR/MSE
 rFstat = round(Fstat,1)
 
@@ -104,7 +102,7 @@ residuals = ydata - func2(xdata,ans_b,ans_c)
 ss_res = np.sum(residuals**2)
 ss_tot = np.sum((ydata-np.mean(ydata))**2)
 
-#easy routine for calculating r squared
+#routine for calculating r squared
 ycalc = func2(xdata,ans_b,ans_c)
 R_sqrd = r2_score(ydata, ycalc)
 R_square = round(R_sqrd,4)
@@ -132,7 +130,7 @@ for axis in ['top','bottom','left','right']:
     ax.tick_params(width=3)
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 4)
 plt.xlabel("Redshift z", fontsize = 18)
-plt.ylabel("\u03bc (distance mag, no units)", fontsize = 16)
+plt.ylabel("\u03bc (LogDistance)", fontsize = 16)
 plt.plot(xdata, func2(xdata,ans_b,ans_c), color = "green", label = "magArctanh model")
 plt.legend(loc='best', fancybox=True, shadow=False)
 plt.show()
@@ -145,7 +143,7 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
 print("The reduced goodness of fit, according to astronomers, \u03C7\u00b2 is:", newxsqrded)
-print("The common reduced goodness of fit \u03C7\u00b2 is:", normchisquar)
+#print("The common reduced goodness of fit \u03C7\u00b2 is:", normchisquar)
 print("The BIC estimate is:",rBIC)
 print()
 
