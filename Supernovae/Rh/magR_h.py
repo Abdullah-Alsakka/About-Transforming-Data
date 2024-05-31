@@ -8,8 +8,7 @@ This curve_fit regression routine of Python scipy, uses the data, as mag vs reds
 from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. 
 vol. 938, 110. The model selected is the Melia 2012 solution, not exactly the Freidmann-
 Lemaitre-Robertson-Walker (FLRW) model. This model presents only one parameter, the Hubble 
-constant. No estimation is possible for either the normalized matter density, which is 
-presumed to be about 0, nor dark energy.")
+constant. No estimation is possible for either the normalized matter density nor dark energy.")
 """
 print()
 print("This is the R_h modeled using distance mag data as ")
