@@ -42,7 +42,7 @@ error = exampledata[:,3]
 # define the function - the model to be examined, where x represents the independent
 # variable; b (Hubble constant), c (matter density), d spacetime density as free parameters.
 def func(x,b,c,d):
-    return (litesped*(1+x)/(b*np.sqrt(abs(d))))*np.sinh(2*(np.arctanh(np.sqrt(abs(d)))-np.arctanh(np.sqrt(abs(d))/np.sqrt((c/(1/(1+x)))+ (d)))))
+    return (litesped*(1+x)/(b*np.sqrt(abs(d))))*np.sinh(2*(np.arctanh(np.sqrt(abs(d)))-np.arctanh(np.sqrt(abs(d))/np.sqrt((c*(1+x))+ (d)))))
 
 #Applying the log transformation allowing use of distance mag and redshift data.
 def func2(x,b,c,d):
