@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun 15 17:41:24 2022
-
 @author: Mike
+
 This curve_fit regression routine of Python scipy, uses the distance mag data, converted to 
 luminosity distances, D_L, vs expansion factor, from Brout et al. 2022, 'The Pantheon+ Analysis: 
-Cosmological Constraints' Astrophys. J. vol. 938, 110. The model selected here is the Einstein-DeSitter 
-solution with two parameters, the Hubble constant and the normalised space density. 
+Cosmological Constraints' Astrophys. J. vol. 938, 110. The model selected here is a version of the 
+Einstein-DeSitter solution with two parameters, the Hubble constant and the normalised space density. 
 No estimate of matter density is possible.
 """
 # import data and library files
@@ -20,7 +20,7 @@ from sklearn.metrics import r2_score
 from astropy.stats.info_theory import bayesian_info_criterion
 
 print("This is our \u039BE-DS model, a version of the Einstein-DeSitter model of cosmology.")
-print("This version presumes elliptically curved space geometry.")
+print("This version presumes some elliptically curved space geometry.")
 
 # open data file selecting the distance, distance standard deviation and recession velocity columns
 with open("DATA2B.csv","r") as i:
@@ -33,23 +33,24 @@ xdata = exampledata[:,1]
 ydata = exampledata[:,4]
 error = exampledata[:,7]
 
-#define the function - the model to be examined, where x represents the independent variable values and b (Hubble constant) and c (normalized spacetime) are the parameters to be estimated.
+# Define the function - the model to be examined, where x represents the independent variable
+# and b (Hubble constant) and c (normalized spacetime) are the parameters to be estimated.
 def func(x,b,c):
     return ((litesped/(b*x*np.sqrt(c)))*np.sinh(np.arctanh(np.sqrt(c)/(np.sqrt((1-c)*x**2)+c))-np.arctanh(np.sqrt(c))))
 
 #The initial guesses of the model parameters
-p0=[75.0,0.9]
+p0=[70.0,0.9]
 
 # define the lightspeed constant
 litesped = 299793
 
-# curve fit model to the data, where the first pair are the lower bounds and the second pair the upper bounds. Note how the small lower limit is required for the matter density. 
-bnds = ([50.0, 0.0001],[80.0,1.0])
+# curve fit model to the data, where the first pair are the lower bounds and the second pair the upper bounds.
+bnds = ([60.0, 0.0001],[80.0,1.0])
 
 # when absolute_sigma = False, the regression routine "normalizes" the standard deviations (errors)
 params, pcov = curve_fit(func,xdata,ydata, p0, bounds = bnds, sigma = error, absolute_sigma = False)
 
-# extracting the Hubble constant, normalized matter density and rounding the values
+# extracting the Hubble constant, normalized space density and rounding the values
 ans_b, ans_c = params
 rans_b = round(ans_b,2)
 rans_c = round(ans_c,5)
@@ -65,8 +66,8 @@ ans_b_SD, ans_c_SD = perr
 rans_b_SD = round(ans_b_SD,2)
 rans_c_SD = round(ans_c_SD,5)
 
-# normalised chisquar where P is the number of parameters (2), N the number of data pairs and 
-#normchisquar is calculated from 
+# normalised chisquared where P is the number of parameters (2), N the number of data pairs and 
+# normchisquar is calculated from 
 P=2
 N=1702
 e = 2.718281
@@ -74,11 +75,7 @@ e = 2.718281
 #Calculate the chi^2 according to astronomers
 newxsqrd = sum(((ydata[1:-1] - func(xdata,ans_b,ans_c)[1:-1])**2)/(error[1:-1]**2))
 newxsqrded = round(newxsqrd/(N-P),2)
-"""
-# estimating the goodness of fit in the more common manner
-chisq = sum((ydata[1:-1] - func(xdata,ans_b,ans_c)[1:-1])**2/func(xdata,ans_b,ans_c)[1:-1])
-normchisquar = round((chisq/(N-P)),2) #rounded to 2 digits
-"""
+
 #The usual method for BIC calculation is
 SSE = sum((ydata - func(xdata,ans_b,ans_c))**2)
 log_SSE = math.log(e,SSE)
@@ -133,7 +130,6 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
 print("The reduced goodness of fit, according to astronomers, \u03C7\u00b2 is: ", newxsqrded)
-#print("The reduced goodness of fit in the more common manner \u03C7\u00b2 is: ", normchisquar)
 print("The BIC estimate is: ",rBIC)
 print()
 
