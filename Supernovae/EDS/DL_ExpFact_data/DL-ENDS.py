@@ -2,17 +2,16 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jul 29 17:53:20 2022
-
 @author: Mike
+
 This curve_fit regression routine of Python scipy, uses data from 
 Brout et al. 2022,'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 
 110 after calculations of the D_L and recession velocities. The measured distances, D_L, 
 are plotted vs. the recession velocity (1/1+z). "," This variation of the Einstein-Newcomb-
-Desitter model has two parameters: Hubble constant, Hu, "," normalised matter density, O_m; 
-in a universe with Euclidean geometry. This model is reviewed in Yershov, V.N. 2023, Universe, 
+deSitter model has two parameters: Hubble constant, Hu, and normalised matter density, O_m; 
+in a universe with apparant Euclidean geometry. This model is reviewed in Yershov, V.N. 2023, Universe, 
 vol. 9(5), 204. The corrected version of his model is used here with the Python curve_fit 
 regression routine.
-
 """
 
 # import the data file and the Python 3 libraries
@@ -25,7 +24,7 @@ import math
 from sklearn.metrics import r2_score
 from astropy.stats.info_theory import bayesian_info_criterion
 
-print("This is the D_L_ENdS model, a version of the Einstein-Newcomb-DeSitter model of cosmology.")
+print("This is the D_L-ENDS model, a version of the Einstein-Newcomb-deSitter model of cosmology.")
 
 # open data file
 with open("DATA2B.csv","r") as i:
@@ -58,7 +57,7 @@ def func3(x,Hu,O_m):
     return (litesped/(x*Hu)*(func2(x,O_m)))
 
 # allowed range for the two parameters
-bnds=([40,0.001],[80,1.0])
+bnds=([60,0.001],[80,1.0])
 
 # fitting the model to the data, note that when choosing absolute_sigma = False the standard deviations (error) are normalized for use in weighted regression.
 params, pcov = curve_fit(func3, xdata, ydata,p0 = init_guess, bounds = bnds, sigma = error, absolute_sigma = False)
@@ -82,11 +81,7 @@ e=2.71828183
 #Calculate the chi^2 according to astronomers
 newxsqrd = sum(((ydata[1:-1] - func3(xdata,ans_Hu,ans_O_m)[1:-1])**2)/(error[1:-1]**2))
 newxsqrded = round(newxsqrd/(N-P),2)
-"""
-# estimating the goodness of fit in the more common manner
-chisq = sum((ydata[1:-1] - func3(xdata,ans_Hu,ans_O_m)[1:-1])**2/func3(xdata,ans_Hu,ans_O_m)[1:-1])
-normchisquar = round((chisq/(N-P)),2) #rounded to 2 digits
-"""
+
 #The usual method for BIC calculation is
 SSE = sum((ydata - func3(xdata,ans_Hu,ans_O_m))**2)
 log_SSE = math.log(e,SSE)
@@ -140,7 +135,6 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
 print("The reduced goodness of fit, as per astronomers, \u03C7\u00b2 is: ", newxsqrded)
-#print("The reduced goodness of fit, as commonly done, \u03C7\u00b2 is: ", normchisquar)
 print("The BIC estimate is: ",rBIC)
 print()
 
