@@ -5,11 +5,12 @@ Created on Fri Jul 29 17:53:20 2022
 @author: Mike
 
 This curve_fit regression routine of Python scipy, uses the distance mag (\mu) vs redshift (z) data from 
-Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. 
+Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' ApJ vol. 938, 110. 
 This variation of the standard (\Omega_{\Lambda} LCDM) model has two parameters: Hubble constant, Hu, 
 normalised matter density, O_m; the cosmological constant, O_L, is the remainder of 
 information in a universe with presumed Euclidean space geometry. This is sometimes termed the standard 
-model of cosmology, Riess et al. and previous articles (Riess et al. ApJ 1998).
+model of cosmology, Riess et al. 2004, ApJ, vol. 607, p. 665-687 and Riess et al. 2022, ApJ Lett, vol. 934, 
+p. L7 
 """
 print()
 print("This is the current standard model presuming Euclidean space geometry, sinn(x) = x.")
