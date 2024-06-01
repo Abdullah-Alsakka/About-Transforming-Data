@@ -37,11 +37,7 @@ xdata = exampledata[:,1]
 ydata = exampledata[:,4]
 error = exampledata[:,7]
 
-#Model function
-O_m = 0.30 #initial guess for matter density
-O_L = 0.60 #initial guess for Omega_k
-
-# where t is the "dummy" variable for integration
+#Model function where t is the "dummy" variable for integration
 
 def integr(x,O_m,O_k):
     return intg.quad(lambda t: 1/(t*(np.sqrt((O_m/t)+((1-O_m-O_k)*(t**2))+(O_k)))), x, 1)[0]
@@ -85,11 +81,7 @@ e = 2.71828183
 #Calculate the chi^2 according to astronomers
 newxsqrd = sum(((ydata[1:-1] - func3(xdata,ans_Hu,ans_O_m,ans_O_k)[1:-1])**2)/(error[1:-1]**2))
 newxsqrded = round(newxsqrd/(N-P),2) #rounded to 2 digits
-"""
-# estimating the goodness of fit in the common manner
-chisq = sum((ydata[1:-1] - func3(xdata,ans_Hu,ans_O_m,ans_O_k)[1:-1])**2/func3(xdata,ans_Hu,ans_O_m,ans_O_k)[1:-1])
-normchisquar = round((chisq/(N-P)),2) #rounded to 2 digits
-"""
+
 #The usual method for BIC calculation is
 SSE = sum((ydata - func3(xdata,ans_Hu,ans_O_m,ans_O_k))**2)
 log_SSE = math.log(e,SSE)
@@ -147,7 +139,6 @@ print()
 print('The r\u00b2 is:', R_square)
 print('The weighted F-statistic is:', rFstat)
 print("The reduced goodness of fit, according to astronomers, \u03C7\u00b2, is: ", newxsqrded)
-#print("The common reduced goodness of fit, \u03C7\u00b2, is: ", normchisquar)
 print("The BIC estimate is: ",rBIC)
 print()
 
