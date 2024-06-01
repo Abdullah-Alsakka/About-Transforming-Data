@@ -7,13 +7,13 @@ Created on Wed Jun 15 17:41:24 2022
 
 This curve_fit regression routine of Python scipy, uses the data, as luminosity distance vs. 
 recession velocity (1/1+z), from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints'
- Astrophys. J. vol. 938, 110. The model selected is the E-DS (from Oeztas, Smith, Paul, 2008). 
+ Astrophys. J. vol. 938, 110. The model selected is the E-DS (from Oeztas, Smith, Paul, Int J Theor Phys 2008). 
 This model presents only one parameter, the Hubble constant. No estimation is possible for either 
 the normalized matter density, which is presumed to be nearly 0, nor dark energy nor space density.
 """
 print()
 print("This is our E-DS model, a version of the Einstein-DeSitter model of cosmology. It is not possible" )
-print("to estimate the matter density nor dark energy.")
+print("to estimate the matter density, space density nor dark energy.")
 print()
 # import the data and library files
 import numpy as np
@@ -116,7 +116,7 @@ plt.ylabel("Luminosity distance (Mpc)", fontsize=18)
 plt.rc('xtick', labelsize=14) 
 plt.rc('ytick', labelsize=14)
 plt.errorbar(xdata, ydata, yerr=error, fmt='.k', capsize = 5)
-#plt.title("magE-DS model, mag vs. redshift data", fontsize = 18)
+#plt.title("$D_L$E-DS model, mag vs. redshift data", fontsize = 18)
 plt.plot(xdata, funcdata, color = "green", label = "$D_L$E-DS model")
 plt.legend(loc='best', fancybox=True, shadow=False)
 plt.show()
@@ -133,7 +133,6 @@ print("The reduced goodness of fit, according to astronomers, \u03C7\u00b2 estim
 print("The common reduced goodness of fit \u03C7\u00b2 estimate: ", normchisquar)
 print("The BIC estimate is: ",rBIC)
 print()
-
 
 #Routines to save figues in eps and pdf formats
 fig.savefig("DL-E-DS.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
