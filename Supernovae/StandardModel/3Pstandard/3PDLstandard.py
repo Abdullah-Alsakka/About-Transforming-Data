@@ -44,12 +44,7 @@ xdata = exampledata[:,1]
 ydata = exampledata[:,4]
 error = exampledata[:,7]
 
-#Model function
-"""
-O_m = 0.30 #initial guess for matter density
-O_L = 0.60 #initial guess for Omega_k
-"""
-# where t is the "dummy" variable for integration
+#Model function where t is the "dummy" variable for integration
 def integr(x,O_m,O_L):
     return intg.quad(lambda t: 1/(t*(np.sqrt((O_m/t)+((O_L)*(t**2))+(1-O_m-O_L)))), x, 1)[0]
     
