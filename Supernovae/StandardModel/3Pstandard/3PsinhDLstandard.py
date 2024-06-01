@@ -37,8 +37,6 @@ ydata = exampledata[:,4]
 error = exampledata[:,7]
 
 #Model function
-O_m = 0.30 #initial guess for matter density
-
 def integr(x, O_m, O_L):
     return intg.quad(lambda t: 1/(t*(np.sqrt((O_m/t)+((O_L)*t**2)+(1-O_m-O_L)))), x, 1)[0]
     
