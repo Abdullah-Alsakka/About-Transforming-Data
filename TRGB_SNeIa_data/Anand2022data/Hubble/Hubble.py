@@ -29,7 +29,7 @@ from sklearn.metrics import r2_score
 from astropy.stats.info_theory import bayesian_info_criterion
 
 #open data file
-#with open("TRGB_data_Freedman_2019.csv","r") as i:
+#with open("TRGB_data_ANAND_2022.csv","r") as i:
 #    rawdata = list(csv.reader(i, delimiter = ","))
     
 # or open another data file as
@@ -78,7 +78,7 @@ funcdata2 = func(xdata,Hubble,intercept)
 # calculate the statistical fitness, using N=19 as the number of data pairs 
 # plus the intercept and P=1 as the parameter count
 P=1
-N=19
+N=17
 e = 2.718281
 
 #Calculate the chi^2 according to astronomers
