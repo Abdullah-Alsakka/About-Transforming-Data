@@ -78,7 +78,7 @@ funcdata2 = func(xdata,Hubble,intercept)
 # calculate the statistical fitness, using N=19 as the number of data pairs 
 # plus the intercept and P=1 as the parameter count
 P=1
-N=17
+N=19
 e = 2.718281
 
 #Calculate the chi^2 according to astronomers
