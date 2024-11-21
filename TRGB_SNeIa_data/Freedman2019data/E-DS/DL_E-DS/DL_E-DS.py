@@ -26,7 +26,7 @@ from sklearn.metrics import r2_score
 from astropy.stats.info_theory import bayesian_info_criterion
 
 # open data file and extract the data
-with open("TRGB_D_L_DATA.csv","r") as i:
+with open("TRGB_D_L_DATAB.csv","r") as i:
     rawdata = list(csv.reader(i, delimiter = ","))
     
 # ignore the top row    
