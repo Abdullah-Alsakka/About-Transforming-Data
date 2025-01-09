@@ -50,7 +50,7 @@ def func(x,Hu,intercept):
 # The intial guess for the Hubble constant and intercept
 p0 = [65.0,0.01]
 
-# evaluate the function where bnds are the upper and lower limit allowed for Hu and the intercept
+# evaluate the function where bnds (bounds) are the upper and lower limit allowed for Hu and the intercept
 bnds = ([60.0,0.000001],[95.0,1.0])
 
 # curve fit model to the data where absolute_sigma = False means the standard deviations are normalized
@@ -63,7 +63,7 @@ Error,intererror = perr
 
 #funcdata = func(xdata,p0)
 
-# rounding the above above values to 2 decimal places
+# rounding the above above values to 2 decimal places and the intercept error (intererror) to 5 digits
 normHub = np.round(Hubble,2)
 normError = np.round(Error,2)
 normInter = np.round(intercept,8)
@@ -72,7 +72,7 @@ normInterError = np.round(intererror,5)
 #evaluate the function using the best fit parameter
 funcdata2 = func(xdata,Hubble,intercept)
 
-# calculate the statistical fitness, using N=19 as the number of data pairs 
+# calculate the statistical fitness, using N=19 as the number of data pairs (the observer stands at 0,0 for data pair #19) 
 # plus the intercept and P=1 as the parameter count
 P=1
 N=19
