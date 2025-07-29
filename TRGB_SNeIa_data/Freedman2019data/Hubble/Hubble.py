@@ -45,7 +45,7 @@ litesped = 299792
 
 # define the function, where Hu is the Hubble constant, the only parameter
 def func(x,Hu,intercept):
-    return (litesped*x/Hu)+intercept
+    return (x/Hu)+intercept
 
 # The intial guess for the Hubble constant and intercept
 p0 = [65.0,0.01]
