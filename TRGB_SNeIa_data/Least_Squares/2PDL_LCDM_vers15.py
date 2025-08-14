@@ -4,10 +4,18 @@
 Created on Mon Aug  8 12:47:21 2022
 
 @author: mike
+
+
+
+This curve_fit regression routine of Python scipy, uses the data, as D_L vs redshift (z), from Brout et al. 2022,
+The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110 and the 18 TRGB data of W. Freedman 2019
+'The Carnegie-Chicago Hubble Program. VIII.' vol. 882, 34. The model used is the flat, LCDM integrated solution,
+the standard model of cosmology, with two parameters, the Hubble constant, Hu, and the normalized matter density
+\u03A9m,O_m). The value for the normalized cosmologial constant can be calculated from these results.
+The least_squares Python 3 regression is used specifying the loss='cauchy' or linear robust function.
+Integration is necessary because the FLRW model cannot be solved exactly with D_L vs. redshift z data.
 """
 print()
-print("This curve_fit regression routine of Python scipy, uses the data, as D_L vs redshift (z), from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110 and the 18 TRGB data of W. Freedman 2019 'The Carnegie-Chicago Hubble Program. VIII.' vol. 882, 34. The model used is the flat, LCDM integrated solution, the standard model of cosmology, with two parameters, the Hubble constant, Hu, and the normalized matter density (\u03A9m,O_m). The value for the normalized cosmologial constant can be calculated from these results. The least_squares Python 3 regression is used specifying the loss='cauchy' or linear robust function. Integration is necessary because the FLRW model cannot be solved exactly with D_L vs. redshift z data.")
-
 #import the necessary modules (libraries)
 import csv  #required to open the .csv file for reading
 import numpy as np
@@ -42,6 +50,7 @@ def func2(x,O_m):
 litesped = 299793
 
 # func1 translates the integrated values into the values useful for regression.
+# notice the np.sinh function is used here. This may be removed if wished.
 def func1(params, x, y):
     Hu = params[0] #to identify parameter #1
     O_m = params[1] #to identify parameter #2
