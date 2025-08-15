@@ -16,6 +16,7 @@ import csv
 import numpy as np
 from scipy.optimize import least_squares
 import matplotlib.pyplot as plt
+import math
 
 #open data file
 with open("DATAE.csv","r") as i:
@@ -30,6 +31,7 @@ errors = exampledata[:,7]
 litesped = 299793
 N=1720
 P=1
+e = 2.718281
 #Hu represents the Hubble constant params=[70] #Initial guess of the Hubble constant value. 
 #The Einstein-deSitter model is the right-hand term of the "residual" equation.
 def func1(params, x, y):
@@ -73,6 +75,7 @@ chisquar = np.round(chisq,2)
 normchisquar = np.round((chisquar/(N-1)),2)
 
 #The BIC value is calculated as; BIC from Bayesian Information Criteria
+SSE = sum((ydata-yfit1)**2)
 alt_BIC = math.log(e,(SSE/N)) + P*math.log(e,N)
 alt_BIC = round(alt_BIC,2)
 
