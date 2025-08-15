@@ -76,7 +76,8 @@ StndDev, = perr
 #We write a comma after StndDev, because we are extracting this value from tuple. Below is just rounding off the value of the standard deviation to something one might believe to only 3 digits.
 normSD = round(StndDev,3)
 
-#calculate the statistical fitness, using 1720 as the number of data pairs and 1 as the degree of freedom (parameter count). Note the error values are of the SNe Ia distances.
+#calculate the statistical fitness, using 1720 as the number of data pairs and 1 as the degree of freedom (parameter count). 
+#Note the error values are of the SNe Ia distances.
 chisq = sum((ydata-yfit1)**2/(errors)**2)
 normchisquar = np.round((chisq/(N-P)),2)
 
@@ -115,7 +116,7 @@ plt.plot(x, yfit1, color="orange", label="R_h model")
 plt.xlabel('Redshift, z', fontsize = 18)
 plt.ylabel('Luminosity distance (Mpc)', fontsize = 16)
 plt.legend(loc='best', fancybox=True, shadow=False)
-#plt.title("$R_h$ model with $D_L$ vs. exp. fact. data", fontsize = 16)
+#plt.title("$R_h$ model with $D_L$ vs. redshift data", fontsize = 16)
 plt.show()
 
 print()
