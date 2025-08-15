@@ -117,7 +117,7 @@ plt.plot(x, yfit1, color="orange", label="Hubble model")
 plt.xlabel('Redshift, z', fontsize = 18)
 plt.ylabel('Luminosity distance (Mpc)', fontsize = 16)
 plt.legend(loc='best', fancybox=True, shadow=False)
-#plt.title("$R_h$ model with $D_L$ vs. exp. fact. data", fontsize = 16)
+plt.title("$R_h$ model: $D_L$ vs. redshift,z", fontsize = 16)
 plt.show()
 
 print()
