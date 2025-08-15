@@ -112,7 +112,7 @@ for axis in ['top','bottom','left','right']:
 plt.errorbar(x, ydata, yerr=errors, fmt='.k', capsize = 5)
 plt.plot(x, ydata, 'bo', label="SNe Ia data")
 plt.plot(x, yfit1, color="orange", label="R_h model")
-plt.xlabel('Expansion factor, \u03BE', fontsize = 18)
+plt.xlabel('Redshift, z', fontsize = 18)
 plt.ylabel('Luminosity distance (Mpc)', fontsize = 16)
 plt.legend(loc='best', fancybox=True, shadow=False)
 #plt.title("$R_h$ model with $D_L$ vs. exp. fact. data", fontsize = 16)
