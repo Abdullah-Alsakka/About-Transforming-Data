@@ -87,7 +87,7 @@ normchisquared = np.round((chisqed/(N-P)),2)
 
 #The value for BIC is calculated as
 SSE = sum((ydata-yfit1)**2)
-alt_BIC = N * math.log(e,(SSE/N)) + P*math.log(e,N)
+alt_BIC = math.log(e,(SSE/N)) + P*math.log(e,N)
 alt_BIC = round(alt_BIC,2)
 
 #Calculation of the weighted F-statistic
