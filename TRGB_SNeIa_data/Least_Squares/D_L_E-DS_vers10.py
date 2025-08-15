@@ -6,11 +6,11 @@ Created on Mon Aug  8 12:47:21 2022
 @author: mike
 
 
-This routine models the SNe Ia data, as D_L vs. z, of Scolnic, Brout et al. 2022, "The Pantheon+ Type Ia 
+This routine models the SNe Ia data, as D_L vs. z, of Brout et al. 2022, "The Pantheon+ Type Ia 
 Supernova Sample: The Full Dataset and Light-Curve Release", arXIV 2112.03863 and the TRGB data of 
-Freedman et al. 2019, "The Carnegie-Chicago Hubble Program. VIII." Apj vol. 882, 34. The model used is the Einstein-DeSitter model with only a single parameter, 
-the Hubble constant. The Python 3 least_squares robust regression routine is employed and 
-no estimate can be made for matter density.")
+Freedman et al. 2019, "The Carnegie-Chicago Hubble Program. VIII." Apj vol. 882, 34. The model used is the 
+Einstein-DeSitter model with only a single parameter, the Hubble constant. The Python 3 least_squares 
+robust regression routine is employed and no estimate can be made for matter density or dark energy.")
 """
 import csv
 import numpy as np
@@ -30,8 +30,8 @@ errors = exampledata[:,7]
 litesped = 299793
 N=1720
 P=1
-#Hu represents the Hubble constant
-params=[70] #Initial guess of the Hubble constant value. The Einstein-deSitter model is the right-hand term of the "residual" equation.
+#Hu represents the Hubble constant params=[70] #Initial guess of the Hubble constant value. 
+#The Einstein-deSitter model is the right-hand term of the "residual" equation.
 def func1(params, x, y):
     Hu = params[0] # params[1], params[2]
     residual = ydata-((litesped*(1+x)/(Hu))*np.sinh(x/(1+x)))
@@ -49,7 +49,6 @@ residuals = ydata - yfit1
 ss_res_lsq = np.sum(residuals**2)
 ss_tot_lsq = np.sum((ydata-np.mean(ydata))**2)
 
-#R squared
 #r_squared = 1 - (ss_res/ss_tot)
 r_squared_lsq = 1 - (ss_res_lsq/ss_tot_lsq)
 #r2 = round(r_squared,3)
@@ -71,8 +70,9 @@ chisquar = np.round(chisq,2)
 
 #normalised chisquar is calculated from the number of data pairs (1720) minus the number of free parameters (1). 
 normchisquar = np.round((chisquar/(N-1)),2)
+
 #The BIC value is calculated as; BIC from Bayesian Information Criteria
-BIC = 581 * np.log10(chisq/N) + 1*np.log10(N)
+BIC = 1720 * np.log10(chisq/N) + 1*np.log10(N)
 normBIC = round(BIC,2)
 
 #Calculation of the weighted F-statistic
