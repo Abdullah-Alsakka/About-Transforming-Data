@@ -114,7 +114,7 @@ print ('The r\u00b2 is calculated as:'+str(r2_lsq))
 #print("The \u03C7\u00b2 guesstimate is: ", chisquar)
 print("The reduced \u03C7\u00b2 guesstimate is: ", normchisquar)
 print("Reduced \u03C7\u00b2 = \u03C7\u00b2/(N-P), where N are the number of data pairs and P is the parameter count.")
-print("The guesstimate for BIC is: ", normBIC)
+print("The guesstimate for BIC is: ", alt_BIC)
 print("The value for the F-statistic is:" , rFstat )
 
 #Routines to save figues in eps and pdf formats
