@@ -125,7 +125,7 @@ plt.plot(x, ydata, 'bo', label="SNe Ia data")
 plt.plot(x, yfit1, color="orange", label="3PArctanh model")
 plt.xlabel('Redshift, z', fontsize = 18)
 plt.ylabel('Luminosity distance (Mpc)', fontsize = 16)
-plt.title("3P_Arctanh model, D_L vs. Exp. fact. data", fontsize = 18)
+plt.title("3P_Arctanh model, D_L vs. Redshift, z, data", fontsize = 18)
 plt.legend(loc='best', fancybox=True, shadow=False)
 plt.show()
 
