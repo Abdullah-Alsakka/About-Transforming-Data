@@ -37,6 +37,7 @@ def func1(params, x, y):
     residual = ydata-((litesped*(1+x)/(Hu))*np.sinh(x/(1+x)))
     return residual
 
+params=Hu
 #Application of the least_squares regression routine
 result2 = least_squares(func1, x0=params, jac='3-point',bounds=(50,100),method = 'trf', loss='linear', args=(x, ydata))
 Hu, = result2.x
