@@ -73,7 +73,7 @@ chisquar = np.round(chisq,2)
 normchisquar = np.round((chisquar/(N-1)),2)
 
 #The BIC value is calculated as; BIC from Bayesian Information Criteria
-BIC = 1720 * np.log10(chisq/N) + 1*np.log10(N)
+BIC = np.log10(chisq/N) + 1*np.log10(N)
 normBIC = round(BIC,2)
 
 #Calculation of the weighted F-statistic
