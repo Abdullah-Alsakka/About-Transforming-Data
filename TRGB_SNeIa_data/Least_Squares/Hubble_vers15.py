@@ -88,8 +88,8 @@ normchisquared = np.round((chisqed/(N-P)),2)
 
 #The value for BIC is calculated as
 SSE = sum((ydata-yfit1)**2)
-BIC = np.log10(chisq/N) + 1*np.log10(N)
-normBIC = round(BIC,2)
+alt_BIC = math.log(e,(SSE/N)) + P*math.log(e,N)
+alt_BIC = round(alt_BIC,2)
 
 #Calculation of the weighted F-statistic
 SSEw = sum((1/errors)*(residuals)**2)
@@ -127,7 +127,7 @@ print()
 print ('The r\u00b2_adj is:'+str(r2adjusted))
 print("The reduced goodness of fit as used by astronomers, \u03C7\u00b2, estimate is:", normchisquar)
 print("The reduced goodness of fit as normally used, \u03C7\u00b2, estimate is:", normchisquared)
-print("The BIC value is:", normBIC)
+print("The BIC value is:", alt_BIC)
 print("The estimate for the reduced F stat is: ", rFstat)
 print()
 print("There is no value for the cosmological constant in this solution")
