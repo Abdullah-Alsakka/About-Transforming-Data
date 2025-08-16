@@ -32,11 +32,11 @@ print("redshift (z) with sinn(x) = sinh(x) modelling elliptical space geometry."
 print()
 
 # open data file
-with open("TRGB_mag_DATAB.csv","r") as i:
+with open("TRGB_mag_dataB.csv","r") as i:
     rawdata = list(csv.reader(i, delimiter = ","))
     
 # ignore the first row which are strings    
-exampledata = np.array(rawdata[2:],dtype=float)
+exampledata = np.array(rawdata[1:],dtype=float)
 
 xdata = exampledata[:,0]
 ydata = exampledata[:,2]
@@ -52,7 +52,7 @@ def func2(x,b,c,d):
     return 5*np.log10(func(x,b,c,d)) + 25
 
 # the initial guesses of the model parameters
-p0=[70.0,0.001, 0.999]
+p0=[70.0,0.002, 0.995]
 
 # specify the constant speed of light
 litesped = 299793
