@@ -4,6 +4,10 @@
 Created on Wed Jun 15 17:41:24 2022
 @author: Mike
 
+This routine does not perform properly, probably because the parameters for the 
+matter density and spacetime do not properly behave. The matter density is 
+estimated much lower than the lower limit/bound.
+
 print("This curve_fit regression routine of Python scipy, uses the distance mag (\mu)
 vs redshift (z) data from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological 
 Constraints' Astrophys. J. vol. 938, 110 AND the TRGB data, from GS Anand et al. 
@@ -32,7 +36,7 @@ with open("TRGB_mag_DATAB.csv","r") as i:
     rawdata = list(csv.reader(i, delimiter = ","))
     
 # ignore the first row which are strings    
-exampledata = np.array(rawdata[1:],dtype=float)
+exampledata = np.array(rawdata[2:],dtype=float)
 
 xdata = exampledata[:,0]
 ydata = exampledata[:,2]
@@ -70,9 +74,9 @@ rans_bSD = round(ans_bSD,2)
 rans_cSD = round(ans_cSD,5)
 rans_dSD = round(ans_dSD,5)
 
-# normalised chisquare where P the parameter number (3) and N the number of data pairs (1701) as 
+# normalised chisquare where P the parameter number (3) and N the number of data pairs (1719) as 
 P=3
-N=1717
+N=1719
 e=2.718281828
 
 #Calculate the chi^2 according to astronomers
@@ -143,21 +147,5 @@ print()
 #Routines to save figues in eps and pdf formats
 fig.savefig("mag3PArctanh.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
 fig.savefig("mag3PArctanh.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
