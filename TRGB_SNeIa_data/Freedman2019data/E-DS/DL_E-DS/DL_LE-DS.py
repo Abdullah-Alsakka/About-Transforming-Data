@@ -77,7 +77,7 @@ rans_cSD = round(ans_cSD,5)
 
 # normalised chisquar where P is the number of parameters (2) and N the number of data pairs
 P=2
-N=1717
+N=1720
 e = 2.718281
 
 #Calculate the chi^2 according to astronomers
