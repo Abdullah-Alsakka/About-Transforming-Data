@@ -70,7 +70,7 @@ rans_bSD = round(ans_bSD,2)
 rans_cSD = round(ans_cSD,5)
 rans_dSD = round(ans_dSD,5)
 
-# normalised chisquare where P the parameter number (3) and N the number of data pairs (1701) as 
+# normalised chisquare where P the parameter number (3) and N the number of data pairs (1720) as 
 P=3
 N=1720
 e=2.718281828
@@ -143,21 +143,3 @@ print()
 #Routines to save figues in eps and pdf formats
 fig.savefig("DL3PArctanh.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
 fig.savefig("DL3PArctanh.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
