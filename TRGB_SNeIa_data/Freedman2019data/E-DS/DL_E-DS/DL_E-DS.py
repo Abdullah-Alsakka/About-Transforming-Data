@@ -122,6 +122,7 @@ plt.legend(loc='best', fancybox=True, shadow=False)
 plt.show()
 
 #print results
+print()
 print("The estimated Hubble constant is: ", normHub)
 print("The S.D. of the Hubble constant is ", normError)
 print("Note that values for \u03A9_m and \u03A9_k and \u03A9_\u039B cannot be estimated with this model.")
