@@ -15,7 +15,7 @@ is reviewed in Yershov, V.N. 2023, Universe, vol. 9(5), 204. The corrected versi
 is used here with the Python curve_fit regression routine.
 """
 print()
-print("This is our magENDS model, a version of the Einstein-DeSitter model of cosmology.")
+print("This is a version of the Einstein-DeSitter model of cosmology.")
 print("It is not possible to estimate the values for \u03A9k and \u03A9\u039B with this model.")
 
 # import the data file and the Python 3 libraries
@@ -78,7 +78,7 @@ SD_Hu, SD_O_m = perr
 rSD_Hu = round(SD_Hu,2)
 rSD_O_m = round(SD_O_m,3)
 
-# normalised chisquar is calculated for 1701 data pairs (N) with P the parameter count (2) as
+# normalised chisquar is calculated for 1720 data pairs (N) with P the parameter count (2) as
 P=2
 N=1720
 e=2.71828183
