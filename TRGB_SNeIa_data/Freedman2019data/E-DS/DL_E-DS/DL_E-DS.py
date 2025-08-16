@@ -65,7 +65,7 @@ Error, = perr
 normHub = np.round(Hubble,2)
 normError = np.round(Error,2)
 
-# calculate the statistical fitness, using N=1701, the number of data pairs and 
+# calculate the statistical fitness, using N=1720, the number of data pairs and 
 #P=1 as the parameter count
 P=1
 N=1720
