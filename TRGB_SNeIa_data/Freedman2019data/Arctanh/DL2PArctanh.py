@@ -151,21 +151,3 @@ print()
 #Routines to save figues in eps and pdf formats
 fig.savefig("DL2PArctanh.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
 fig.savefig("DL2PArctanh.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
