@@ -22,12 +22,11 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
 from astropy.stats.info_theory import bayesian_info_criterion
 
-print("This curve_fit regression routine of Python scipy, uses the distance mag vs redshift, z, data,")
-print(" from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. ")
-print(" vol. 38, 110. This is the solution to the Einstein-deSitter model with ")
-print(" two parameters, the Hubble constant, Hu and the normalised space density, \u03A9k, ") 
-print(" the matter density is presumed to be small. The value of the normalised contribution from the ")
-print(" cosmological constant, \u039B, can be estimated.")
+print()
+print("This is the solution to the Einstein-deSitter model with two parameters,")
+print(" the Hubble constant, Hu and the normalised space density, \u03A9k,") 
+print(" the matter density is presumed to be small. The value of the normalised ")
+print(" contribution from the cosmological constant, \u039B, can be estimated.")
 print()
 
 # open data file
