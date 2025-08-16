@@ -11,7 +11,7 @@ Astrophys. J. vol. 938, 110 AND the TRGB data, from GS Anand et al.
 This is the arctanh, analytical solution to the Friedmann-Lemaitre-Roberston-Walker (FLRW) model 
 with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. 
 No estimation is possible for \Omega_L, the normalised cosmological constant (dark energy) but O_k, 
-the normalised contribution from space is estimated, this is the remainder.
+the normalised contribution from space is estimated as the remainder.
 """
 
 print()
@@ -151,21 +151,3 @@ print()
 #Routines to save figues in eps and pdf formats
 fig.savefig("mag2PArctanh.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
 fig.savefig("mag2PArctanh.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
