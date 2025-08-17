@@ -80,7 +80,7 @@ rSD_O_m = round(SD_O_m,3)
 
 # normalised chisquar is calculated for 1717 data pairs (N) with P the parameter count (2) as
 P=2
-N=1719
+N=1720
 e=2.71828183
 
 #Calculate the reduced chi^2 according to astronomers
