@@ -6,8 +6,8 @@ Created on Wed Jun 15 17:41:24 2022
 @author: mike
 
 This curve_fit regression routine of Python scipy, uses the data, as 'distance mag' vs redshift (z), from Brout et al. 2022, 
-'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110 AND the 15 TRGB data, from GS Anand et al. 
-2022, 'Comparing Tip of the Red Giant Branch Distance Scales:' Astrophys. J. vol. 932, 15. The model selected is the 
+'The Pantheon+ Analysis: Cosmological Constraints' ApJ. vol. 938, 110 AND the 18 TRGB data, from W. Freedman et al. 
+2019, 'The Carnegie-Chicago Hubble Program. VIII.' ApJ. vol. 882, 34. The model selected is the 
 Melia 2012 solution, not formally the Freidmann-Lemaitre-Robertson-Walker (FLRW) model. This model presents 
 only one parameter, the Hubble constant. No estimation is possible for either the normalized matter density, which is 
 presumed to be about 1, nor dark energy.")
