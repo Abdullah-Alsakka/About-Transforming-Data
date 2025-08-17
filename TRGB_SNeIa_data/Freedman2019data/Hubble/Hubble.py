@@ -17,6 +17,7 @@ print()
 print("This is our Hubble model, a version of cosmology. It is not possible" )
 print("to estimate the matter density, space density nor dark energy.")
 print("Note the intercept, the position of the Milky Way has been give a position of 0.01")
+print(" for the Freedman TRGB data and a 'mag distance' of 25 with the Anand data.")
 
 import numpy as np
 import csv
