@@ -6,9 +6,9 @@ Created on Wed Jun 15 17:41:24 2022
 @author: Mike
 
 This curve_fit regression routine of Python scipy, using the distance mag data, converted to luminosity distances, D_L, 
-vs expansion factor, from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 
-110 AND the 15 TRGB data, from GS Anand et al. 2022, 'Comparing Tip of the Red Giant Branch Distance Scales: 
-'Astrophys. J. vol. 932, 15. The model used is the Melia 2012 solution,with only one parameter, the Hubble constant. 
+vs expansion factor, from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' ApJ. vol. 938, 
+110 AND the 18 TRGB data, from W. Freedman et al. 2019, 'The Carnegie-Chicago Hubble Program. VIII.' ApJ. vol. 882, 34. 
+The model used is the Melia 2012 solution,with only one parameter, the Hubble constant. 
 No estimation is possible for the matter density nor dark energy nor space contributions.
 """
 print()
