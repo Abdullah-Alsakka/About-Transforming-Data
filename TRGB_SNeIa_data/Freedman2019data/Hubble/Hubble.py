@@ -16,6 +16,7 @@ No estimate of matter or dark energy is possible.
 print()
 print("This is our Hubble model, a version of cosmology. It is not possible" )
 print("to estimate the matter density, space density nor dark energy.")
+print("Note the intercept, the position of the Milky Way has been give a position of 0.01")
 
 import numpy as np
 import csv
