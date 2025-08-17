@@ -13,9 +13,10 @@ Created on Fri Jul 29 17:53:20 2022
 
 This curve_fit regression routine of Python scipy with the SNe Ia data, as D_L vs redshift 
 (z) from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. 
-vol. 938, 110 and the 15 TRGB data from Anand et al. 2022, ApJ 932, 15. This variation of the 
-LCDM model has three free parameters: the Hubble constant, Hu, normalised matter density, O_m; 
-the cosmological constant, O_L, with 1=O_m+O_L+O_k as the remainder for spacetime.
+vol. 938, 110 and the 18 TRGB data, from W. Freedman et al. 2019, 'The Carnegie-Chicago Hubble 
+Program. VIII.' ApJ vol. 882, 34. This variation of the LCDM model has three free parameters: 
+the Hubble constant, Hu, normalised matter density, O_m; the cosmological constant, O_L, with 
+1=O_m+O_L. O_k as the remainder for spacetime.
 
 """
 print()
@@ -165,3 +166,4 @@ print()
 #commands to save plots in two different formats
 fig.savefig("3PStandard.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
 fig.savefig("3PStandard.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
+
