@@ -5,7 +5,7 @@ Created on Wed Jun 15 17:41:24 2022
 
 @author: mike
 
-This curve_fit regression routine of Python scipy, uses the data, as D_L vs redshift (z), from Brout et al. 2022, 
+This curve_fit regression routine of Python scipy, uses the data, as 'distance mag' vs redshift (z), from Brout et al. 2022, 
 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110 AND the 15 TRGB data, from GS Anand et al. 
 2022, 'Comparing Tip of the Red Giant Branch Distance Scales:' Astrophys. J. vol. 932, 15. The model selected is the 
 Melia 2012 solution, not formally the Freidmann-Lemaitre-Robertson-Walker (FLRW) model. This model presents 
@@ -14,7 +14,7 @@ presumed to be about 1, nor dark energy.")
 """
 print()
 print("This is the R_h modeled using ")
-print("luminosity distances, D_L, vs. the redshift z")
+print("the 'distance mag' values vs. the redshift z")
 print("Estimates for the matter density and dark energy ")
 print("(cosmological constant) cannot be made with this model")
 
