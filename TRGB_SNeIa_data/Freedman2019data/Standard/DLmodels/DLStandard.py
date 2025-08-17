@@ -10,11 +10,8 @@ the 18 TRGB data, from W. Freedman et al. 2019, 'The Carnegie-Chicago Hubble Pro
 This variation of the standard (\Omega_{\Lambda} LCDM) model has two parameters: Hubble constant, Hu, 
 normalised matter density, O_m; the cosmological constant, O_L, is the remainder of information in a 
 universe with presumed Euclidean space geometry. This is sometimes termed the standard model of cosmology, 
-Riess et al. 2004, ApJ, vol. 607, p. 665-687 and Riess et al. 2022, ApJ Lett, vol. 934, p. L7.
-The standard (LCDM) model used here requires numerical integration with three parameters, 
-the Hubble constant, Hu and the normalised matter density, O_m and O_L the cosmological constant
-but with presumed hyperbolic space geometry. An estimate of the normalized space parameter, O_k, 
-is the remainder.
+Riess et al. 2004, ApJ, vol. 607, p. 665-687 and Riess et al. 2022, ApJ Lett, vol. 934, p. L7. An estimate of 
+the normalized space parameter, O_k, is not possible.
 """
 print()
 print("This is the current standard model presuming Euclidean space geometry, sinn(x) = x.")
