@@ -22,6 +22,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
 from astropy.stats.info_theory import bayesian_info_criterion
 
+print()
 print("This curve_fit regression routine of Python scipy, uses the distance mag vs redshift, z, data,")
 print(" from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. ")
 print(" vol. 38, 110. This is the solution to the Einstein-deSitter model with ")
@@ -77,7 +78,7 @@ rans_cSD = round(ans_cSD,5)
 
 # normalised chisquar where P is the number of parameters (2) and N the number of data pairs
 P=2
-N=1719
+N=1720
 e = 2.718281
 
 #Calculate the chi^2 according to astronomers
