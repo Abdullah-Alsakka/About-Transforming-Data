@@ -6,8 +6,8 @@ Created on Wed Jun 15 17:41:24 2022
 @author: Mike
 This curve_fit regression routine of Python scipy, uses the distance mag (\mu) vs redshift (z)
 data, from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints'
-Astrophys. J. vol. 938, 110 AND the TRGB data, from GS Anand et al. 
-2022, 'Comparing Tip of the Red Giant Branch Distance Scales:' Astrophys. J. vol. 932, 15. 
+Astrophys. J. vol. 938, 110 AND the TRGB data, from W. Freedman et al. 
+2019, 'The Carnegie-Chicago Hubble Program. VIII.' ApJ. vol. 882, 34. 
 This is the arctanh, analytical solution to the Friedmann-Lemaitre-Roberston-Walker (FLRW) model 
 with two parameters, the Hubble constant, Hu and the normalised matter density, O_m. 
 No estimation is possible for \Omega_L, the normalised cosmological constant (dark energy) but O_k, 
