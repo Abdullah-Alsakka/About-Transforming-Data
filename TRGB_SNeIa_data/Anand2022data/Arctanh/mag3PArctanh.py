@@ -10,7 +10,7 @@ Constraints' Astrophys. J. vol. 938, 110 AND the TRGB data, from GS Anand et al.
 2022, 'Comparing Tip of the Red Giant Branch Distance Scales:' Astrophys. J. vol. 932, 15. 
 This is the arctanh, analytical solution to the Friedmann-Lemaitre-Roberston-Walker (FLRW) 
 model with three parameters, the Hubble constant, Hu, the normalised matter density, O_m 
-and the space parameter, O_k. No estimation is possible for dark energy.")
+and the space parameter, O_k. No estimation is possible for dark energy (O_L).")
 """
 
 # import data and Python 3 library files
@@ -70,7 +70,7 @@ rans_bSD = round(ans_bSD,2)
 rans_cSD = round(ans_cSD,5)
 rans_dSD = round(ans_dSD,5)
 
-# normalised chisquare where P the parameter number (3) and N the number of data pairs (1701) as 
+# normalised chisquare where P the parameter number (3) and N the number of data pairs (1717) as 
 P=3
 N=1717
 e=2.718281828
