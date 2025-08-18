@@ -23,7 +23,7 @@ from sklearn.metrics import r2_score
 from astropy.stats.info_theory import bayesian_info_criterion
 
 print()
-print("This is the 3PmagArctanh model. The correlation is distance mag (\mu) vs. redshift (z) ") 
+print("This is the 3PDLArctanh model. The correlation is distance (D_L) vs. redshift (z) ") 
 print("with sinn(x) = sinh(x) modelling elliptical (quasi-Euclidean) space geometry.")
 print()
 
@@ -66,7 +66,7 @@ rans_bSD = round(ans_bSD,2)
 rans_cSD = round(ans_cSD,5)
 rans_dSD = round(ans_dSD,5)
 
-# normalised chisquare where P the parameter number (3) and N the number of data pairs (1701) as 
+# normalised chisquare where P the parameter number (3) and N the number of data pairs (1718) as 
 P=3
 N=1718
 e=2.718281828
