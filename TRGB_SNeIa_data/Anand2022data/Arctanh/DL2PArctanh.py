@@ -4,14 +4,14 @@
 Created on Wed Jun 15 17:41:24 2022
 
 @author: Mike
-This curve_fit regression routine of Python scipy, uses D_L vs redshift (z)
-data, from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints'
-Astrophys. J. vol. 938, 110 AND the TRGB data, from GS Anand et al. 
-2022, 'Comparing Tip of the Red Giant Branch Distance Scales:' Astrophys. J. vol. 932, 15. 
-This is the 2 parameter arctanh, analytical solution to the Friedmann-Lemaitre-Roberston-Walker (FLRW) model. 
-Only the two parameters, the Hubble constant, Hu and the normalised matter density, O_m can be estimated. 
-No estimation is possible for \Omega_L, the normalised cosmological constant (dark energy) but O_k, 
-the normalised contribution from space is estimated as the remainder.
+This curve_fit regression routine of Python scipy, uses D_L vs redshift (z)data,
+from Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints'
+Astrophys. J. vol. 938, 110 AND the TRGB data, from GS Anand et al. 2022,
+'Comparing Tip of the Red Giant Branch Distance Scales:' Astrophys. J. vol. 932, 15. 
+This is the 2 parameter arctanh, analytical solution to the Friedmann-Lemaitre-Roberston-Walker 
+(FLRW) model. Only the two parameters, the Hubble constant, Hu and the normalised matter density, 
+O_m can be estimated. No estimation is possible for \Omega_L, the normalised cosmological 
+constant (dark energy) but O_k, the normalised contribution from space is estimated as the remainder.
 """
 
 print()
