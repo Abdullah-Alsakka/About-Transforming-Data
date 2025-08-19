@@ -13,9 +13,10 @@ Created on Fri Jul 29 17:53:20 2022
 @author: Mike
 
 This curve_fit regression routine of Python scipy uses the mag vs redshift (z) data from 
-Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. 
+Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' ApJ. vol. 938, 110 and 
+GS Anand et al., 'Comparing Tip of the Red Giant Branch Distance Scales:' ApJ vol. 932, 15. 
 This variation of the LCDM model has three free parameters: Hubble constant, Hu, normalised 
-matter density, O_m; the cosmological constant, O_L, with 1=O_m+O_L+O_k as the information remainder.
+matter density, O_m; the cosmological constant, O_L, with 1=O_m+O_L+O_k. O_k is the information remainder.
 
 """
 print()
@@ -64,7 +65,7 @@ def func3(x,Hu,O_m,O_L):
 # guess for the Hubble constant, Hu. No need to input numbers for the initial guesses but use the normalized matter density, O_m, and dark energy, O_L.
 init_guess = np.array([70,O_m,O_L])
 
-# allowed range for the two parameters
+# allowed range for the 3 parameters
 bnds=([60,0.001,0.001],[80,1.0,1.0])
 
 # fitting the model to the data, note that when choosing absolute_sigma = False the standard deviations (error) are normalized
@@ -88,7 +89,7 @@ rSD_O_L = round(SD_O_L,3)
 O_k_SD = np.sqrt((SD_O_m)**2 + (SD_O_L)**2)
 rSD_O_k = round(O_k_SD,3)
 
-#chisquar is calculated for N=1701 data pairs with P the parameter count (3) as
+#chisquar is calculated for N=1717 data pairs with P the parameter count (3) as
 P=3
 N=1717
 e=2.71828183
@@ -165,3 +166,4 @@ print()
 #commands to save plots in two different formats
 fig.savefig("sinhmag3PStandard.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
 fig.savefig("sinhmag3PStandard.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
+
