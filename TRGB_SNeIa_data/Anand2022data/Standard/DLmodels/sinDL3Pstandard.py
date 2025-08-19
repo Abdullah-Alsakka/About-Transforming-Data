@@ -6,7 +6,7 @@ Created on Fri Jul 29 17:53:20 2022
 @author: Mike
 This curve_fit regression routine of Python scipy, uses the 'distance mag' data, 
 converted to luminosity distances, D_L, vs redshift, z, from Brout et al. 2022, 
-'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110 along with
+'The Pantheon+ Analysis: Cosmological Constraints' ApJ vol. 938, 110 along with
 15 TRGB data from Anand et al. 2022 ApJ vol. 932, 15. The standard (LCDM) model used here 
 requires numerical integration with three parameters, the Hubble constant, Hu and the 
 normalised matter density, O_m and O_L the cosmological constantbut with presumed 
@@ -133,7 +133,7 @@ plt.legend(loc='best', fancybox=True, shadow=False)
 print()
 print("The calculated Hubble constant with S.D. is:", Rans_Hu,",", Rans_Hu_SD)
 print("The calculated matter density with S.D. is:", Rans_O_m,",",Rans_O_m_SD)
-print("The calculated normalised CC with S.D. is:", Rans_O_L,",",Rans_O_L_SD)
+print("The calculated normalised cosmological constant with S.D. is:", Rans_O_L,",",Rans_O_L_SD)
 print("The calculated space density with S.D. is:", Rans_O_k,",",Rans_O_k_SD)
 print()
 print('The r\u00b2 is:', R_square)
