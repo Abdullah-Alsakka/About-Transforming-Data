@@ -13,9 +13,10 @@ Created on Fri Jul 29 17:53:20 2022
 @author: Mike
 
 This curve_fit regression routine of Python scipy, uses the data, as mag vs redshift (z) from 
-Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' Astrophys. J. vol. 938, 110. 
+Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' ApJ. vol. 938, 110 and
+from GS Anand, et al. 'Comparing Tip of the Red Giant Branch Distance Scales:' ApJ vol. 932, 15.
 This variation of the LCDM model has three free parameters: Hubble constant, Hu, normalised 
-matter density, O_m; the cosmological constant, O_L, with 1=O_m+O_L+O_k as the remainder of 
+matter density, O_m; the cosmological constant, O_L, with 1=O_m+O_L+O_k. O_k is the remainder of 
 information.
 
 """
@@ -88,7 +89,7 @@ rSD_O_L = round(SD_O_L,3)
 O_k_SD = np.sqrt((SD_O_m)**2 + (SD_O_L)**2)
 rSD_O_k = round(O_k_SD,3)
 
-# normalised chisquar is calculated for N=1701 data pairs with P the parameter count (3) as
+# normalised chisquar is calculated for N=1717 data pairs with P the parameter count (3) as
 P=3
 N=1717
 e=2.71828183
@@ -165,3 +166,4 @@ print()
 #commands to save plots in two different formats
 fig.savefig("magsin3PStandard.eps", format="eps", dpi=2000, bbox_inches="tight", transparent=True)
 fig.savefig("magsin3PStandard.pdf", format="pdf", dpi=2000, bbox_inches="tight", transparent=True)
+
