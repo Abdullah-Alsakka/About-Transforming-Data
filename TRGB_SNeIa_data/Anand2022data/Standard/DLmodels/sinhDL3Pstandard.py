@@ -56,10 +56,10 @@ def func3(x,Hu,O_m,O_L):
 init_guess = np.array([70,0.30,0.69])
 bnds=([60,0.001,0.001],[90,1.0,1.0])
 
-# the bnds are the two lower and two higher bounds for the unknowns (parameters), when absolute_sigma = False the errors are "normalized"
+# the bnds are the 3 lower and 3 higher bounds for the unknowns (parameters), when absolute_sigma = False the errors are "normalized"
 params, pcov = curve_fit(func3, xdata, ydata, p0 = init_guess, bounds = bnds, sigma = error, absolute_sigma = False)
 
-#extracting the two parameters from the solution and rounding the values
+#extracting the 3 parameters from the solution and rounding the values
 ans_Hu, ans_O_m, ans_O_L = params
 Rans_Hu = round(ans_Hu,2)
 Rans_O_m = round(ans_O_m,3)
