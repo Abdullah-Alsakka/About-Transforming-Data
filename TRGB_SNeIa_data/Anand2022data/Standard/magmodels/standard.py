@@ -5,8 +5,8 @@ Created on Fri Jul 29 17:53:20 2022
 @author: Mike
 
 This curve_fit regression routine of Python scipy, uses the distance mag (\mu) vs redshift (z) data from 
-Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' ApJ vol. 938, 110 AND the TRGB data, from GS Anand et al. 
-2022, 'Comparing Tip of the Red Giant Branch Distance Scales:' Astrophys. J. vol. 932, 15. 
+Brout et al. 2022, 'The Pantheon+ Analysis: Cosmological Constraints' ApJ vol. 938, 110 AND the TRGB data, 
+from GS Anand et al. 2022, 'Comparing Tip of the Red Giant Branch Distance Scales:' ApJ vol. 932, 15. 
 This variation of the standard (\Omega_{\Lambda} LCDM) model has two parameters: Hubble constant, Hu, 
 normalised matter density, O_m; the cosmological constant, O_L, is the remainder of 
 information in a universe with presumed Euclidean space geometry. This is sometimes termed the standard 
@@ -72,7 +72,7 @@ SD_Hu, SD_O_m = perr
 rSD_Hu = round(SD_Hu,2)
 rSD_O_m = round(SD_O_m,3)
 
-#chisquared is calculated for 1701 data pairs with P the parameter count (2) as
+#chisquared is calculated for 1717 data pairs with P the parameter count (2) as
 P=2
 N=1717
 e=2.71828183
