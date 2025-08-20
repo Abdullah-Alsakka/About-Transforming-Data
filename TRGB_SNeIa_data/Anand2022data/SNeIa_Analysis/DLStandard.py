@@ -72,9 +72,9 @@ SD_Hu, SD_O_m = perr
 rSD_Hu = round(SD_Hu,2)
 rSD_O_m = round(SD_O_m,3)
 
-#chisquared is calculated for 1701 data pairs with P the parameter count (2) as
+#chisquared is calculated for 1718 data pairs with P the parameter count (2) as
 P=2
-N=1702
+N=1718
 e=2.71828183
 
 #Calculate the reduced chi^2 according to astronomers
