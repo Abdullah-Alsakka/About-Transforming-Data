@@ -10,7 +10,6 @@ The other, Least_Squares folder, presents the codes and some results using only 
 
 For convenience a few data ensembles are provided in the same folders as the evaluation codes. The user must be careful to adjust the data number (N) to acurately reflect the real number of data pairs. This value is required for accurate calculations of statistics. Also note the correct parameter number, P, must be used for most statistics.
 
-The public is welcome to download the data and codes.
-
+The public is welcome to download the data and codes. The companion publication with models and derivations is Smith, Alsakka and Öztas as "Predicting the Future Using Pantheon+TRGB Data: Better Analytical Techniques with Friedmann-Lemaître-Robertson-Walker Models" in the book Cosmology Research - Addressing Current Problems with Astrophysics, 2025, IntechOpen doi: 10.5772/intechopen.1012636 
 
 
